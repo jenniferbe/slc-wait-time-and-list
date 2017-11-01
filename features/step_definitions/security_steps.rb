@@ -10,27 +10,41 @@ end
 World(WithinHelpers)
 
 
-Given /^I fill in the password (in)?correctly$/ do |capt|
+Given /^(?:I|She|He) fill in the password (in)?correctly for (.*)$/ do |capt1, capt2|
+  password = "wrongpassword"
+  if(capt1 == nil)
+    if(capt2 == "the tutor firewall page")
+      password = Security.tutor_firewall_password
+    else
+      password = Security.app_firewall_password
+    end
+  end
+  steps %Q{
+    And I fill in "password" with "#{password}"
+  }
+end
+
+Given /^(?:I|She|He) should be told that the password is incorrect$/ do
+  steps %Q{
+    And I should see "The password you entered is incorrect."
+  }
+end
+
+Given /^(?:I am|She is |He is) (not )?signed in to the app$/ do |capt1|
   pending
 end
 
-Given /^I should be told that the password is incorrect$/ do
+Given /^(?:I am|She is |He is) (not )?signed in as a tutor$/ do |capt1|
   pending
 end
 
-Given /^I am (not )?signed in to the app$/ do |capt|
-  pending
+Given /^(?:I|She|He) should (not )?be redirected(?: to )?([^"]*)$/ do |capt1, capt2|
+    steps %Q{
+      I should #{capt1}be on #{capt2}
+    }
 end
 
-Given /^I am (not )?signed in as a tutor$/ do |capt|
-  pending
-end
-
-Given /^I should (not )?be redirected(?: to ")?([^"]*)(?:")?$/ do |capt1, capt2|
-  pending
-end
-
-Given /^I should be logged out as a tutor/ do
+Given /^(?:I|She|He) should be logged out as a tutor/ do
   pending
 end
 

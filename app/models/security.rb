@@ -1,8 +1,8 @@
 class Security
-  def overall_password
+  def self.app_firewall_password
     "slc123"
   end
-  def tutor_password
+  def self.tutor_firewall_password
     "tutor123"
   end
 end
