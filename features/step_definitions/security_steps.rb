@@ -31,11 +31,19 @@ Given /^(?:I|She|He) should be told that the password is incorrect$/ do
 end
 
 Given /^(?:I am|She is |He is) (not )?signed in to the app$/ do |capt1|
-  pending
+  if(capt1)
+    assert_equal(false, Security.logged_in_app?)
+  else
+    assert_equal(true, Security.logged_in_app?)
+  end
 end
 
 Given /^(?:I am|She is |He is) (not )?signed in as a tutor$/ do |capt1|
-  pending
+  if(capt1)
+    assert_equal(false, Security.logged_in_tutor?)
+  else
+    assert_equal(true, Security.logged_in_tutor?)
+  end
 end
 
 Given /^(?:I|She|He) should (not )?be redirected(?: to )?([^"]*)$/ do |capt1, capt2|
@@ -45,7 +53,7 @@ Given /^(?:I|She|He) should (not )?be redirected(?: to )?([^"]*)$/ do |capt1, ca
 end
 
 Given /^(?:I|She|He) should be logged out as a tutor/ do
-  pending
+  assert_equal(false, Security.logged_in_tutor?)
 end
 
 
