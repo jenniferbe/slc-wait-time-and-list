@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_queue
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_queue
 
+  #security routes
+  get 'app_login' => 'security#app_login', as: :app_firewall_path
+  get 'tutor_login' => 'security#tutor_login', as: :tutor_firewall_path
+
   #the following routes exist to allow for redirects to *#create methods since redirec_to only
   #issues redirects to controller actions that have the GET http verb.
   get 'student_queues/:id/create' => 'student_queues#create', as: :create_student_queue
