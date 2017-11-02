@@ -1,5 +1,9 @@
 class TutorSecurityController < ApplicationController
-  before_action :signed_in?
+  include SecurityConcern
 
-  #def signed_in?
+  def show
+
+  end
+
+
 end

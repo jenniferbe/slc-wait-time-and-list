@@ -1,4 +1,5 @@
 class StudentQueuesController < ApplicationController
+  include SecurityConcern
   def index
 	  @queue_entries = StudentQueue.order('created_at')
     render "student_queues/index"
