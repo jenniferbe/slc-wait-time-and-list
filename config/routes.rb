@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_queue
 
   #security routes
+  post 'app_login' => 'app_security#authenticate', as: :app_authenticate
   get 'app_login' => 'app_security#show', as: :app_firewall
   get 'tutor_login' => 'tutor_security#show', as: :tutor_firewall
+  post 'tutor_login' => 'tutor_security#authenticate', as: :tutor_authenticate
 
   #the following routes exist to allow for redirects to *#create methods since redirec_to only
   #issues redirects to controller actions that have the GET http verb.

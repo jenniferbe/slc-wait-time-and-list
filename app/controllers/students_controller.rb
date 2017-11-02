@@ -41,4 +41,5 @@ class StudentsController < ApplicationController
                     :course => params[:course]
     end
   end
+
 end

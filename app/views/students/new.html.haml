@@ -1,5 +1,5 @@
+= link_to 'Tutor Sign in', tutor_firewall_path, :method => :get
 %h1 Writing Service Sign-in
-
 = form_tag(students_path, method: 'post') do
 
   / <label class='sr-only' for='exampleInputEmail2'>Email address</label>
@@ -22,3 +22,5 @@
   = text_field_tag 'student_course', placeholder= 'History', class: 'form_signup'
 
   = submit_tag'Submit', :id => 'form_submit'
+
+
