@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  include SecurityConcern
+  include AppSecurityConcern
   def new
     #render new template
   end

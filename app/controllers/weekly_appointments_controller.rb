@@ -1,4 +1,5 @@
 class WeeklyAppointmentsController < ApplicationController
+  include AppSecurityConcern
   def create
     student = Student.find(params[:student_id])
     if student.weekly_appointment.nil?
