@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20171029045053) do
     t.time     "start_time"
     t.time     "end_time"
     t.string   "tutor_notes"
-    t.time     "wait_time"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

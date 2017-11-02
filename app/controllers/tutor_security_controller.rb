@@ -1,5 +1,4 @@
 class TutorSecurityController < ApplicationController
-  include SecurityConcern
 
   def show
 

@@ -7,13 +7,11 @@ class Security
   end
 
   def self.logged_in_app?
-    if(sessions["appauth"] = true)
-      return true
-    end
-    return false
+    #base case
+
   end
   def self.logged_in_tutor?
-    if(sessions["tutorauth"] = true)
+    if(session["tutorauth"] == true)
       return true
     end
     return false

@@ -6,12 +6,22 @@ module SecurityConcern
   end
 
   def auth_check
-    if(Security.logged_in_tutor? and Security.logged_in_app?)
-      redirect_to '/student_queues'
-    elsif(Security.logged_in_tutor? == false and Security.logged_in_app?)
-      redirect_to new_student_path
-    else
+    if(logged_in_tutor? == false and logged_in_app? == false)
       redirect_to app_firewall_path
     end
+  end
+
+  def logged_in_tutor?
+    if(session["tutorauth"] == true)
+      return true
+    end
+    return false
+  end
+
+  def logged_in_app?
+    if(session["appauth"] == true)
+      return true
+    end
+    return false
   end
 end
