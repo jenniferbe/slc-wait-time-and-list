@@ -1,6 +1,9 @@
 class StudentQueuesController < ApplicationController
   def index
-	  @queue_entries = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
+    flash[:notice] = nil
+	  @drop_in_queue = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
+	  @scheduled_queue = StudentQueue.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
+	  @weekly_queue = StudentQueue.where(meet_type: "weekly").where(status: "waiting").order('created_at')
     render "student_queues/index"
   end
 
@@ -22,6 +25,11 @@ class StudentQueuesController < ApplicationController
     # render new template	
   end
 
+  def confirm
+    flash[:notice] = 'you are now in line!'
+    render "students/new"
+  end
+
   def create
     student = Student.find(params[:id]) #after nesting student_queue routes, {:id => :student_id}
     if student.student_queues.empty?
@@ -33,9 +41,6 @@ class StudentQueuesController < ApplicationController
     redirect_to wait_time_student_queue_path(student.sid)
   end
 
-  def confirm
-    #wait in line
-  end
 
   def destroy
     @student1 = Student.find(params[:id])

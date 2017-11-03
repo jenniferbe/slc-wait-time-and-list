@@ -161,9 +161,11 @@ end
 
 When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
   
-  text_fields = ["student_last_name", "student_first_name", "student_sid", "student_email", "student_course"]
-  text_inputs = ["brown", "bob", "12345678", "bobb@berkeley.edu", "english"]
-  radio_fields = ["request_type_appointment"]
+  text_fields = ["student_last_name", "student_first_name", "student_sid", "student_email"]
+  text_inputs = ["brown", "bob", "12345678", "bobb@berkeley.edu"]
+  radio_fields = ["meet_type_drop-in"]
+  drop_inputs = ["English R1A"]
+  drop_fields = ["course"]
   
   for i in 0..(text_fields.length-1)
     text_field = text_fields[i]
@@ -177,6 +179,13 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
     radio_button = radio_fields[i]
     steps %Q{
       When I click "#{radio_button}"
+    }
+  end
+  for i in 0..(drop_fields.length-1)
+    drop_field = drop_fields[i]
+    drop_input = drop_inputs[i]
+    steps %Q{
+      And I select "#{drop_input}" from "#{drop_field}"
     }
   end
   steps %Q{

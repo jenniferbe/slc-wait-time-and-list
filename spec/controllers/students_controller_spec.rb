@@ -6,9 +6,9 @@ RSpec.describe StudentsController, type: :controller do
       @params = {:student_first_name => 'Athina',
                  :student_last_name => 'Kaunda',
                  :student_sid => '23636173',
-                 :student_course => 'math',
+                 :course => 'math',
                  :student_email => 'student@email.com',
-                  :appointment_type => 'drop-in'}
+                 :meet_type => 'drop-in'}
 
       @student_data = {:first_name => @params[:student_first_name],
                        :last_name => @params[:student_last_name],
@@ -29,16 +29,6 @@ RSpec.describe StudentsController, type: :controller do
       allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([@student])
       expect(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
       post :create, @params
-    end
-
-    it 'redirects to create student queue' do
-      allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([@student])
-      allow(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
-      post :create, @params
-      expect(response).to redirect_to create_student_queue_path(:id => @student.id,
-                                                           :type => @params[:appointment_type],
-                                                           :course => @params[:student_course])
-
     end
   end
 end

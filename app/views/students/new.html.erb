@@ -1,0 +1,31 @@
+<h1>Writing Service Sign-in</h1>
+<%= form_tag(students_path, method: "post") do %>
+
+    <%= label_tag(:last_name, "Last Name *") %>
+    <%= text_field_tag "student_last_name", "", class: "form_signup", required: true   %>
+    <br><br>
+
+    <%= label_tag(:first_name, "First Name *") %>
+    <%= text_field_tag "student_first_name", "", class: "form_signup", required: true  %>
+    <br><br>
+
+    <%= label_tag(:sid, "Student ID Number (Number located on your Cal ID card) *") %>
+    <%= number_field_tag "student_sid", "", class: "form_signup" %>
+    <br><br>
+
+    <%= label_tag(:email, "E-mail *") %>
+    <%= email_field_tag "student_email", "", class: "form_signup", required: true  %>
+    <br><br>
+     
+    <%= label_tag(:meet_type, "Which service format are you seeking today?") %>
+    <%= radio_button_tag(:meet_type, "scheduled") %> Appointment
+    <%= radio_button_tag(:meet_type, "weekly") %> Weekly Session
+    <%= radio_button_tag(:meet_type, "drop-in") %> Drop-in
+    <br><br>
+
+    <%= label_tag(:course, "Course") %>
+    <%= select_tag(:course, options_for_select([["Please choose a course...", "0"], ["African American R1A", "African American R1A"], ["African American R1B", "African American R1B"], ["American Studies 10", "American Studies 10"], ["Anthropology R5A", "Anthropology R5A"], ["Anthropology R5B", "Anthropology R5B"], ["Asian American Studies R2A", "Asian American Studies R2A"], ["Asian American Studies R2B", "Asian American Studies R2B"], ["Asian Studies 10", "Asian Studies 10"], ["Astronomy 10", "Astronomy 10"], ["Chicano Studies R1A", "Chicano Studies R1A"], ["Chicano Studies R1B", "Chicano Studies R1B"], ["Classics R44", "Classics R44"], ["College Writing 1", "College Writing 1"], ["College Writing R1A", "College Writing R1A"], ["College Writing R1B", "College Writing R1B"], ["College Writing R4A", "College Writing R4A"], ["College Writing R4B", "College Writing R4B"], ["Comparative Literature R1A", "Comparative Literature R1A"], ["Comparative Literature R1B", "Comparative Literature R1B"], ["Economics 191", "Economics 191"], ["English R1A", "English R1A"], ["English R1B", "English R1B"], ["English 45A", "English 45A"], ["English 45B", "English 45B"], ["English 45C", "English 45C"], ["ESPM 50AC", "ESPM 50AC"], ["ESPM 155AC", "ESPM 155AC"], ["French R1A", "French R1A"], ["French R1B", "French R1B"], ["Film and Media R1A", "Film and Media R1A"], ["Film and Media R1B", "Film and Media R1B"], ["Gender & Women's Studies 50AC", "Gender & Women's Studies 50AC"], ["German R5A", "German R5A"], ["German R5B", "German R5B"], ["History of Art R1A", "History of Art R1A"], ["History of Art R1B", "History of Art R1B"], ["Interdisciplinary Studies Field 191", "Interdisciplinary Studies Field 191"], ["International Area Studies 45", "International Area Studies 45"], ["Italian Studies R5A", "Italian Studies R5A"], ["Italian Studies R5B", "Italian Studies R5B"], ["Legal Studies R1A", "Legal Studies R1A"], ["Legal Studies R1B", "Legal Studies R1B"], ["Linguistics Studies R1A", "Linguistics Studies R1A"], ["Linguistics Studies R1B", "Linguistics Studies R1B"], ["Media Studies 10", "Media Studies 10"], ["Native American Studies R1A", "Native American Studies R1A"], ["Native American Studies R1B", "Native American Studies R1B"], ["Near Eastern Studies R1A", "Near Eastern Studies R1A"], ["Near Eastern Studies R1B", "Near Eastern Studies R1B"], ["Peace and Conflict Studies 10", "Peace and Conflict Studies 10"], ["Philosophy R1A", "Philosophy R1A"], ["Philosophy R1B", "Philosophy R1B"], ["Philosophy 100", "Philosophy 100"], ["Political Science 1", "Political Science 1"], ["Political Science 2", "Political Science 2"], ["Political Science 5", "Political Science 5"], ["Psychology 1", "Psychology 1"], ["Psychology 2", "Psychology 2"], ["Rhetoric R1A", "Rhetoric R1A"], ["Rhetoric R1B", "Rhetoric R1B"], ["Scandinavian R5A", "Scandinavian R5A"], ["Scandinavian R5B", "Scandinavian R5B"], ["Slavic Languages and Literatures R5A", "Slavic Languages and Literatures R5A"], ["Slavic Languages and Literatures R5B", "Slavic Languages and Literatures R5B"], ["Sociology 1", "Sociology 1"], ["Sociology 3AC", "Sociology 3AC"], ["Sociology 5", "Sociology 5"], ["Sociology 121", "Sociology 121"], ["Sociology 160", "Sociology 160"], ["Sociology 194", "Sociology 194"], ["South and Southeast Asia Studies R5A", "South and Southeast Asia Studies R5A"], ["South and Southeast Asia Studies R5B", "South and Southeast Asia Studies R5B"], ["South Asian Studies R5A", "South Asian Studies R5A"], ["South Asian Studies R5B", "South Asian Studies R5B"], ["Spanish R1A", "Spanish R1A"], ["Spanish R1B", "Spanish R1B"], ["Theater, Dance, and  Performance R1A", "Theater, Dance, and  Performance R1A"], ["Theater, Dance, and  Performance R1B", "Theater, Dance, and  Performance R1B"], ["UGBA 100", "UGBA 100"]])) %>
+
+    <%= submit_tag"Submit", :id => "form_submit" %>
+
+<% end %>

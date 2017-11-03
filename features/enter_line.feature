@@ -3,18 +3,25 @@ Feature: enter line for help
   As a student
   So that I can receive help with my writing
   I want to get in line
-  
+
+Background: Jennifer signs in
+  Given I am on the sign up page
+  And I fill in "student_last_name" with "Be"
+  And I fill in "student_first_name" with "Jennifer"
+  And I fill in "student_sid" with "12345678"
+  And I fill in "student_email" with "me@jennifer.com"
+  And I select "English R1A" from "course"
+  And I click "meet_type_drop-in"
+  And I press "Submit"
 
 Scenario: Jennifer wants to wait in line
-  Given "Jennifer" "Be" is on the wait time page
   And she clicks on "YES"
   Then she should be on the confirmation page for "Jennifer" "Be"
-  And she should see "you are in line"
+  And she should see "you are now in line!"
   Then "Jennifer" "Be" should be in line
   And she should not see "Hope to see you soon"
 
 Scenario: Jennifer doesn't want to wait in line
-  Given "Jennifer" "Be" is on the wait time page
   And she clicks on "NO"
   Then she should not be on the confirmation page for "Jennifer" "Be"
   And she should see "you are not in line"
