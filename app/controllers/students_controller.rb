@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
                                :sid => params[:student_sid],
                                :email => params[:student_email])
     else
-      @student = Student.find(sid)
+      @student = Student.find(params[:student_sid])
     end
     unless @student.student_queues.empty?
       flash[:notice] = 'you are already in line'
