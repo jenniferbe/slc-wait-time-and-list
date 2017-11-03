@@ -45,6 +45,22 @@ RSpec.describe StudentQueuesController, type: :controller do
       expect(assigns(:queue_entries)).to eq(@fake_results)
       get :index
     end
+    it 'fetches the active sessions' do
+      allow(StudentQueue).to receive(:where).and_return(StudentQueue)
+      expect(StudentQueue).to receive(:where).with({:status => "active"})
+      get :index
+    end
+    it 'sorts the active sessions by creation time' do
+      allow(StudentQueue).to receive(:where).and_return(StudentQueue)
+      allow(StudentQueue).to receive(:order)
+      expect(StudentQueue).to receive(:order).with("created_at")
+      get :index
+    end
+    it 'makes the active sessions available to the view' do
+      allow(StudentQueue).to receive(:where).and_return(StudentQueue)
+      allow(StudentQueue).to receive(:order).and_return(@fake_results)
+      expect(assigns(:active_sessions)).to eq(@fake_results)
+    end
   end
 
   describe 'when adding a student to the queue it' do
@@ -94,6 +110,46 @@ RSpec.describe StudentQueuesController, type: :controller do
         allow(StudentQueue).to receive(:update)
         post :destroy, @id
       end
+    end
+  end
+  describe 'active sessions' do
+    before(:each) do
+      @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
+      @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
+      #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
+    end
+    subject { patch 'activate_session', :id => @fake_student_request.id}
+    it 'updates the status to active' do
+      allow(StudentQueue).to receive(:find).and_return(@fake_student_request)
+      allow(@fake_student_request).to receive(:update).with({:status => "active"})
+      expect(@fake_student_request).to receive(:update).with({:status => "active"})
+      subject
+    end
+    it 'redirects to the index' do 
+      allow(StudentQueue).to receive(:find).and_return(@fake_student_request)
+      allow(@fake_student_request).to receive(:update).with({:status => "active"})
+      subject
+      expect(response).to redirect_to student_queues_path
+    end
+  end
+  describe 'finish session' do
+    before(:each) do
+      @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
+      @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
+      #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
+    end
+    subject { patch 'finish_session', :id => @fake_student_request.id}
+    it 'updates the status to finished' do
+      allow(StudentQueue).to receive(:find).and_return(@fake_student_request)
+      allow(@fake_student_request).to receive(:update).with({:status => "finished"})
+      expect(@fake_student_request).to receive(:update).with({:status => "finished"})
+      subject
+    end
+    it 'redirects to the index' do 
+      allow(StudentQueue).to receive(:find).and_return(@fake_student_request)
+      allow(@fake_student_request).to receive(:update).with({:status => "finished"})
+      subject
+      expect(response).to redirect_to student_queues_path
     end
   end
 end

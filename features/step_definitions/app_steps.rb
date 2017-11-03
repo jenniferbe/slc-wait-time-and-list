@@ -200,8 +200,9 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
-When /^I click "(.*)" for "(.*)"$/ do |button_type, person|
-  pending
+When /^I click "(.*)" for "(.*)"$/ do |button_type, id|
+  byebug
+  click_button(id)
 end
 
 Then /^I should see "(.*)" in "(.*)"$/ do |person, table|

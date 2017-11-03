@@ -4,6 +4,7 @@ class StudentQueuesController < ApplicationController
 	  @drop_in_queue = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
 	  @scheduled_queue = StudentQueue.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
 	  @weekly_queue = StudentQueue.where(meet_type: "weekly").where(status: "waiting").order('created_at')
+	  @active_sessions = StudentQueue.where(status: "active").order('created_at')
     render "student_queues/index"
   end
 
@@ -49,5 +50,15 @@ class StudentQueuesController < ApplicationController
     #StudentQueue.destroy(@student.sid)
     # @student.student_queue.destroy
     #send student here if they decide to not to stay in line.
+  end
+  
+  def activate_session
+    StudentQueue.find(params[:id]).update(:status => "active")
+    redirect_to student_queues_path
+  end
+  
+  def finish_session
+    StudentQueue.find(params[:id]).update(:status => "finished")
+    redirect_to student_queues_path
   end
 end
