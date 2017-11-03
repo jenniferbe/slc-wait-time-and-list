@@ -14,27 +14,28 @@ Feature: password protect data for tutor
     Then I should be on the sign up page
     And I should be told that the password is incorrect
 
-  Scenario: Refresh happy path
-    Given I am on the student line page
-    And I am signed in as a tutor
-    And I am signed in to the app
-    Then I should not be redirected to the sign up page
-
-  Scenario: Refresh sad path 1 0
-    Given I am on the student line page
-    And I am not signed in as a tutor
-    And I am signed in to the app
-    Then I should be redirected to the sign up page
-
-  Scenario: Refresh sad path 0 0
-    Given I am on the student line page
-    And I am not signed in as a tutor
-    And I am not signed in to the app
-    Then I should be redirected to the app firewall page
-
-  Scenario: Refresh sad path 0 1
-    Given I am on the student line page
-    And I am not signed in to the app
-    And I am signed in as a tutor
-    Then I should be logged out as a tutor
-    And I should be redirected to the app firewall page
+  # need to transfer to rspec
+#  Scenario: Refresh happy path
+#    Given I am on the student line page
+#    And I am signed in as a tutor
+#    And I am signed in to the app
+#    Then I should not be redirected to the sign up page
+#
+#  Scenario: Refresh sad path 1 0
+#    Given I am on the student line page
+#    And I am not signed in as a tutor
+#    And I am signed in to the app
+#    Then I should be redirected to the sign up page
+#
+#  Scenario: Refresh sad path 0 0
+#    Given I am on the student line page
+#    And I am not signed in as a tutor
+#    And I am not signed in to the app
+#    Then I should be redirected to the app firewall page
+#
+#  Scenario: Refresh sad path 0 1
+#    Given I am on the student line page
+#    And I am not signed in to the app
+#    And I am signed in as a tutor
+#    Then I should be logged out as a tutor
+#    And I should be redirected to the app firewall page

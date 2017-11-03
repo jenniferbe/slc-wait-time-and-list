@@ -14,13 +14,13 @@ Given /^(?:I|She|He) fill in the password (in)?correctly for (.*)$/ do |capt1, c
   password = "wrongpassword"
   if(capt1 == nil)
     if(capt2 == "the tutor firewall page")
-      password = Security.tutor_firewall_password
+      password = ENV["tutor_password"]
     else
-      password = Security.app_firewall_password
+      password = ENV["slc_password"]
     end
   end
   steps %Q{
-    And I fill in "password" with "#{password}"
+    And I fill in "pass" with "#{password}"
   }
 end
 
