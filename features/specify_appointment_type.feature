@@ -13,7 +13,7 @@ Background: student requests in database
   And I select "English R1A" from "course"
 
 Scenario: Specify drop-in
-  And I click "meet_type_scheduled"
+  And I click "meet_type_drop-in"
   When I press "Submit"
   Then I am on the wait time page for "Haggai" "Kaunda"
   And I follow "YES"

@@ -6,9 +6,9 @@ RSpec.describe StudentsController, type: :controller do
       @params = {:student_first_name => 'Athina',
                  :student_last_name => 'Kaunda',
                  :student_sid => '23636173',
-                 :student_course => 'math',
+                 :course => 'math',
                  :student_email => 'student@email.com',
-                  :meet_type => 'drop-in'}
+                 :meet_type => 'drop-in'}
 
       @student_data = {:first_name => @params[:student_first_name],
                        :last_name => @params[:student_last_name],
