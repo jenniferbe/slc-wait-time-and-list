@@ -10,17 +10,20 @@ end
 World(WithinHelpers)
 
 Given /the following student queues exist/ do |student_data_table|
-  student_data_table.hashes.each do |student_data|
+  student_data_table.hashes.each do |data|
+    #byebug
     # delete the create time if it exists, since we want this to go in the queue.
-    create_time = student_data[:created_at]
-    student_data.delete('created_at')
-
+    create_time = data[:created_at]
+    data.delete('created_at')
+    student_data = { :first_name => data[:first_name], :last_name => data[:last_name], :sid => data[:sid] }
+    queue_data = { :meet_type => data[:meet_type], :status => data[:status] }
     student = Student.create(student_data)
 
     if create_time
-      student.build_student_queue(:created_at => create_time)
+      queue_data[:created_at] = create_time
+      student.student_queues.build(queue_data)
     else
-      student.build_student_queue()
+      student.student_queues.build()
     end
     student.save
   end

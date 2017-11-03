@@ -13,9 +13,10 @@ class StudentsController < ApplicationController
     else
       @student = Student.find(sid)
     end
-
-    redirect_to sign_in_student_path(:id => @student.id,
-                                     :appointment_type => params[:appointment_type],
+    # SETTING TYPE TO DROP IN IS TEMPORARY.
+    # change to params[:appointment_type] when different appointments are supported
+    redirect_to create_student_queue_path(:id => @student.id,
+                                     :type => "drop-in",
                                      :course => params[:student_course])
   end
 
