@@ -21,12 +21,13 @@ Given /^(?:I|She|He) fill in the password (in)?correctly for (.*)$/ do |capt1, c
   end
   steps %Q{
     And I fill in "pass" with "#{password}"
+    When I click on "Submit"
   }
 end
 
 Given /^(?:I|She|He) should be told that the password is incorrect$/ do
   steps %Q{
-    And I should see "The password you entered is incorrect."
+    And I should see "Incorrect Password"
   }
 end
 

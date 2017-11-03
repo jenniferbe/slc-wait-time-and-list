@@ -6,7 +6,6 @@ class AppSecurityController < ApplicationController
   end
 
   def authenticate
-    # byebug
     if(params["pass"] != nil and params["pass"] != "")
       if(params["pass"]==ENV["slc_password"])
         session["appauth"] = true
