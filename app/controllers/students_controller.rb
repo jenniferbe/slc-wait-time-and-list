@@ -9,11 +9,10 @@ class StudentsController < ApplicationController
   end
 
   def create
-    sid = params[:student_sid]
-    if Student.where(:sid => sid).empty?
+    if Student.where(:sid => params[:student_sid]).empty?
       @student = Student.create(:first_name => params[:student_first_name],
                                :last_name => params[:student_last_name],
-                               :sid => sid,
+                               :sid => params[:student_sid],
                                :email => params[:student_email])
     else
       @student = Student.find(sid)
