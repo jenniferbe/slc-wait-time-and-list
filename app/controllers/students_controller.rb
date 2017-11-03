@@ -14,8 +14,8 @@ class StudentsController < ApplicationController
       @student = Student.find(sid)
     end
 
-    redirect_to sign_in_student_path(:id => @student.id,
-                                     :appointment_type => params[:appointment_type],
+    redirect_to create_student_queue_path(:id => @student.id,
+                                     :type => params[:appointment_type],
                                      :course => params[:student_course])
   end
 

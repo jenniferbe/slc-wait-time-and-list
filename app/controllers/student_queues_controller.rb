@@ -1,11 +1,11 @@
 class StudentQueuesController < ApplicationController
   def index
-	  @queue_entries = StudentQueue.order('created_at')
+	  @queue_entries = StudentQueue.where(status: "waiting").order('created_at')
     render "student_queues/index"
   end
 
   def wait_time
-    @sorted_results = StudentQueue.order('created_at')
+    @sorted_results = StudentQueue.where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
       break if "#{entry.student_id}" == params[:id]
@@ -24,8 +24,8 @@ class StudentQueuesController < ApplicationController
 
   def create
     student = Student.find(params[:id]) #after nesting student_queue routes, {:id => :student_id}
-    if student.student_queue.nil?
-      student.build_student_queue(:course => params[:course])
+    if student.student_queues.empty?
+      student.student_queues.build(:course => params[:course], :meet_type => params[:type], :status => "waiting")
       student.save
     else
       flash[:notice] = 'you are already in line'
@@ -38,9 +38,10 @@ class StudentQueuesController < ApplicationController
   end
 
   def destroy
-    @student = Student.find(params[:id])
-    @student.queue_to_history
-    StudentQueue.destroy(@student.sid)
+    @student1 = Student.find(params[:id])
+    @student1.student_queues.find(params[:id]).update(:status => "canceled")
+    #@student.queue_to_history
+    #StudentQueue.destroy(@student.sid)
     # @student.student_queue.destroy
     #send student here if they decide to not to stay in line.
   end

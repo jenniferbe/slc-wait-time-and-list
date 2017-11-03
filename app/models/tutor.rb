@@ -1,7 +1,8 @@
 class Tutor < ActiveRecord::Base
   self.primary_key = :sid
   has_many :drop_in_histories
-  has_one :active_session
+  has_many :studen_queues
+
 
   #moves a student from the queue to the active session.
   def queue_to_session(student_queue)

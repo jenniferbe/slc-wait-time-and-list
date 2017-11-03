@@ -1,10 +1,8 @@
 class Student < ActiveRecord::Base
     self.primary_key = :sid
     has_many :drop_in_histories
-    has_one :student_queue
-    has_one :active_session
-    has_one :weekly_appointment
-    has_one :scheduled_appointment
+    has_many :student_queues
+
 
   def destroy_student_queue
     if self.student_queue
