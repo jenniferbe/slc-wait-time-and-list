@@ -1,11 +1,11 @@
 class StudentQueuesController < ApplicationController
   def index
-	  @queue_entries = StudentQueue.where(status: "waiting").order('created_at')
+	  @queue_entries = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     render "student_queues/index"
   end
 
   def wait_time
-    @sorted_results = StudentQueue.where(status: "waiting").order('created_at')
+    @sorted_results = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
       break if "#{entry.student_id}" == params[:id]

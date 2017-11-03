@@ -30,11 +30,9 @@ Then /^"(.*)" "(.*)" should( not)? be in line$/ do |first_name, last_name, not_b
   student_list.should_not be_empty
   student = student_list[0]
   if not_be_in_line
-    expect(student.student_queue).to eq(nil)
-    expect(StudentQueue.where(:student_id => student.sid)).to be_empty
+    expect(student.student_queues.find(student.sid).status).to eq("canceled")
   else
-    expect(student.student_queue).not_to be_nil
-    expect(StudentQueue.find(student.sid)).to eq(student.student_queue)
+    expect(student.student_queues.find(student.sid).status).to eq("waiting")
   end
 end
 
