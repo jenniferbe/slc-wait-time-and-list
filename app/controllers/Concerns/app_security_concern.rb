@@ -10,10 +10,6 @@ module AppSecurityConcern
       if(controller_name != "app_security")
         redirect_to app_firewall_path
       end
-    else
-      if(controller_name != "students")
-        redirect_to new_student_path
-      end
     end
   end
 
