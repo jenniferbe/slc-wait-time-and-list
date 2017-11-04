@@ -1,9 +1,12 @@
 require 'rails_helper'
 require 'byebug'
+require 'helpers/authentification_helper'
 
 RSpec.describe StudentQueuesController, type: :controller do
   describe 'wait time' do
     before(:each) do
+      login_slc
+      login_tutor
       @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
       @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
       allow(Student).to receive(:where)
@@ -32,6 +35,8 @@ RSpec.describe StudentQueuesController, type: :controller do
 
   describe 'view index' do
     before(:each) do
+      login_slc
+      login_tutor
       @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
       @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
       #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
@@ -45,6 +50,8 @@ RSpec.describe StudentQueuesController, type: :controller do
 
   describe 'when adding a student to the queue it' do
     before :each do
+      login_slc
+      login_tutor
       @params = {:id => '238745938', :course => 'Ελεννικά'}
       @student_data = {:first_name => 'Athina',
                        :last_name => 'Kaunda',
@@ -76,6 +83,8 @@ RSpec.describe StudentQueuesController, type: :controller do
 
     describe 'if the student does not want to wait' do
       before :each do
+        login_slc
+        login_tutor
         @id = {:id => @params[:id]}
         @student.build_student_queue
         @student.save

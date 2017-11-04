@@ -1,8 +1,10 @@
 require 'rails_helper'
-
+require 'helpers/authentification_helper'
 RSpec.describe WeeklyAppointmentsController, type: :controller do
   describe 'create' do
     before :each do
+      login_slc
+      login_tutor
       @params = {:student_id => '2983457', :course => 'math'}
       @student = FactoryGirl.build(:student, :sid => @params[:student_id])
     end
@@ -17,6 +19,8 @@ RSpec.describe WeeklyAppointmentsController, type: :controller do
     end
     describe 'if student has not already signed in' do
       before :each do
+        login_slc
+        login_tutor
         allow(Student).to receive(:find).with(@params[:student_id]).and_return(@student)
         allow(@student).to receive(:weekly_appointment).and_return(nil)
       end

@@ -2,6 +2,7 @@ Feature: password protect slc sign in
 As a SLC admin
 So that students must sign in physically at the SLC
 I want the sign in portal to be password protected
+
 Scenario: Sign in happy path
   Given I am on the app firewall page
   When I fill in the password correctly for the app firewall page

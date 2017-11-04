@@ -5,7 +5,13 @@ Feature: estimated wait time for help
   I want to know my estimated wait time
   
 Background: student requests in database
- 
+
+  Given I am on the app firewall page
+  Then I fill in the password correctly for the app firewall page
+  Given I am on the tutor firewall page
+  Then I fill in the password correctly for the tutor firewall page
+
+
   Given the following student queues exist:
   | first_name | last_name | sid        |
   | Salvador   | Villegas  | 25804240   |

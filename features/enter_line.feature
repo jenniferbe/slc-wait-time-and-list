@@ -4,8 +4,13 @@ Feature: enter line for help
   So that I can receive help with my writing
   I want to get in line
   
+Background:
+  Given I am on the app firewall page
+  Then I fill in the password correctly for the app firewall page
+  Given I am on the tutor firewall page
+  Then I fill in the password correctly for the tutor firewall page
 
-Scenario: Jennifer wants to wait in line
+  Scenario: Jennifer wants to wait in line
   Given "Jennifer" "Be" is on the wait time page
   And she clicks on "YES"
   Then she should be on the confirmation page for "Jennifer" "Be"

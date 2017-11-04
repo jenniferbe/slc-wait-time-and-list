@@ -4,8 +4,13 @@ Feature: view next student in line
   So that I can decide which student to work with
   I want to see who is next in line
   Background: student requests in database
- 
-  Given the following student queues exist:
+
+    Given I am on the app firewall page
+    Then I fill in the password correctly for the app firewall page
+    Given I am on the tutor firewall page
+    Then I fill in the password correctly for the tutor firewall page
+
+    Given the following student queues exist:
   | sid        | first_name | last_name | created_at              |
   | 25804240   | Alex       | Yang      | 2012-09-10 14:44:24 UTC |
   | 00000000   | Haggai     | Kaunda    | 2011-09-10 14:44:24 UTC |
