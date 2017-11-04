@@ -19,6 +19,7 @@ RSpec.describe StudentsController, type: :controller do
       @student = FactoryGirl.build(:student, @student_data)
     end
     it 'checks if the student already exists in the database' do
+      byebug
       expect(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
       post :create, @params
     end

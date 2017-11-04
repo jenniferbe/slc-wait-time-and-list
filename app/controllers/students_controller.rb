@@ -1,11 +1,13 @@
 class StudentsController < ApplicationController
   include AppSecurityConcern
+
   def new
     #render new template
   end
 
   def create
     sid = params[:student_sid]
+    byebug
     if Student.where(:sid => sid).empty?
       @student = Student.create(:first_name => params[:student_first_name],
                                :last_name => params[:student_last_name],
