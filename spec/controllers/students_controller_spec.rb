@@ -19,7 +19,6 @@ RSpec.describe StudentsController, type: :controller do
       @student = FactoryGirl.build(:student, @student_data)
     end
     it 'checks if the student already exists in the database' do
-      byebug
       expect(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
       post :create, @params
     end
@@ -47,10 +46,11 @@ RSpec.describe StudentsController, type: :controller do
 
   describe 'when signing up a student it redirects the student to' do
     before :each do
-      login_slc
-      login_tutor
       @id = '923854'
       @action = 'create'
+
+      login_slc
+      login_tutor
     end
     it 'scheduled_appointment#create if appointment_type is scheduled' do
       post :sign_in, {:id => @id, :appointment_type => 'scheduled'}
@@ -71,3 +71,6 @@ RSpec.describe StudentsController, type: :controller do
     end
   end
 end
+
+
+
