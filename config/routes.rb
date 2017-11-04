@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   #issues redirects to controller actions that have the GET http verb.
   get 'student_queues/:id/create' => 'student_queues#create', as: :create_student_queue
  
+  patch 'student_queues/:id/activate_session' => 'student_queues#activate_session', as: :activate_session
+  patch 'student_queues/:id/finish_session' => 'student_queues#finish_session', as: :finish_session
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -8,28 +8,28 @@ Feature: update active session
 Background: student requests in database
  
   Given the following student queues exist:
-  | first_name | last_name | sid        |
-  | Salvador   | Villegas  | 25804240   |
-  | Maiki      | Rainton   | 00000000   |
-  | Nahrae     | Seok      | 25804241   |
-  | Alex       | Yang      | 25804242   |
+  | first_name | last_name | sid        | meet_type   | status   | created_at              |
+  | Salvador   | Villegas  | 25804240   | drop-in     | finished | 2012-09-10 14:44:24 UTC |
+  | Maiki      | Rainton   | 00000000   | drop-in     | waiting  | 2011-09-10 14:44:24 UTC |
+  | Nahrae     | Seok      | 25804241   | appointment | waiting  | 2013-09-10 14:44:24 UTC |
+  | Alex       | Yang      | 25804242   | drop-in     | waiting  | 2014-09-10 14:44:24 UTC |
   
 Scenario: tutor starts session with student
   Given I am on the student line page
-  When I click "help" for "Salvador"
-  Then I should see "Salvador" in "Active Sessions"
+  When I click "Activate" for "0"
+  Then I should see "Maiki" in "active_sessions"
   
 Scenario: no students in queue
   Given I am on the student line page
   When I help all the students
-  Then I should not see "help"
+  Then I should not see "Activate"
   
 Scenario: tutor ends active session for student
   Given I am on the student line page
-  When I click "help" for "Salvador"
-  And I click "end" for "Salvador"
-  Then I should not see "Salvador"
+  When I click "Activate" for "0"
+  And I click "Finish" for "0"
+  Then I should not see "Maiki"
   
 Scenario: no active sessions
   Given I am on the student line page
-  Then I should not see "end"
+  Then I should not see "Finish"

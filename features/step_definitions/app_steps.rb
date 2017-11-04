@@ -200,14 +200,18 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
-When /^I click "(.*)" for "(.*)"$/ do |button_type, person|
-  pending
+When /^I click "(.*)" for "(.*)"$/ do |button_type, id|
+  click_button(id)
 end
 
 Then /^I should see "(.*)" in "(.*)"$/ do |person, table|
-  pending
+  within("##{table}") do
+    find("td", :text => "#{person}")
+  end
 end
 
 When /^I help all the students$/ do
-  pending
+  StudentQueue.where(meet_type: "drop-in").where(status: "waiting").each do |student_request|
+    student_request.update(:status => "finished")
+  end
 end
