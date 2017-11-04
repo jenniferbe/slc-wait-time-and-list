@@ -17,12 +17,12 @@ Background: student requests in database
 Scenario: tutor starts session with student
   Given I am on the student line page
   When I click "Activate" for "0"
-  Then I should see "Maiki" in "Active Sessions"
+  Then I should see "Maiki" in "active_sessions"
   
 Scenario: no students in queue
   Given I am on the student line page
   When I help all the students
-  Then I should not see "help"
+  Then I should not see "Activate"
   
 Scenario: tutor ends active session for student
   Given I am on the student line page

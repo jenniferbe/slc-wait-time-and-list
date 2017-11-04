@@ -1,5 +1,5 @@
 <h1>Active Sessions</h1>
-<table id="queue">
+<table id="active_sessions">
   <tr>
     <th>Start Time</th>
     <th>Student Name</th>
@@ -73,7 +73,7 @@
         <td></td>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch) %></td>
+        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
         <% end %>
       </tr>
 </tr>
