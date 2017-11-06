@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  include AppSecurityConcern
   def index
     render "students/new"
   end
@@ -36,4 +37,5 @@ class StudentsController < ApplicationController
     end
     render "students/new"
   end
+
 end

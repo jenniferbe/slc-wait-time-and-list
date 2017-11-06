@@ -1,4 +1,5 @@
 class StudentQueuesController < ApplicationController
+  include TutorSecurityConcern
   def index
     flash[:notice] = nil
 	  @drop_in_queue = StudentQueue.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
