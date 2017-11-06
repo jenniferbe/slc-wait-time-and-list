@@ -7,11 +7,11 @@
 #ignore coverage/
 coverage/
 
-config/application.yml
+#config/application.yml
 # Ignore bundler config.
 /.bundle
 .byebug_history
-# Ignore the default SQLite database.
+# Ignore the fault SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
