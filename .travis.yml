@@ -2,6 +2,6 @@ language: ruby
 rvm:
  - 2.4.2
 
- before_script:
-   - gpg --passphrase "$KEY" --output config/application.yml \
+before_script:
+ - gpg --passphrase "$KEY" --output config/application.yml \
         --decrypt config/application.yml.asc
