@@ -55,7 +55,7 @@ h1.title {
   font-style: normal;
 
 }
-table#queue {
+table.queue {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
@@ -64,24 +64,24 @@ table#queue {
     border-right: 2px solid gray;
     counter-reset: rowNumber;
 }
-table#queue th {
+table.queue th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
 
 }
-table#queue th, table#movies td {
+table.queue th, table#movies td {
   padding: 5px;
   text-align: left;
     border: 1px solid gray;
     border-bottom: 2px solid gray;
     border-right: 2px solid gray;
 }
-table#queue th.hilite {
+table.queue th.hilite {
   background-color: yellow;
 }
 
-table#queue td:first-child::before {
+table.queue td:first-child::before {
     content: counter(rowNumber);
     min-width: 1em;
     margin-right: 0.5em;
@@ -89,11 +89,11 @@ table#queue td:first-child::before {
 
 }
 
-table#queue td {
+table.queue td {
     padding: 5px;
 }
 
-table#queue tr#q_row {
+table.queue tr#q_row {
     counter-increment: rowNumber;
     border: 1px solid gray;
 }

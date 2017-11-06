@@ -10,17 +10,20 @@ end
 World(WithinHelpers)
 
 Given /the following student queues exist/ do |student_data_table|
-  student_data_table.hashes.each do |student_data|
+  student_data_table.hashes.each do |data|
+    #byebug
     # delete the create time if it exists, since we want this to go in the queue.
-    create_time = student_data[:created_at]
-    student_data.delete('created_at')
-
+    create_time = data[:created_at]
+    data.delete('created_at')
+    student_data = { :first_name => data[:first_name], :last_name => data[:last_name], :sid => data[:sid] }
+    queue_data = { :meet_type => data[:meet_type], :status => data[:status] }
     student = Student.create(student_data)
 
     if create_time
-      student.build_student_queue(:created_at => create_time)
+      queue_data[:created_at] = create_time
+      student.student_queues.build(queue_data)
     else
-      student.build_student_queue()
+      student.student_queues.build()
     end
     student.save
   end
@@ -158,9 +161,11 @@ end
 
 When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
   
-  text_fields = ["student_last_name", "student_first_name", "student_sid", "student_email", "student_course"]
-  text_inputs = ["brown", "bob", "12345678", "bobb@berkeley.edu", "english"]
-  radio_fields = ["request_type_appointment"]
+  text_fields = ["student_last_name", "student_first_name", "student_sid", "student_email"]
+  text_inputs = ["brown", "bob", "12345678", "bobb@berkeley.edu"]
+  radio_fields = ["meet_type_drop-in"]
+  drop_inputs = ["English R1A"]
+  drop_fields = ["course"]
   
   for i in 0..(text_fields.length-1)
     text_field = text_fields[i]
@@ -176,6 +181,13 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
       When I click "#{radio_button}"
     }
   end
+  for i in 0..(drop_fields.length-1)
+    drop_field = drop_fields[i]
+    drop_input = drop_inputs[i]
+    steps %Q{
+      And I select "#{drop_input}" from "#{drop_field}"
+    }
+  end
   steps %Q{
       When I press "Submit"
   }
@@ -188,14 +200,18 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
-When /^I click "(.*)" for "(.*)"$/ do |button_type, person|
-  pending
+When /^I click "(.*)" for "(.*)"$/ do |button_type, id|
+  click_button(id)
 end
 
 Then /^I should see "(.*)" in "(.*)"$/ do |person, table|
-  pending
+  within("##{table}") do
+    find("td", :text => "#{person}")
+  end
 end
 
 When /^I help all the students$/ do
-  pending
+  StudentQueue.where(meet_type: "drop-in").where(status: "waiting").each do |student_request|
+    student_request.update(:status => "finished")
+  end
 end

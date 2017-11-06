@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :students do
     resources :drop_in_histories
-    resources :weekly_appointments
-    resources :scheduled_appointments
   end
 
 
@@ -33,11 +31,9 @@ Rails.application.routes.draw do
   #the following routes exist to allow for redirects to *#create methods since redirec_to only
   #issues redirects to controller actions that have the GET http verb.
   get 'student_queues/:id/create' => 'student_queues#create', as: :create_student_queue
-  get '/students/:student_id/scheduled_appointments/create' => 'scheduled_appointments#create',
-      as: :create_student_scheduled_appointment
-  get '/students/:student_id/weekly_appointments/create' => 'weekly_appointment#create',
-      as: :create_student_weekly_appointment
-
+ 
+  patch 'student_queues/:id/activate_session' => 'student_queues#activate_session', as: :activate_session
+  patch 'student_queues/:id/finish_session' => 'student_queues#finish_session', as: :finish_session
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
