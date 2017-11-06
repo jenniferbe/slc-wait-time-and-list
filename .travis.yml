@@ -3,5 +3,7 @@ rvm:
  - 2.4.2
 
 before_script:
-  - gpg --passphrase "$KEY" --output config/application.yml \
-       --decrypt config/application.yml.asc
+  # create config/application.yml (sensitive API keys etc) from config/application.yml.asc
+  # IMPORTANT: you must MANUALLY set correct value of encryption KEY in Travis settings for your project --
+  #    DO NOT expose that value here!
+  - gpg --passphrase $KEY -d -o config/application.yml config/application.yml.asc
