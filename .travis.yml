@@ -3,5 +3,5 @@ rvm:
  - 2.4.2
 
 before_script:
- - gpg --passphrase "$KEY" --decrypt \
-   --output config/application.yml  config/application.yml.asc
+  - gpg --passphrase "$KEY" --output config/application.yml \
+       --decrypt config/application.yml.asc
