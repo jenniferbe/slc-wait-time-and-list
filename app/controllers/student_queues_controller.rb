@@ -18,7 +18,7 @@ class StudentQueuesController < ApplicationController
   #     return true
   #   end
   #   return false
-  # end
+  # endasd
   include TutorSecurityConcern
 
   def index
