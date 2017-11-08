@@ -3,8 +3,13 @@ Feature: enter line for help
   As a student
   So that I can receive help with my writing
   I want to get in line
+  
+Background:Jennifer Signs In
+  Given I am on the app firewall page
+  Then I fill in the password correctly for the app firewall page
+  Given I am on the tutor firewall page
+  Then I fill in the password correctly for the tutor firewall page
 
-Background: Jennifer signs in
   Given I am on the sign up page
   And I fill in "student_last_name" with "Be"
   And I fill in "student_first_name" with "Jennifer"

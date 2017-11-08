@@ -9,73 +9,54 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^I'm on the app sign in page$/ do
-  pending
+
+Given /^(?:I|She|He) fill in the password (in)?correctly for (.*)$/ do |capt1, capt2|
+  password = "wrongpassword"
+  if(capt1 == nil)
+    if(capt2 == "the tutor firewall page")
+      password = ENV["tutor_password"]
+    else
+      password = ENV["slc_password"]
+    end
+  end
+  steps %Q{
+    And I fill in "pass" with "#{password}"
+    When I click on "Submit"
+  }
 end
 
-Given /^I fill in the password correctly$/ do
-  pending
+Given /^(?:I|She|He) should be told that the password is incorrect$/ do
+  steps %Q{
+    And I should see "Incorrect Password"
+  }
 end
 
-Given /^I should be told that the password is incorrect$/ do
-  pending
+Given /^(?:I am|She is |He is) (not )?signed in to the app$/ do |capt1|
+  if(capt1)
+    assert_equal(false, Security.logged_in_app?)
+  else
+    assert_equal(true, Security.logged_in_app?)
+  end
 end
 
-Given /^I'm on the student sign in page$/ do
-  pending
+Given /^(?:I am|She is |He is) (not )?signed in as a tutor$/ do |capt1|
+  if(capt1)
+    assert_equal(false, Security.logged_in_tutor?)
+  else
+    assert_equal(true, Security.logged_in_tutor?)
+  end
 end
 
-Given /^I am signed in to the app$/ do
-  pending
+Given /^(?:I|She|He) should (not )?be redirected(?: to )?([^"]*)$/ do |capt1, capt2|
+    steps %Q{
+      I should #{capt1}be on #{capt2}
+    }
 end
 
-Given /^I should not be redirected$/ do
-  pending
+Given /^(?:I|She|He) should be logged out as a tutor/ do
+  assert_equal(false, Security.logged_in_tutor?)
 end
 
-Given /^I am not signed in to the app/ do
-  pending
-end
-
-Given /^I should be redirected to the password login/ do
-  pending
-end
-
-Given /^I'm on the student queues page/ do
-  pending
-end
-
-Given /^I fill in the password incorrectly/ do
-  pending
-end
-
-Given /^I am signed in as a tutor/ do
-  pending
-end
-
-Given /^I should not be redirected/ do
-  pending
-end
-
-Given /^I am not signed in as a tutor/ do
-  pending
-end
-
-Given /^I should be redirected to the student sign in page/ do
-  pending
-end
-
-Given /^I should be redirected to the app sign in page/ do
-  pending
-end
-
-Given /^I should be logged out as a tutor/ do
-  pending
-end
-
-Given /^I should be redirected to app sign in page/ do
-  pending
-end
 
 
 

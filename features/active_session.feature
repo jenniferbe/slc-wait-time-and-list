@@ -6,6 +6,11 @@ Feature: update active session
   
   
 Background: student requests in database
+
+  Given I am on the app firewall page
+  Then I fill in the password correctly for the app firewall page
+  Given I am on the tutor firewall page
+  Then I fill in the password correctly for the tutor firewall page
  
   Given the following student queues exist:
   | first_name | last_name | sid        | meet_type   | status   | created_at              |
