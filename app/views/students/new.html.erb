@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-2">
-            <%= label_tag(:email, "E-mail", class: "label") %>
+            <%= label_tag(:email, "E-mail *", class: "label") %>
             <%= email_field_tag "student_email", nil, placeholder:"example@gmail.com", class: "form_signup form-control", required: true  %>
         </div>
 
@@ -41,15 +41,15 @@
         <div id="schedule-options" class="container">
             <div class="radio row">
                 <div class="col-3">
-                    <%= label_tag(:meet_type, "Drop-In", class: "radio-signup") %>
+                    <%= label_tag(:meet_type, "Appointment", class: "radio-signup") %>
                     <%= radio_button_tag(:meet_type, "appointment") %>
                 </div>
                 <div class="col-3">
-                    <%= label_tag(:meet_type, "Scheduled", class: "radio-signup") %>
+                    <%= label_tag(:meet_type, "Weekly Session", class: "radio-signup") %>
                     <%= radio_button_tag(:meet_type, "appointment") %>
                 </div>
                 <div class="col-3">
-                    <%= label_tag(:meet_type, "Review", class: "radio-signup") %>
+                    <%= label_tag(:meet_type, "Drop-in", class: "radio-signup") %>
                     <%= radio_button_tag(:meet_type, "appointment") %>
                 </div>
             </div>
