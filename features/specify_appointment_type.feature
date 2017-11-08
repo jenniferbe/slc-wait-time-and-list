@@ -5,6 +5,11 @@ Feature: Specify Appointment Type
   I want students to specify what type of appointment they have
 
 Background: student requests in database
+  Given I am on the app firewall page
+  Then I fill in the password correctly for the app firewall page
+  Given I am on the tutor firewall page
+  Then I fill in the password correctly for the tutor firewall page
+
   Given I am on the sign up page
   And I fill in "student_last_name" with "Kaunda"
   And I fill in "student_first_name" with "Haggai"
