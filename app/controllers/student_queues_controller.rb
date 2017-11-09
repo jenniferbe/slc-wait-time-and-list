@@ -6,10 +6,10 @@ class StudentQueuesController < ApplicationController
       if(controller_name != "students")
         redirect_to new_student_path
       end
-    else
-      if(controller_name != "student_queues")
-        redirect_to '/student_queues'
-      end
+    # else
+    #   if(controller_name != "student_queues")
+    #     redirect_to '/student_queues'
+    #   end
     end
   end
 

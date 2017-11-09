@@ -48,6 +48,7 @@ RSpec.describe StudentQueuesController, type: :controller do
       get :index
       response.should_not redirect_to '/new_student_path'
     end
+
   end
 end
 

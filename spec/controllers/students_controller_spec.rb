@@ -32,7 +32,16 @@ RSpec.describe StudentsController, type: :controller do
       expect(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
       post :create, @params
     end
+
+    it 'responds if no meet_type is selected' do
+      @params["meet_type"] = nil
+      post :create, @params
+      expect(flash[:notice]).to be_present
+    end
   end
+
+
+
 end
 
 
