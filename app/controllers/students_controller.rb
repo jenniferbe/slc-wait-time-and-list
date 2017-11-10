@@ -1,22 +1,22 @@
 class StudentsController < ApplicationController
-  before_action :auth_check
+  # before_action :auth_check
+  #
+  # def auth_check
+  #   if(logged_in_app? ==false)
+  #     if(controller_name != "app_security")
+  #       redirect_to app_firewall_path
+  #     end
+  #   end
+  # end
+  #
+  # def logged_in_app?
+  #   if(session["appauth"] == true)
+  #     return true
+  #   end
+  #   return false
+  # end
 
-  def auth_check
-    if(logged_in_app? ==false)
-      if(controller_name != "app_security")
-        redirect_to app_firewall_path
-      end
-    end
-  end
-
-  def logged_in_app?
-    if(session["appauth"] == true)
-      return true
-    end
-    return false
-  end
-
-  # include AppSecurityConcern
+  include AppSecurityConcern
 
   def index
     render "students/new"
