@@ -68,25 +68,25 @@ h1.subtitle{
   float: left;
 }
 
-table#queue {
+table.queue {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
   border-bottom: 2px solid black;
 }
 
-table#queue th {
+table.queue th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
 }
 
-table#queue th, table#movies td {
+table.queue th, table#movies td {
   padding: 4px;
   text-align: left;
 }
 
-table#queue th.hilite {
+table.queue th.hilite {
   background-color: yellow;
 }
 
