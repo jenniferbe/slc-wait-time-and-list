@@ -7,7 +7,7 @@
 #ignore coverage/
 coverage/
 
-#config/application.yml
+config/application.yml
 # Ignore bundler config.
 /.bundle
 .byebug_history
