@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
-  include AppSecurityHelper
-  before_action :auth_check
+  include SecurityRedirectHelper
+  before_action :auth_check_app
 
   def index
     render "students/new"

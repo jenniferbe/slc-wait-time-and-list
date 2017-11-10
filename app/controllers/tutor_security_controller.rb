@@ -1,6 +1,6 @@
 class TutorSecurityController < ApplicationController
-  include AppSecurityHelper
-  before_action :auth_check
+  include SecurityRedirectHelper
+  before_action :auth_check_app
 
   def show
     if(session["tutorauth"] == true)

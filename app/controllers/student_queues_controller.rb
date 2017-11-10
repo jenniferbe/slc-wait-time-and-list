@@ -1,6 +1,6 @@
 class StudentQueuesController < ApplicationController
-  include TutorSecurityHelper
-  before_action :auth_check
+  include SecurityRedirectHelper
+  before_action :auth_check_tutor
 
 
   def index
