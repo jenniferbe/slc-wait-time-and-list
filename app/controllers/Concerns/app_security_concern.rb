@@ -1,24 +1,24 @@
-require 'active_support/concern'
-
-module AppSecurityConcern
-  extend ActiveSupport::Concern
-
-  included do
-    before_action :auth_check
-  end
-
-  def auth_check
-    if(logged_in_app? ==false)
-      if(controller_name != "app_security")
-        redirect_to app_firewall_path
-      end
-    end
-  end
-
-  def logged_in_app?
-    if(session["appauth"] == true)
-      return true
-    end
-    return false
-  end
-end
+# require 'active_support/concern'
+#
+# module AppSecurityConcern
+#   extend ActiveSupport::Concern
+#
+#   included do
+#     before_action :auth_check
+#   end
+#
+#   def auth_check
+#     if(logged_in_app? ==false)
+#       if(controller_name != "app_security")
+#         redirect_to app_firewall_path
+#       end
+#     end
+#   end
+#
+#   def logged_in_app?
+#     if(session["appauth"] == true)
+#       return true
+#     end
+#     return false
+#   end
+# end
