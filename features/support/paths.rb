@@ -18,7 +18,10 @@ module NavigationHelpers
     when /^the student line page$/ then '/student_queues'
       
     when /^the sign up page$/ then new_student_path
-      
+
+    when /^the tutor firewall page$/ then tutor_firewall_path
+
+    when /^the app firewall page$/ then app_firewall_path
     when /^the wait time page for "(.*)" "(.*)"$/i then
       student = Student.where(:first_name => $1, :last_name => $2)[0]
       wait_time_student_queue_path(student.sid)
