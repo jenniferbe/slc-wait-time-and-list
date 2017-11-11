@@ -63,3 +63,19 @@ end
 Then /^I should see "(.*)" filled with "(.*)" and "(.*)" filled with "(.*)"$/ do |arg1, arg2, arg3, arg4|
   pending
 end
+
+Then /^I should see the history for that day$/ do
+  pending
+end
+
+Given /^I see one day\'s worth of history$/ do
+  pending
+end
+
+When /^I click "(.*)" on "(.*)"$/ do |arg1, arg2|
+  pending
+end
+
+When /^I select "(.*)" from "(.*)"$/ do |arg1, arg2|
+  pending
+end

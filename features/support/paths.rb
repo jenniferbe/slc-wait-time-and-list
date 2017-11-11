@@ -20,6 +20,8 @@ module NavigationHelpers
     when /^the sign up page$/ then new_student_path
 
     when /^the tutor firewall page$/ then tutor_firewall_path
+      
+    when /^the history page$/ then new_student_path
 
     when /^the app firewall page$/ then app_firewall_path
     when /^the wait time page for "(.*)" "(.*)"$/i then
