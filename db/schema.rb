@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20171020171637) do
 
-  create_table "drop_in_histories", force: :cascade do |t|
+  create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
     t.string   "course"
     t.integer  "tutor_sid"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20171020171637) do
     t.datetime "updated_at"
   end
 
-  create_table "student_queues", force: :cascade do |t|
+  create_table "student_requests", force: :cascade do |t|
     t.integer  "student_id"
     t.string   "course"
     t.string   "meet_type"

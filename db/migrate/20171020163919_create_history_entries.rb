@@ -1,6 +1,6 @@
-class CreateDropInHistories < ActiveRecord::Migration
+class CreateHistoryEntries < ActiveRecord::Migration
   def change
-    create_table :drop_in_histories do |t|
+    create_table :history_entries do |t|
 
       t.integer :student_id #should be foreign key from 
       t.string :course

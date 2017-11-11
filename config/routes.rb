@@ -5,19 +5,17 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  resources :students do
-    resources :drop_in_histories
-  end
+  resources :students
+  get 'history_entries' => 'history_entries#show', as: :history_entries
 
-
-  resources :student_queues
+  resources :student_requests
 
 
   root 'students#new'
   get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student
-  get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
-  get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_queue
-  get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_queue
+  get 'student_requests/:id/wait_time' => 'student_requests#wait_time', as: :wait_time_student_request
+  get 'student_requests/:id/confirm' => 'student_requests#confirm', as: :confirm_student_request
+  get 'student_requests/:id/remove' => 'student_requests#remove', as: :remove_student_request
 
   #security routes
   post 'app_login' => 'app_security#authenticate', as: :app_authenticate
@@ -30,10 +28,10 @@ Rails.application.routes.draw do
 
   #the following routes exist to allow for redirects to *#create methods since redirec_to only
   #issues redirects to controller actions that have the GET http verb.
-  get 'student_queues/:id/create' => 'student_queues#create', as: :create_student_queue
+  get 'student_requests/:id/create' => 'student_requests#create', as: :create_student_request
  
-  patch 'student_queues/:id/activate_session' => 'student_queues#activate_session', as: :activate_session
-  patch 'student_queues/:id/finish_session' => 'student_queues#finish_session', as: :finish_session
+  patch 'student_requests/:id/activate_session' => 'student_requests#activate_session', as: :activate_session
+  patch 'student_requests/:id/finish_session' => 'student_requests#finish_session', as: :finish_session
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

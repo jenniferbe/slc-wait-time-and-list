@@ -5,15 +5,14 @@ Feature: History
 
 
 Scenario: View one day history
-  Given I am on the history page
-  And I select "11/9/17" from "history_dates"
-  Then I should see a the history for that day
+#  Given I am on the history page
+#  And I select "11/9/17" from "history_dates"
+#  Then I should see a the history for that day
 
 Scenario: Download one day's worth of history
-  Given I am on the history page
-  And I see one day's worth of history
-  And I click "Download"
-  Then I should see "Download successful"
+#  Given I am on the history page
+#  And I click "Download"
+#  Then I should see "Download successful"
 
 
 

@@ -21,9 +21,9 @@ Given /the following student queues exist/ do |student_data_table|
 
     if create_time
       queue_data[:created_at] = create_time
-      student.student_queues.build(queue_data)
+      student.student_requests.build(queue_data)
     else
-      student.student_queues.build()
+      student.student_requests.build()
     end
     student.save
   end
@@ -42,7 +42,7 @@ end
 
 
 Then /^I should see a list of students$/ do
-    StudentQueue.all.each do |entry|
+    StudentRequest.all.each do |entry|
     step %{I should see "#{entry.student.first_name} #{entry.student.last_name}"}
   end
 end
@@ -211,7 +211,7 @@ Then /^I should see "(.*)" in "(.*)"$/ do |person, table|
 end
 
 When /^I help all the students$/ do
-  StudentQueue.where(meet_type: "drop-in").where(status: "waiting").each do |student_request|
+  StudentRequest.where(meet_type: "drop-in").where(status: "waiting").each do |student_request|
     student_request.update(:status => "finished")
   end
 end

@@ -4,14 +4,14 @@ class TutorSecurityController < ApplicationController
 
   def show
     if(session["tutorauth"] == true)
-      redirect_to '/student_queues'
+      redirect_to '/student_requests'
     end
   end
 
   def pass_check
     if(params["pass"]== ENV["tutor_password"])
       session["tutorauth"] = true
-      redirect_to '/student_queues'
+      redirect_to '/student_requests'
     else
       flash[:error] = 'Incorrect Password'
       redirect_to tutor_firewall_path

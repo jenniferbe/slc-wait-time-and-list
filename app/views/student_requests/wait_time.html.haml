@@ -1,0 +1,6 @@
+%h1 Your estimated wait time is #{@wait_time} min
+%ul#details<
+  %li
+    Do you want to wait in line?
+    = link_to 'YES', confirm_student_request_path, :method => :get
+    = link_to 'NO', student_request_path, :method => :delete
