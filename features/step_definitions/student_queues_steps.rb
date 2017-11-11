@@ -40,9 +40,13 @@ And /^(?:she|he?) clicks on "(.*)"$/ do |button|
   steps %Q{ When follow "#{button}"}
 end
 
+
+#email confirmation
+
 Given /^I specify "(.*)"$/ do |string|
   pending
 end
+
 
 Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |string, string2|
   pending
@@ -79,3 +83,58 @@ end
 When /^I select "(.*)" from "(.*)"$/ do |arg1, arg2|
   pending
 end
+
+Given("I pick up a new student") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("no students have been sent emails") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the next student in the queue should receive an email") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("there are three tutors") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("the first two students have been sent emails") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the next student in the queue who hasn't beeen emailed, should receive an email") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("I am a new student") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("there are no students in queue") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("I get an email confirmation") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("two tutors pick up new students") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the next two students in the queue who haven't been emailed, should receive emails") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given("there are no students in the queue who haven't been emailed") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("do nothing") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+
+
