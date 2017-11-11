@@ -25,7 +25,7 @@ RSpec.describe StudentsController, type: :controller do
   end
 end
 
-RSpec.describe StudentQueuesController, type: :controller do
+RSpec.describe StudentRequestsController, type: :controller do
   describe 'false auth' do
     it 'it checks if logged in' do
       controller.logged_in_tutor?.should==false

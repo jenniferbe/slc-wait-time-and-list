@@ -1,6 +1,6 @@
-class CreateStudentQueues < ActiveRecord::Migration
+class CreateStudentRequests < ActiveRecord::Migration
   def change
-    create_table :student_queues do |t|
+    create_table :student_requests do |t|
       
       #entered by student, visible on tutor form
       

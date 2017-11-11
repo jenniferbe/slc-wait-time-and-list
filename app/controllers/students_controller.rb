@@ -20,19 +20,19 @@ class StudentsController < ApplicationController
     else
       @student = Student.find(params[:student_sid])
     end
-    unless @student.student_queues.empty?
+    unless @student.student_requests.empty?
       flash[:notice] = 'you are already in line'
       render "students/new"
       return
     end
 
-    @student.student_queues.build(:course => params[:course], :meet_type => params[:meet_type], :status => "waiting")
+    @student.student_requests.build(:course => params[:course], :meet_type => params[:meet_type], :status => "waiting")
     @student.save
     case params[:meet_type]
       when 'scheduled', 'weekly'
         flash[:notice] = 'you are now in line!'
       when 'drop-in'
-        redirect_to wait_time_student_queue_path(@student.sid)
+        redirect_to wait_time_student_request_path(@student.sid)
         return
       else
         flash[:notice] = 'please select a service type'

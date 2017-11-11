@@ -29,9 +29,9 @@ RSpec.describe TutorSecurityController, type: :controller do
       login_slc
       login_tutor
     end
-    it 'checks if the should rediret to studentqueues' do
+    it 'checks if the should rediret to StudentRequests' do
       get :show
-      response.should redirect_to '/student_queues'
+      response.should redirect_to '/student_requests'
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe TutorSecurityController, type: :controller do
     it 'redirects correctly if password is right' do
       right_pass = ENV["tutor_password"]
       post :authenticate, {:pass => right_pass}
-      response.should redirect_to '/student_queues'
+      response.should redirect_to '/student_requests'
     end
   end
 
