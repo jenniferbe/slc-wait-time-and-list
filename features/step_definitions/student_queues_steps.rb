@@ -43,3 +43,23 @@ end
 Given /^I specify "(.*)"$/ do |string|
   pending
 end
+
+Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |string, string2|
+  pending
+end
+
+When /^"(.*)" "(.*)" signs up for all three appointments again$/ do |string, string2|
+  pending
+end
+
+Then /^I should see my name on tutor for "(.*)" "(.*)" with id "(.*)" under "(.*)"$/ do |last_name, first_name, id, table|
+  pending
+end
+
+Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_app, last_name, first_name|
+  pending
+end
+
+Then /^I should see "(.*)" filled with "(.*)" and "(.*)" filled with "(.*)"$/ do |arg1, arg2, arg3, arg4|
+  pending
+end
