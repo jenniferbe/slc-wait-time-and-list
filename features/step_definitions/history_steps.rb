@@ -9,17 +9,8 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^(?:I|She|He) fill in the password (in)?correctly for (.*)$/ do |capt1, capt2|
-  password = "wrongpassword"
-  if(capt1 == nil)
-    if(capt2 == "the tutor firewall page")
-      password = ENV["tutor_password"]
-    else
-      password = ENV["slc_password"]
-    end
-  end
-  steps %Q{
-    And I fill in "pass" with "#{password}"
-    When I click on "Submit"
-  }
+Given /^(?:I|She|He) should see the history for (.*)$/ do |date|
+  pending
+  #query #of entries from Histories where date = #{date}
+  #and check against number of rows
 end
