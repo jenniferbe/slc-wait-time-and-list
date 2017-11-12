@@ -1,4 +1,15 @@
 
+require 'uri'
+require 'cgi'
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+
+module WithinHelpers
+  def with_scope(locator)
+    locator ? within(locator) { yield } : yield
+  end
+end
+World(WithinHelpers)
+
 Given /^"(.*)" "(.*)" is on the wait time page$/ do |first_name, last_name|
   sid = 123456
   steps %Q{
@@ -30,7 +41,7 @@ Then /^"(.*)" "(.*)" should( not)? be in line$/ do |first_name, last_name, not_b
   student_list.should_not be_empty
   student = student_list[0]
   if not_be_in_line
-    expect(student.student_requests.find(student.sid).status).to eq("cancelled")
+    expect(student.student_requests.find(student.sid).status).to eq("canceled")
   else
     expect(student.student_requests.find(student.sid).status).to eq("waiting")
   end
