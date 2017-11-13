@@ -23,7 +23,7 @@ class StudentRequestsController < ApplicationController
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
-	  @student = Student.where(:sid => params[:id]) 
+	  @student = Student.find(params[:sid]) 
   end
     
   def new
@@ -31,6 +31,8 @@ class StudentRequestsController < ApplicationController
   end
 
   def confirm
+    @student = Student.find(params[:sid]) 
+    ExampleMailer.sample_email(@student).deliver
     flash[:notice] = 'you are now in line!'
     render "students/new"
   end
