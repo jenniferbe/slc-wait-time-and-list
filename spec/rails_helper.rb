@@ -1,3 +1,6 @@
+require File.expand_path('../../cpmfog/environment', __FILE__)
+require 'spec_helper'
+
 require 'simplecov'
 SimpleCov.start 'rails'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
