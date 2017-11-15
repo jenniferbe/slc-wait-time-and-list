@@ -42,7 +42,10 @@ class StudentRequestsController < ApplicationController
   end
   
   def finish_session
-    StudentRequest.find(params[:id]).update(:status => "finished")
+    @finished_student = StudentRequest.find(params[:id])
+    @finished_student.update(:status => "finished")
+    Tutor.session_to_histories(@finished_student, Time.now, "nothing to say")
+    StudentRequest.destroy(params[:id])
     redirect_to student_requests_path
   end
 end

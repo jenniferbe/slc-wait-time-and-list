@@ -1,7 +1,7 @@
 class HistoryEntry < ActiveRecord::Base
   # enum appointment: [:drop_in, :scheduled, :weekly]
-  belongs_to  :student
-  has_one :tutor
+  belongs_to :student
+  belongs_to :tutor
   def self.get_drop_ins(date)
     where(created_at: date).where(meet_type: "drop-in")
   end
