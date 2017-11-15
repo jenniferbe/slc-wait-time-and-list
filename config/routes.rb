@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   
   #history routes
   get 'history_entries' => 'history_entries#show', as: :history_entries
-  post 'history_entries/:id' => 'history_entries#show', as: :history_entries_request
 
   root 'students#new'
   get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student
