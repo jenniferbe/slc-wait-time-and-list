@@ -58,9 +58,19 @@ When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |firs
   steps %Q{ Given "#{first_name}" "#{last_name}" is signed up for all three appointments }
 end
 
-Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_app, last_name, first_name|
 
-  pending
+Then /^(?:|I )should see \/([^\/]*)\/ (\d+)(?:x|X| times?)?$/ do |regexp, count|
+  regexp = Regexp.new(regexp)
+  count = count.to_i
+  page.find(:xpath, '//body').text.split(regexp).length.should == count+1
+end
+
+Then /^(?:|I )should see "(.*)" "(.*)" "(.*)" times$/ do |first_name, last_name, num_times|
+  expect(page).to have_content("#{first_name + ' ' + last_name}", count: num_times.to_i)
+end
+
+Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_times, last_name, first_name|
+  steps %Q{ Then I should see "#{first_name}" "#{last_name}" "#{num_times}" times }
 end
 
 Then /^I should see my name on tutor for "(.*)" "(.*)" with id "(.*)" under "(.*)"$/ do |last_name, first_name, id, table|

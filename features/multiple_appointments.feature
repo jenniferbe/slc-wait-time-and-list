@@ -16,4 +16,5 @@ Background: student signed up for 3 appointments
 Scenario: student signs up for multiple appointments
   Given "Salvador" "Villegas" is signed up for all three appointments
   When "Salvador" "Villegas" signs up for any of the three appointments again
+  And I am on the student line page
   Then The tutors should see "3" appointments for "Salvador" "Villegas"
