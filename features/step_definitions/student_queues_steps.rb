@@ -47,30 +47,46 @@ end
 Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |first_name, last_name|
   steps %Q{
   Given the following student queues exist:
-  | first_name      | last_name      | sid        | meet_type  | status  | created_at              |
-  | #{last_name}    | #{first_name}  | 25804240   | drop-in    | waiting | 2012-09-10 14:44:24 UTC |
-  | #{first_name}   | #{first_name}  | 25804240   | scheduled  | waiting | 2012-09-10 14:44:24 UTC |
-  | #{first_name}   | #{first_name}  | 25804240   | weekly     | waiting | 2012-09-10 14:44:24 UTC |
+  | first_name      | last_name     | sid        | meet_type  | status  | created_at              |
+  | #{first_name}   | #{last_name}  | 25804240   | drop-in    | waiting | 2012-09-10 14:44:24 UTC |
+  | #{first_name}   | #{last_name}  | 25804240   | scheduled  | waiting | 2012-09-10 14:44:24 UTC |
+  | #{first_name}   | #{last_name}  | 25804240   | weekly     | waiting | 2012-09-10 14:44:24 UTC |
 }
 end
 
 When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |first_name, last_name|
-  steps %Q{ Given "#{first_name}" "#{last_name}" is signed up for all three appointments }
+
+  sid = Student.where(:first_name => first_name, :last_name => last_name)[0]
+
+  steps %Q{
+    Given I am on the home page
+    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "weekly"
+    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "drop-in"
+    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "scheduled"
+  }
 end
 
-
-Then /^(?:|I )should see \/([^\/]*)\/ (\d+)(?:x|X| times?)?$/ do |regexp, count|
-  regexp = Regexp.new(regexp)
-  count = count.to_i
-  page.find(:xpath, '//body').text.split(regexp).length.should == count+1
-end
 
 Then /^(?:|I )should see "(.*)" "(.*)" "(.*)" times$/ do |first_name, last_name, num_times|
   expect(page).to have_content("#{first_name + ' ' + last_name}", count: num_times.to_i)
 end
 
 Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_times, last_name, first_name|
-  steps %Q{ Then I should see "#{first_name}" "#{last_name}" "#{num_times}" times }
+  steps %Q{
+
+    Then I should see "#{first_name}" "#{last_name}" "#{num_times}" times
+    }
+end
+
+Given /^"(.*)" "(.*)" with id "(.*)" signs up for "(.*)"$/ do |first_name, last_name, sid, meet_type|
+  steps %Q{
+    Given I am on the home page
+    Then I fill in "student_first_name" with "#{first_name}"
+    And I fill in "student_last_name" with "#{last_name}"
+    And I fill in "student_sid" with "#{sid}"
+    And I click "meet_type_#{meet_type}"
+    And I click on "form-submit"
+  }
 end
 
 Then /^I should see my name on tutor for "(.*)" "(.*)" with id "(.*)" under "(.*)"$/ do |last_name, first_name, id, table|

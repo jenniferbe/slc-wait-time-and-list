@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
     else
       @student = Student.find(params[:student_sid])
     end
+
     unless @student.student_requests.empty?
       flash[:notice] = 'you are already in line'
       render "students/new"
