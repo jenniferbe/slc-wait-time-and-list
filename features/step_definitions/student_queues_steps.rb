@@ -47,3 +47,11 @@ end
 Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |string, string2|
   pending
 end
+
+When /^"(.*)" "(.*)" signs up for all three appointments again$/ do |string, string2|
+  pending
+end
+
+Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_app, last_name, first_name|
+  pending
+end
