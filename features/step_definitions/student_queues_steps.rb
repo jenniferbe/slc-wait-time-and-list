@@ -44,11 +44,18 @@ Given /^I specify "(.*)"$/ do |string|
   pending
 end
 
-Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |string, string2|
-  pending
+Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |first_name, last_name|
+  steps %Q{
+  Given the following student queues exist:
+  | first_name      | last_name      | sid        | meet_type  | status  | created_at              |
+  | #{last_name}    | #{first_name}  | 25804240   | drop-in    | waiting | 2012-09-10 14:44:24 UTC |
+  | #{first_name}   | #{first_name}  | 25804240   | scheduled  | waiting | 2012-09-10 14:44:24 UTC |
+  | #{first_name}   | #{first_name}  | 25804240   | weekly     | waiting | 2012-09-10 14:44:24 UTC |
+}
 end
 
-When /^"(.*)" "(.*)" signs up for all three appointments again$/ do |string, string2|
+When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |first_name, last_name|
+  # student_sid = Student.where(:first_name => first_name, :last_name => last_name)[0].sid
   pending
 end
 
