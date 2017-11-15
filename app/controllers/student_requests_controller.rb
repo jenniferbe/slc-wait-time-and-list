@@ -25,6 +25,15 @@ class StudentRequestsController < ApplicationController
 	  #will need the student's id in when confirming, so we pass it around
 	  @student = Student.find(params[:sid]) 
   end
+
+  def send_email_next_in_line(student)
+    #send an email to next person who hasn't been emailed yet, when 
+    @student = StudentRequest.where(:emailed => false)[0]
+    ExampleMailer.next_in_line_email(@student).deliver_now
+    @student.update_attribute(:emailed => true)
+    end  
+
+  end
     
   def new
     # render new template	
@@ -32,7 +41,15 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     @student = Student.find(params[:sid]) 
-    ExampleMailer.sample_email(@student).deliver
+
+    if (wait_time(@student) == 30)
+      send_email_next_in_line(@student)
+    else
+      ExampleMailer.sample_email(@student).deliver_now
+    end
+
+    # if StudentRequests.find(params[:emailed])
+
     flash[:notice] = 'you are now in line!'
     render "students/new"
   end
@@ -60,6 +77,7 @@ class StudentRequestsController < ApplicationController
   
   def activate_session
     StudentRequest.find(params[:id]).update(:status => "active")
+    send_email_next_in_line
     redirect_to student_requests_path
   end
   
