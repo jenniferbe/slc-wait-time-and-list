@@ -1,0 +1,22 @@
+
+<div id="title-backdrop"></div>
+
+<h1 class="title">Berkeley Student Learning Center</h1>
+
+<h1 class="subtitle">Search Histories</h1>
+
+<div class="form-container container-fluid">
+
+    <%= form_tag(history_entries_request_path(:date), method: "post") do %>
+        <div class="col-2">
+            <%= date_field_tag(:date, :date)   %>
+        </div>
+        <br/>
+        
+
+        <div class="col-2">
+            <%= submit_tag"Submit", :id => "form-submit", :class =>"btn btn-primary" %>
+        </div>
+    <% end %>
+
+</div>
