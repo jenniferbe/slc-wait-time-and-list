@@ -43,3 +43,7 @@ end
 Given /^I specify "(.*)"$/ do |string|
   pending
 end
+
+Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |string, string2|
+  pending
+end
