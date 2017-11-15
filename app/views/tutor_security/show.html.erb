@@ -5,6 +5,6 @@
 <% end %>
 <%= form_tag(tutor_authenticate_path, method: "post") do %>
     <label>Tutor Password</label>
-    <%= text_field_tag "pass"%>
+    <%= password_field_tag "pass"%>
     <%= submit_tag "Submit" %>
 <%end%>
