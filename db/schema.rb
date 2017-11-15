@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020171637) do
+ActiveRecord::Schema.define(version: 20171115054005) do
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20171020171637) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "meet_type"
   end
+
+  add_index "history_entries", ["created_at"], name: "index_history_entries_on_created_at"
 
   create_table "student_requests", force: :cascade do |t|
     t.integer  "student_id"
