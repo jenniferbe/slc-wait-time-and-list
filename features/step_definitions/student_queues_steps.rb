@@ -55,3 +55,7 @@ end
 Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_app, last_name, first_name|
   pending
 end
+
+Then /^I should see my name on tutor for "(.*)" "(.*)" with id "(.*)" under "(.*)"$/ do |last_name, first_name, id, table|
+  pending
+end
