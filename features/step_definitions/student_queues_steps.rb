@@ -55,11 +55,11 @@ Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |first_name, 
 end
 
 When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |first_name, last_name|
-  # student_sid = Student.where(:first_name => first_name, :last_name => last_name)[0].sid
-  pending
+  steps %Q{ Given "#{first_name}" "#{last_name}" is signed up for all three appointments }
 end
 
 Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_app, last_name, first_name|
+
   pending
 end
 
