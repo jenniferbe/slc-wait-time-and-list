@@ -9,7 +9,7 @@
 
     <%= form_tag(history_entries_path, method: "get") do %>
         <div class="col-2">
-              <%= label_tag(:history_dates, "Search for:") %>
+              <%= label_tag(:history_dates, "Search for (MM-DD-YYYY):") %>
               <%= date_field_tag(:history_dates) %>
         </div>
         <br/>
@@ -20,8 +20,11 @@
     <% end %>
 
 </div>
-
-<% if @found == false %>
+<% if @date == "" %>
+    <br/>
+    <br/>
+    <h2>Please search for a date with the following format: MM-DD-YYYY</h2>
+<% elsif @found == false %>
     <br/>
     <br/>
     <h2>No history entries were found for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
