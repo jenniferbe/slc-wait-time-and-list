@@ -1,4 +1,3 @@
-class StudentRequest < ActiveRecord::Base
-  self.primary_key = :student_id
+class StudentRequest < ActiveRecord::Base   
   belongs_to :student
 end

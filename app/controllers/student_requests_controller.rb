@@ -23,7 +23,7 @@ class StudentRequestsController < ApplicationController
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
-	  @student = Student.where(:sid => params[:id]) 
+	  @student = Student.where(:sid => params[:id])
   end
     
   def new
@@ -48,6 +48,7 @@ class StudentRequestsController < ApplicationController
 
 
   def destroy
+    #byebug
     @student1 = Student.find(params[:id])
     @student1.student_requests.find(params[:id]).update(:status => "cancelled")
     #@student.queue_to_history
