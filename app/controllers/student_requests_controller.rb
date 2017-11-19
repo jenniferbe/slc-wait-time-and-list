@@ -9,7 +9,6 @@ class StudentRequestsController < ApplicationController
 	  @scheduled_queue = StudentRequest.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
 	  @weekly_queue = StudentRequest.where(meet_type: "weekly").where(status: "waiting").order('created_at')
 	  @active_sessions = StudentRequest.where(status: "active").order('created_at')
-    render "student_requests/index"
   end
 
   def wait_time

@@ -11,7 +11,6 @@ World(WithinHelpers)
 
 Given /the following student queues exist/ do |student_data_table|
   student_data_table.hashes.each do |data|
-    #byebug
     # delete the create time if it exists, since we want this to go in the queue.
     create_time = data[:created_at]
     data.delete('created_at')

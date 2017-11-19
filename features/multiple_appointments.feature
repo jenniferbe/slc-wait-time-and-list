@@ -13,6 +13,13 @@ Background: student signed up for 3 appointments
   Given I am on the tutor firewall page
   Then I fill in the password correctly for the tutor firewall page
 
+#happy path
+Scenario: student able to sign up for multiple appointments
+  Given "Haggai" "Kaunda" is a student with sid "12345678"
+  When "Haggai" "Kaunda" tries to sign up for "weekly, scheduled, drop-in"
+  Then The tutors should see "3" appointments for "Haggai" "Kaunda"
+
+#sad path
 Scenario: student signs up for multiple appointments
   Given "Salvador" "Villegas" is signed up for all three appointments
   When "Salvador" "Villegas" signs up for any of the three appointments again
