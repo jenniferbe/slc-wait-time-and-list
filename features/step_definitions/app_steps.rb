@@ -11,7 +11,6 @@ World(WithinHelpers)
 
 Given /the following student queues exist/ do |student_data_table|
   student_data_table.hashes.each do |data|
-    #byebug
     # delete the create time if it exists, since we want this to go in the queue.
     create_time = data[:created_at]
     data.delete('created_at')
@@ -200,8 +199,12 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
-When /^I click "(.*)" for "(.*)"$/ do |button_type, id|
-  click_button(id)
+When /^I click "(.*)" for "(.*)" with meet_type "(.*)"$/ do |button_type, id, type|
+#  within("##{table}") do
+    student = Student.find(id)
+    student_request = student.student_requests.where(meet_type: type)[0]
+    click_button(student_request.id)
+#  end
 end
 
 Then /^I should see "(.*)" in "(.*)"$/ do |person, table|

@@ -9,25 +9,21 @@ class StudentRequestsController < ApplicationController
 	  @scheduled_queue = StudentRequest.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
 	  @weekly_queue = StudentRequest.where(meet_type: "weekly").where(status: "waiting").order('created_at')
 	  @active_sessions = StudentRequest.where(status: "active").order('created_at')
-    render "student_requests/index"
   end
 
   def wait_time
+    #byebug
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
-      break if "#{entry.student_id}" == params[:id]
+      break if "#{entry.id}" == params[:id]
       @wait_pos += 1
     end
 
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
-	  @student = Student.where(:sid => params[:id]) 
-  end
-    
-  def new
-    # render new template	
+	  @student = Student.where(:sid => params[:id])
   end
 
   def confirm
@@ -35,25 +31,9 @@ class StudentRequestsController < ApplicationController
     render "students/new"
   end
 
-  def create
-    student = Student.find(params[:id]) #after nesting student_queue routes, {:id => :student_id}
-    if student.student_requests.empty?
-      student.student_requests.build(:course => params[:course], :meet_type => params[:type], :status => "waiting")
-      student.save
-    else
-      flash[:notice] = 'you are already in line'
-    end
-    redirect_to wait_time_student_request_path(student.sid)
-  end
-
-
   def destroy
-    @student1 = Student.find(params[:id])
-    @student1.student_requests.find(params[:id]).update(:status => "cancelled")
-    #@student.queue_to_history
-    #StudentRequest.destroy(@student.sid)
-    # @student.student_queue.destroy
-    #send student here if they decide to not to stay in line.
+    @student_request = StudentRequest.find(params[:id])
+    @student_request.update(:status => "cancelled")
   end
   
   def activate_session
