@@ -45,13 +45,20 @@ Given /^I specify "(.*)"$/ do |string|
 end
 
 Given /^"(.*)" "(.*)" is signed up for all three appointments$/ do |first_name, last_name|
+  sid = 25804240
   steps %Q{
   Given the following student queues exist:
   | first_name      | last_name     | sid        | meet_type  | status  | created_at              |
-  | #{first_name}   | #{last_name}  | 25804240   | drop-in    | waiting | 2012-09-10 14:44:24 UTC |
-  | #{first_name}   | #{last_name}  | 25804240   | scheduled  | waiting | 2012-09-10 14:44:24 UTC |
-  | #{first_name}   | #{last_name}  | 25804240   | weekly     | waiting | 2012-09-10 14:44:24 UTC |
-}
+  | #{first_name}   | #{last_name}  | #{sid}   | drop-in    | waiting | 2012-09-10 14:44:24 UTC |
+
+  }
+  student = Student.find(sid)
+  student.student_requests.build(:meet_type => 'scheduled', :status => 'waiting')
+  student.student_requests.build(:meet_type => 'weekly', :status => 'waiting')
+  student.save
+  # | #{first_name}   | #{last_name}  | 25804240   | scheduled  | waiting | 2012-09-10 14:44:24 UTC |
+  # | #{first_name}   | #{last_name}  | 25804240   | weekly     | waiting | 2012-09-10 14:44:24 UTC |
+
 end
 
 When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |first_name, last_name|
@@ -71,7 +78,7 @@ Then /^(?:|I )should see "(.*)" "(.*)" "(.*)" times$/ do |first_name, last_name,
   expect(page).to have_content("#{first_name + ' ' + last_name}", count: num_times.to_i)
 end
 
-Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_times, last_name, first_name|
+Then /^The tutors should see "(.*)" appointments for "(.*)" "(.*)"$/ do |num_times, first_name, last_name|
   steps %Q{
 
     Then I should see "#{first_name}" "#{last_name}" "#{num_times}" times
