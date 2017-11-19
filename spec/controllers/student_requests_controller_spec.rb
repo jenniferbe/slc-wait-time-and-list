@@ -67,60 +67,7 @@ RSpec.describe StudentRequestsController, type: :controller do
       expect(assigns(:active_sessions)).to eq(@fake_results)
     end
   end
-
-  describe 'when adding a student to the queue it' do
-    before :each do
-      login_slc
-      login_tutor
-      @params = {:id => '238745938', :course => 'Ελεννικά'}
-      @student_data = {:first_name => 'Athina',
-                       :last_name => 'Kaunda',
-                       :sid => '238745938',
-                       :email => 'student@email.com'}
-      @student = FactoryGirl.build(:student, @student_data)
-    end
-    it 'looks up the student in the database' do
-      expect(Student).to receive(:find).with(@params[:id]).and_return(@student)
-      post :create, @params
-    end
-    it 'checks to see if the student is not in line' do
-      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
-      expect(@student.student_requests).to receive(:empty?).and_return(true)
-      post :create, @params
-    end
-    it 'creates and saves a student_queue entry for the student if they are not aready in queue' do
-      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
-      allow(@student.student_requests).to receive(:build)
-      expect(@student).to receive(:save)
-      post :create, @params
-    end
-    it 'redirects to the wait time controller' do
-      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
-      post :create, @params
-      expect(response).to redirect_to wait_time_student_request_path(@student)
-    end
-
-    describe 'if the student does not want to wait' do
-      before :each do
-        login_slc
-        login_tutor
-        @id = {:id => @params[:id]}
-        @student.student_requests.build(:course => @params[:course], :meet_type => @params[:type], :status => "waiting")
-        @student.save
-      end
-      it 'retrieves the student from the data base' do
-        expect(Student).to receive(:find).with(@id[:id]).and_return(@student)
-        post :destroy, @id
-      end
-      it 'cancels the student request' do
-        allow(Student).to receive(:find).with("#{@id[:id]}").and_return(@student)
-        allow(@student).to receive(:student_requests).and_return(StudentRequest)
-        allow(StudentRequest).to receive(:find).and_return(StudentRequest)
-        allow(StudentRequest).to receive(:update)
-        post :destroy, @id
-      end
-    end
-  end
+  
   describe 'active sessions' do
     before(:each) do
       login_slc
