@@ -1,3 +1,8 @@
+def get_student(first_name, last_name)
+  student_proxy = Student.where(:first_name => first_name, :last_name => last_name)
+  if student_proxy.empty? ; return nil ; end
+  student_proxy[0]
+end
 
 Given /^"(.*)" "(.*)" is on the wait time page$/ do |first_name, last_name|
   sid = 123456
@@ -63,14 +68,26 @@ end
 
 When /^"(.*)" "(.*)" signs up for any of the three appointments again$/ do |first_name, last_name|
 
-  sid = Student.where(:first_name => first_name, :last_name => last_name)[0]
+  student_proxy = Student.where(:first_name => first_name, :last_name => last_name)
+  if !student_proxy.empty?
+    sid = student_proxy[0].sid
+    steps %Q{
+      Given I am on the home page
+      Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "weekly"
+      Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "drop-in"
+      Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "scheduled"
+    }
+  end
+end
 
-  steps %Q{
-    Given I am on the home page
-    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "weekly"
-    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "drop-in"
-    Given "#{first_name}" "#{last_name}" with id "#{sid}" signs up for "scheduled"
-  }
+When /^"(.*)" "(.*)" signs up for "(.*)"$/ do |first_name, last_name, appointment_types|
+  appointments = appointment_types.split
+
+  appointments.each do |appointment|
+    steps %Q{
+      Given "#{first_name}" "#{last_name}" with id ""
+    }
+  end
 end
 
 
