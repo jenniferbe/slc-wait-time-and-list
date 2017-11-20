@@ -165,4 +165,10 @@ RSpec.describe StudentRequestsController, type: :controller do
       expect(response).to redirect_to student_requests_path
     end
   end
+
+  describe 'send email on confirm'
+    
+
+  end
+
 end

@@ -2,9 +2,25 @@
 <% if flash[:error] %>
     <div class="notice"><%= flash[:error] %></div>
 <% end %>
-<%= form_tag(app_authenticate_path, method: "post") do %>
-    <label>SLC Password</label>
-    <%= text_field_tag "pass"%>
-    <%= submit_tag "Submit" %>
-<%end%>
+
+<div id="login-page-container" class="container-fluid">
+	
+	<%= image_tag "slc_logo.png", id:"slc-logo-pic" %>  
+
+	<%= form_tag(app_authenticate_path, method: "post", id: "slc-form-container", class: "container") do %>
+				
+				<label id="slc-pass-title">SLC Computer Login</label>
+				<div class="pass-container form-field">
+				    
+				    <label id="slc-pass-label" class="fa fa-lock" aria-hidden="true"></label>
+				    <%= text_field_tag "pass", nil, placeholder: "Password", id:"slc-pass-input", class: "form-input form-text"%>
+		    	</div>
+			    <div id="submit-container" class="form-field">
+					<%= submit_tag "Submit", id: "slc-submit", class: "btn btn-primary" %>
+				</div>
+		
+	<%end%>
+	<%= image_tag "slc_1.JPG", id:"login-background-pic" %>  
+
+</div>
 

@@ -26,12 +26,10 @@ class StudentRequestsController < ApplicationController
 	  @student = Student.find(params[:sid]) 
   end
 
-  def send_email_next_in_line(student)
+  def send_email_to_next_in_line
     #send an email to next person who hasn't been emailed yet, when 
     @student = StudentRequest.where(:emailed => false)[0]
     ExampleMailer.next_in_line_email(@student).deliver_now
-    @student.update_attribute(:emailed => true)
-    end  
 
   end
     
@@ -42,7 +40,7 @@ class StudentRequestsController < ApplicationController
   def confirm
     @student = Student.find(params[:sid]) 
 
-    if (wait_time(@student) == 30)
+    if (@student.get_wait_time <= 30)
       send_email_next_in_line(@student)
     else
       ExampleMailer.sample_email(@student).deliver_now
