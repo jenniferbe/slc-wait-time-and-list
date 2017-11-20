@@ -29,19 +29,24 @@
 <div class="form-container container-fluid">
     <h1>Drop-in</h1>
     <table id="queue" class="queue">
-    <tr>
-      <th>Number</th>
-      <th>Waiting</th>
-      <th>Name</th>
-      <th>Course</th>
-    </tr>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Waiting Time</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th>Tutor Notes</th>
+        <th>Course</th>
+      </tr>
     
     <tr>
     <% @drop_in_queue.each do |entry| %>
           <tr id="q_row">
             <td></td>
             <td><%= time_diff(entry.created_at, Time.now) %></td>
-            <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
+            <td><%= %Q(if entry.student ? #{entry.student.first_name} #{entry.student.last_name}: "None" ) %></td>
             <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
             <% end %>
           </tr>
@@ -52,18 +57,28 @@
     <table id="queue" class="queue">
     <tr>
       <th>Number</th>
-      <th>Waiting</th>
       <th>Name</th>
+      <th>Tutor Name</th>
       <th>Course</th>
+      <th>Waiting Time</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Status</th>
+      <th>Tutor Notes</th>
     </tr>
     
     <tr>
     <% @weekly_queue.each do |entry| %>
           <tr id="q_row">
-            <td></td>
-            <td><%= time_diff(entry.created_at, Time.now) %></td>
+            <td>Number</td>
             <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-            <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+            <td><%= %Q(if entry.tutor!=nil ? #{entry.tutor.first_name} #{entry.tutor.last_name}: "None" ) %></td>
+            <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
+            <td><%= weekly_queue.wait_time %></td>
+            <td><%= weekly_queue.start_time %></td>
+            <td><%= weekly_queue.end_time %></td>
+            <td><%= weekly_queue.status %></td>
+            <td><%= weekly_queue.tutor_notes %></td>
             <% end %>
           </tr>
     </tr>
@@ -73,7 +88,7 @@
     <table id="queue" class="queue">
     <tr>
       <th>Number</th>
-      <th>Waiting</th>
+      <th></th>
       <th>Name</th>
       <th>Course</th>
     </tr>

@@ -15,6 +15,5 @@ class Tutor < ActiveRecord::Base
                           :tutor_sid => student_request.tutor_id,:start_time => student_request.created_at,
                           :end_time => end_time, :tutor_notes => tutor_notes, :wait_time => student_request.wait_time,
                           :status => student_request.status, :meet_type =>student_request.meet_type)
-    byebug
   end
 end
