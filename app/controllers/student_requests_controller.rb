@@ -19,7 +19,6 @@ class StudentRequestsController < ApplicationController
       break if "#{entry.id}" == params[:id]
       @wait_pos += 1
     end
-
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
