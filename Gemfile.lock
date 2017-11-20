@@ -49,6 +49,13 @@ GEM
       execjs
     autotest-rails (4.2.1)
       ZenTest (~> 4.5)
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     backports (3.9.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -163,6 +170,7 @@ GEM
     haml (4.0.7)
       tilt
     hirb (0.7.3)
+    htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.6)
@@ -330,6 +338,7 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
+    rubyzip (1.0.0)
     sass (3.5.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -396,6 +405,7 @@ PLATFORMS
 DEPENDENCIES
   ZenTest (= 4.11.0)
   autotest-rails
+  axlsx_rails
   bootstrap (~> 4.0.0.beta2.1)
   byebug
   capybara (= 2.4.4)

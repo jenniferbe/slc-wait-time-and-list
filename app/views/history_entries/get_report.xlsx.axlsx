@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Products") do |sheet|
+  @history.each do |entry|
+    sheet.add_row [entry.student.first_name]
+  end
+end

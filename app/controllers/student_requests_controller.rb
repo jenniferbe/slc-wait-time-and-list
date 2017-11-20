@@ -1,5 +1,6 @@
 class StudentRequestsController < ApplicationController
   include SecurityRedirectHelper
+  include StudentRequestsHelper
   before_action :auth_check_tutor
 
 
@@ -37,6 +38,9 @@ class StudentRequestsController < ApplicationController
   
   def activate_session
     StudentRequest.find(params[:id]).update(:status => "active")
+
+    # lost support for calculating the time a student waited to be helped
+    # tempstudent.update(:status => "active", :wait_time => time_diff(tempstudent.created_at, Time.now))
     redirect_to student_requests_path
   end
   

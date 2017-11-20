@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 #gem for password protect
 gem "figaro"
 
+#gem for spreadsheet creation
+gem 'axlsx_rails'
+
 gem 'haml'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

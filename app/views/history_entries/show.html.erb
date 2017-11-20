@@ -29,41 +29,17 @@
     <br/>
     <h2>No history entries were found for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
 <% elsif @found == true %>
+    <%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
 <div class="form-container container-fluid">
-    <h1>Drop-in</h1>
-    <table id="queue" class="queue">
-      <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Course</th>
-        <th>Waiting Time</th>
-        <th>Start Time</th>
-        <th>End Time</th>
-        <th>Status</th>
-        <th>Tutor Notes</th>
-        <th>Course</th>
-      </tr>
-    
-    <tr>
-    <% @drop_in_queue.each do |entry| %>
-          <tr id="q_row">
-            <td></td>
-            <td><%= time_diff(entry.created_at, Time.now) %></td>
-            <td><%= %Q(if entry.student ? #{entry.student.first_name} #{entry.student.last_name}: "None" ) %></td>
-            <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
-            <% end %>
-          </tr>
-    </tr>
-    </table>
-    
-    <h1>Weekly</h1>
+  <% (0..2).each do |i| %>
+    <h1><%=@titles[i]%></h1>
     <table id="queue" class="queue">
     <tr>
-      <th>Number</th>
+      <!--<th>Number</th>-->
       <th>Name</th>
       <th>Tutor Name</th>
       <th>Course</th>
-      <th>Waiting Time</th>
+      <!--<th>Waiting Time</th>-->
       <th>Start Time</th>
       <th>End Time</th>
       <th>Status</th>
@@ -71,9 +47,9 @@
     </tr>
     
     <tr>
-    <% @weekly_queue.each do |entry| %>
+      <% @tables[i].each do |entry| %>
           <tr id="q_row">
-            <td></td>
+            <!--<td></td>-->
             <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
             <% if entry.tutor == nil %>
                 <td>None</td>
@@ -81,34 +57,17 @@
                 <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
             <% end %>
             <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
-            <td><%= entry.wait_time %></td>
+            <!--<td><%= entry.wait_time %></td>-->
             <td><%= entry.start_time %></td>
             <td><%= entry.end_time %></td>
             <td><%= entry.status %></td>
             <td><%= entry.tutor_notes %></td>
-            <% end %>
           </tr>
+      <% end %>
+
     </tr>
     </table>
-    
-    <h1>Scheduled</h1>
-    <table id="queue" class="queue">
-    <tr>
-      <th>Number</th>
-      <th></th>
-      <th>Name</th>
-      <th>Course</th>
-    </tr>
-    <tr>
-    <% @scheduled_queue.each do |entry| %>
-          <tr id="q_row">
-            <td></td>
-            <td><%= time_diff(entry.created_at, Time.now) %></td>
-            <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-            <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
-            <% end %>
-          </tr>
-    </tr>
-    </table>
+  <% end %>
+
 </div>
 <% end %>

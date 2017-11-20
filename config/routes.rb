@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   #history routes
   get 'history_entries' => 'history_entries#show', as: :history_entries
-
+  get 'history_entries/:id' => 'history_entries#get_report', as: :history_report
   root 'students#new'
   get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student
   get 'student_requests/:id/wait_time' => 'student_requests#wait_time', as: :wait_time_student_request
