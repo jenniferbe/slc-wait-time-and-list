@@ -1,6 +1,13 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Products") do |sheet|
+  sheet.add_row ["Appt Type", "Student Name", "Tutor Name", "Course", "Start Time", "End Time", "Status", "Tutor Notes"]
   @history.each do |entry|
-    sheet.add_row [entry.student.first_name]
+    tutor_name = "None"
+    if entry.tutor != nil
+        tutorname = %Q(#{entry.tutor.first_name} #{entry.tutor.last_name})
+    end
+
+    student_name = %Q(#{entry.student.first_name} #{entry.student.last_name})
+    sheet.add_row [entry.meet_type, student_name, tutor_name, entry.course, entry.start_time, entry.end_time, entry.status, entry.tutor_notes]
   end
 end
