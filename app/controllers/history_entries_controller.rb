@@ -1,7 +1,11 @@
 class HistoryEntriesController < ApplicationController
   def show
-    @date = params[:history_dates]
-    if !(@date == nil or @date == "")
+    begin
+      @date = params[:history_dates].to_date
+    rescue
+      @date = ""
+    end
+    if !(@date == "" or @date == nil)
       @date = @date.to_date
       @history = HistoryEntry.where({created_at: @date..(@date + 1.days)})
       if @history.count > 0
