@@ -1,7 +1,5 @@
 class HistoryEntriesController < ApplicationController
   def show
-
-    @test = [:name => "Alex"]
     begin
       @date = params[:history_dates].to_date
     rescue
