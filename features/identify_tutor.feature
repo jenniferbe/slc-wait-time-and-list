@@ -7,6 +7,6 @@ Feature: identify tutor.
 
 Scenario: tutor identified when working with student
   Given "Salvador" "Villegas" is signed up for all three appointments
-  #And  I am on duty tutoring
+  And  I am on duty tutoring
   When I click "Activate" for "Villegas" "Salvador" with id "0"
   Then I should see my name on tutor for "Villegas" "Salvador" with id "0" under "Active Session"
