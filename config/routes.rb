@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'history_entries' => 'history_entries#show', as: :history_entries
 
   resources :student_requests
-
+  resources :tutor, only: [:index]
 
   root 'students#new'
   get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student
