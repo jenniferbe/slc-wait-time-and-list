@@ -40,11 +40,13 @@ class StudentRequestsController < ApplicationController
   def confirm
     @student = Student.find(params[:sid]) 
 
-    if (@student.get_wait_time <= 30)
-      send_email_next_in_line(@student)
-    else
-      ExampleMailer.sample_email(@student).deliver_now
-    end
+    ExampleMailer.sample_email(@student).deliver_now
+
+    # if (@student.get_wait_time <= 30)
+    #   send_email_next_in_line(@student)
+    # else
+    #   ExampleMailer.sample_email(@student).deliver_now
+    # end
 
     # if StudentRequests.find(params[:emailed])
 
@@ -75,7 +77,7 @@ class StudentRequestsController < ApplicationController
   
   def activate_session
     StudentRequest.find(params[:id]).update(:status => "active")
-    send_email_next_in_line
+    # send_email_next_in_line***
     redirect_to student_requests_path
   end
   
