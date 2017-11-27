@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115054005) do
+ActiveRecord::Schema.define(version: 20171127005107) do
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
     t.string   "course"
     t.integer  "tutor_sid"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "tutor_notes"
     t.time     "wait_time"
     t.string   "status"

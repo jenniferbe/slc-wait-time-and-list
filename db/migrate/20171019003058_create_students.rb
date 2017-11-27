@@ -7,7 +7,6 @@ class CreateStudents < ActiveRecord::Migration
       t.string :email
       t.boolean :transfer_student
       t.boolean :concurrency_student
-
       t.timestamps null: false
     end
   end
