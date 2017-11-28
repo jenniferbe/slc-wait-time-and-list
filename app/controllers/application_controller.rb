@@ -12,4 +12,15 @@ class ApplicationController < ActionController::Base
       super # Use the default one
     end
   end
+
+  private
+  #Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    byebug
+    if resource_or_scope == :tutor
+      new_student_path
+    else
+      root_path
+    end
+  end
 end
