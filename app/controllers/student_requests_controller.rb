@@ -13,7 +13,6 @@ class StudentRequestsController < ApplicationController
   end
 
   def wait_time
-    #byebug
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
