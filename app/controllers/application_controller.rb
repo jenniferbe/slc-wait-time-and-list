@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def devise_parameter_sanitizer
     if resource_class == Tutor
-      Tutor::ParameterSanitizer.new(Tutor, :tutor, params)
+      Tutor::TutorSanitizer.new(Tutor, :tutor, params)
     else
       super # Use the default one
     end
