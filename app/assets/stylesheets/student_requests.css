@@ -4,8 +4,44 @@ html, body {
   padding: 0;
   background: White;
   color: DarkSlateGrey;
-  font-family: Tahoma, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 10pt;
+  font-weight:200;
+}
+
+.button-title-fade{
+  -webkit-animation-delay: 0.20s;
+}
+
+.button-bar{
+  margin-top:15px;
+  width: 100%;
+}
+#btn-logout-slc{
+  margin-left: 8px;
+  width: 102px;
+  float: left;
+}
+
+#btn-login-tutor{
+  margin-right: 8px;
+  width: 102px;
+  float: right;
+}
+
+.btn-outline-danger{
+  color: #dc354566;
+  border-color: #dc354566;
+}
+
+.btn-outline-success{
+  color: #28a74573;
+  border-color: #28a74573;
+}
+
+.label{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 div#main {
@@ -74,17 +110,23 @@ h1.title2 {
 
 h1.subtitle{
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 2px;
   margin-top: 0.9em;
   padding-bottom: 6px;
-  border-bottom: 2px solid DarkSlateGrey;
+  /*border-bottom: 2px solid DarkSlateGrey;*/
   font-size: 28px;
+  border: none;
+  margin-left: 82px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.form-container{
-  margin-top: 2em;
-  width: 50%;
+#form-container{
+  margin-left: 60px;
+}
+
+#row{
+  margin-left: -4px;
 }
 
 #schedule-options{
@@ -125,22 +167,39 @@ form label {
   line-height: 25px;
   font-weight: 100;
   letter-spacing: 1px;
-  color: maroon;
+  color: black;
 }
 
-.radio.row{
+
+#radio-row{
+  margin-left: 12px;
   margin-bottom: 0.9em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin-top: 16px;
+}
+
+#radio-button-row{
+  margin-left: 96px;
+  margin-top: 15px;
+}
+
+.radio-button-label{
+  margin-left: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .label{
   margin-top: 0.9em;
-  color: maroon;
+  color: black;
 }
 
 .radio-signup{
   color: black;
   margin-top: 0.2em;
   margin-bottom: 0em;
+  font-weight: 300;
 }
 
 .form_signup{
@@ -148,7 +207,8 @@ form label {
 }
 
 #form-submit{
-  width: 180px;
+  width: 424px;
+  margin-left: -4px;
 }
 
 @font-face {

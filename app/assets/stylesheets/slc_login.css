@@ -3,8 +3,18 @@ div#main{
 	height:100vh;
 }
 
+#back-to-sign-in{
+	position: absolute;
+	margin-left: 12px;
+	margin-top: 10px;
+}
+
 #slc-logo-pic{
 	position: absolute;
+}
+#slc-logo-pic-2{
+	position: absolute;
+	margin-top: 20px;
 }
 
 #login-page-container{
@@ -12,7 +22,7 @@ div#main{
 	height:100%;
 	padding:0;
 	overflow: hidden;
-
+	-webkit-animation-delay: 0.20s;
 }
 
 #login-background-pic{
