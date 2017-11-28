@@ -1,4 +1,4 @@
-class TutorController < ApplicationController
+class TutorsController < ApplicationController
   before_action :authenticate_tutor!
 
   def index
