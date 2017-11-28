@@ -58,8 +58,8 @@
             <% end %>
             <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
             <!--<td><%= entry.wait_time %></td>-->
-            <td><%= entry.start_time %></td>
-            <td><%= entry.end_time %></td>
+            <td><%= entry.start_time.strftime("%H:%M:%S") %></td>
+            <td><%= entry.end_time.strftime("%H:%M:%S") %></td>
             <td><%= entry.status %></td>
             <td><%= entry.tutor_notes%></td>
 
