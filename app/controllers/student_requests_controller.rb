@@ -43,27 +43,24 @@ class StudentRequestsController < ApplicationController
     #the wait_time is less than 30 min == you will be the nth position in wait list s.t. n == number of tutors.
 
 
-    @numStudents = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count
+    @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
 
-    if @numStudents >= @numTutor
+    @int = 1
 
-      @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-      @studentid = 0
-
-      @studentList.each do |entry|
-        if entry.get_wait_position == @numTutor
-          @studentid = entry.student_id
-          break
-        end
+    @studentList.each do |entry|
+      if @int > @numTutor
+        break
       end
+      if !entry.emailed
+        @studentid = entry.student_id
+        @student = Student.find(@studentid)
+        ExampleMailer.next_in_line_email(@student).deliver_now
+        StudentRequest.find(@studentid).update(:emailed => true)
 
-      #@student = Student.find(@studentid)
-      #ExampleMailer.next_in_line_email(@student).deliver_now
-
-      ExampleMailer.check.deliver_now
+      end
+      @int += 1
 
     end
-
 
 
 
@@ -79,6 +76,7 @@ class StudentRequestsController < ApplicationController
 
     if (@student.get_wait_position <= @numTutor)
       ExampleMailer.confirmation_email(@student).deliver_now
+
     else
       ExampleMailer.confirmation_email2(@student).deliver_now
     end
