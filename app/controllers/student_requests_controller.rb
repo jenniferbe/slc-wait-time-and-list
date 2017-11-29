@@ -76,6 +76,9 @@ class StudentRequestsController < ApplicationController
 
     if (@student.get_wait_position <= @numTutor)
       ExampleMailer.confirmation_email(@student).deliver_now
+      StudentRequest.find(params[:siod]).update(:emailed => true)
+
+
 
     else
       ExampleMailer.confirmation_email2(@student).deliver_now
