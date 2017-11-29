@@ -33,39 +33,32 @@ class StudentRequestsController < ApplicationController
     #@student = StudentRequest.where(:emailed => false)[0]
     #ExampleMailer.next_in_line_email(@student).deliver_now
 
-
-
-
     #Doesnt have data for the number of tutors working.
-    @numTutor = 2
-    #@numTutor = StudentRequest.where(status: "active").count
+    @numActiveTutor = 2
+    #@numActiveTutor = Tutor.where(status: "active").count
 
     #the wait_time is less than 30 min == you will be the nth position in wait list s.t. n == number of tutors.
 
 
-    @numStudents = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count
+    # @numStudentsNotEmailed = StudentRequest.where(meet_type: "drop-in").where(emailed: false).count
 
-    if @numStudents >= @numTutor
+    @next_student_in_line = StudentRequest.where(:emailed => false)[0]
+    ExampleMailer.next_in_line_email(@next_student_in_line).deliver_now
 
-      @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-      @studentid = 0
+    # if @numStudentsWaiting >= @numActiveTutors
 
-      @studentList.each do |entry|
-        if entry.get_wait_position == @numTutor
-          @studentid = entry.student_id
-          break
-        end
-      end
+    #   @studentWaitingList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
 
-      #@student = Student.find(@studentid)
-      #ExampleMailer.next_in_line_email(@student).deliver_now
+    #   @studentWaitingList.each do |entry|
+    #     if entry.get_wait_position == @numActiveTutors
+    #       @studentid = entry.student_id
+    #       break
+    #     end
+    #   end
 
-      ExampleMailer.check.deliver_now
-
-    end
-
-
-
+    #   @student = Student.find(@studentid)
+    #   ExampleMailer.next_in_line_email(@student).deliver_now
+    # end
 
   end
     
@@ -75,12 +68,14 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     @student = Student.find(params[:sid])
-    @numTutor = 2
+    @numActiveTutors = 2
+    #@numActiveTutor = Tutor.where(status: "active").count
 
-    if (@student.get_wait_position <= @numTutor)
-      ExampleMailer.confirmation_email(@student).deliver_now
+    if (@student.get_wait_position <= @numActiveTutors)
+      @student.
+      ExampleMailer.next_in_line_email(@student).deliver_now
     else
-      ExampleMailer.confirmation_email2(@student).deliver_now
+      ExampleMailer.confirmation_email(@student).deliver_now
     end
 
 

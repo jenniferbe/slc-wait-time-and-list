@@ -23,6 +23,9 @@ table.queue th.hilite {
 .btn-activate{
   margin-left: 16px;
 }
+.btn-finish{
+  margin-left: 16px;
+}
 
 #tutor-log-out{
   position: absolute;
