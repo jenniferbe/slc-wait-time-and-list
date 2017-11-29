@@ -9,7 +9,7 @@
 
     <%= form_tag(history_entries_path, method: "get") do %>
         <div class="col-2">
-              <%= label_tag(:history_dates, "Search for (MM-DD-YYYY):") %>
+              <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
               <%= date_field_tag(:history_dates) %>
         </div>
         <br/>
@@ -29,13 +29,15 @@
     <br/>
     <h2>No history entries were found for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
 <% elsif @found == true %>
-    <%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
+<%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
 <div class="form-container container-fluid">
+<h2>Showing history for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
   <% (0..2).each do |i| %>
     <h1><%=@titles[i]%></h1>
     <table id="queue" class="queue">
     <tr>
       <!--<th>Number</th>-->
+      <th>Sign In Time</th>
       <th>Name</th>
       <th>Tutor Name</th>
       <th>Course</th>
@@ -50,6 +52,7 @@
       <% @tables[i].each do |entry| %>
           <tr id="q_row">
             <!--<td></td>-->
+            <td><%= entry.sign_in_time %></td>
             <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
             <% if entry.tutor == nil %>
                 <td>None</td>

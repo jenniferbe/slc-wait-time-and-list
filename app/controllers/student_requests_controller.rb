@@ -36,7 +36,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def activate_session
-    StudentRequest.find(params[:id]).update(:status => "active")
+    StudentRequest.find(params[:id]).update(:status => "active", :start_time => Time.now)
 
     # lost support for calculating the time a student waited to be helped
     # tempstudent.update(:status => "active", :wait_time => time_diff(tempstudent.created_at, Time.now))
