@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
     if params[:course] == "Other" and params[:course_other]
       params[:course] = params[:course_other]
     end
-    @student_request = @student.student_requests.build(:course => params[:course], :meet_type => params[:meet_type], :status => "waiting")
+    @student_request = @student.student_requests.build(:course => params[:course], :meet_type => params[:meet_type], :status => "waiting", :emailed => false)
     @student.save
     case params[:meet_type]
       when 'scheduled', 'weekly'
