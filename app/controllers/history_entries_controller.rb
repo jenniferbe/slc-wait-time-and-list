@@ -1,13 +1,12 @@
 class HistoryEntriesController < ApplicationController
   def show
     begin
-      @date = params[:history_dates].to_date
+      @date = params[:history_dates].to_date.in_time_zone
     rescue
       @date = ""
     end
     if !(@date == "" or @date == nil)
-      @date = @date.to_date
-      @history = HistoryEntry.where({sign_in_time: @date..(@date + 1.days)})
+      @history = HistoryEntry.where({sign_in_time: @date...(@date + 1.days)})
       if @history.count > 0
         @found = true
         @drop_in_queue = @history.where({meet_type: "drop-in"})
