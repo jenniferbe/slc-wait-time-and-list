@@ -52,7 +52,7 @@
       <% @tables[i].each do |entry| %>
           <tr id="q_row">
             <!--<td></td>-->
-            <td><%= entry.sign_in_time %></td>
+            <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
             <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
             <% if entry.tutor == nil %>
                 <td>None</td>
@@ -60,8 +60,8 @@
                 <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
             <% end %>
             <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
-            <td><%= entry.start_time.strftime("%H:%M:%S") %></td>
-            <td><%= entry.end_time.strftime("%H:%M:%S") %></td>
+            <td><%= entry.start_time.strftime("%l:%M%P") %></td>
+            <td><%= entry.end_time.strftime("%l:%M%P") %></td>
             <td><%= entry.status %></td>
             <td><%= entry.tutor_notes%></td>
 

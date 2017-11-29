@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20171128235740) do
     t.string   "course"
     t.string   "meet_type"
     t.string   "status"
+    t.time     "wait_time"
     t.integer  "tutor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.time     "wait_time"
     t.datetime "start_time"
   end
 

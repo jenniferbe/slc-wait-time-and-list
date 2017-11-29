@@ -5,14 +5,16 @@
     <th>Start Time</th>
     <th>Student Name</th>
     <th>Tutor Name</th>
+    <th>Course</th>
   </tr>
   <tr>
   <% @active_sessions.each do |entry| %>
     <tr id="q_row">
-      <td><%= "N/A" %></td>
+      <td><%= entry.start_time.strftime("%l:%M%P") %></td>
       <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
       <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
-      <% end %>
+      <td><%=entry.course%></td>
+  <% end %>
   </tr>
 </tr>
 </table>
