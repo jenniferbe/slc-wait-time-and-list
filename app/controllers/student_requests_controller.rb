@@ -1,7 +1,6 @@
 class StudentRequestsController < ApplicationController
   include SecurityRedirectHelper
-  include StudentRequestsHelper
-  before_action :auth_check_tutor
+  before_action :auth_check_app
 
 
   def index
