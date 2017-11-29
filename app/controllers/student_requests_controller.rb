@@ -63,7 +63,7 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     @student = Student.find(params[:sid])
-    @numActiveTutors =
+    @numActiveTutors = 2
 
     if (@student.get_wait_position <= @numActiveTutors)
       send_email_next_in_line
