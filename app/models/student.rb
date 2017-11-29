@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+<<<<<<< HEAD
     self.primary_key = :sid
     has_many :drop_in_histories
     has_many :student_requests
@@ -23,4 +24,9 @@ class Student < ActiveRecord::Base
 			end
 			@wait_pos
 		end
+=======
+ self.primary_key = :sid
+has_many :history_entries
+has_many :student_requests
+>>>>>>> origin/demo
 end

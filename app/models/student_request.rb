@@ -1,5 +1,6 @@
 class StudentRequest < ActiveRecord::Base
   belongs_to :student
+<<<<<<< HEAD
 
 
   def get_wait_time
@@ -21,4 +22,7 @@ class StudentRequest < ActiveRecord::Base
     end
     @wait_pos
   end
+=======
+  belongs_to :tutor
+>>>>>>> origin/demo
 end

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="tutor-log-out">
     <i class="fa fa-arrow-left" aria-hidden="true"></i> 
     <%= link_to "Log Out Tutor", tutor_logout_path, method: "post" %>
@@ -29,6 +30,25 @@
     </tbody>
   </table>
 =======
+=======
+<li><%= link_to "Log Out", tutor_logout_path, method: "post" %></li>
+<h1>Active Sessions</h1>
+<table id="active_sessions" class="queue">
+  <tr>
+    <th>Start Time</th>
+    <th>Student Name</th>
+    <th>Tutor Name</th>
+    <th>Course</th>
+  </tr>
+  <tr>
+  <% @active_sessions.each do |entry| %>
+    <tr id="q_row">
+      <td><%= entry.start_time.strftime("%l:%M%P") %></td>
+      <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
+      <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+      <td><%=entry.course%></td>
+  <% end %>
+>>>>>>> origin/demo
   </tr>
 </tr>
 </table>
