@@ -7,7 +7,7 @@ class HistoryEntriesController < ApplicationController
     end
     if !(@date == "" or @date == nil)
       @date = @date.to_date
-      @history = HistoryEntry.where({created_at: @date..(@date + 1.days)})
+      @history = HistoryEntry.where({sign_in_time: @date..(@date + 1.days)})
       if @history.count > 0
         @found = true
         @drop_in_queue = @history.where({meet_type: "drop-in"})
@@ -25,7 +25,7 @@ class HistoryEntriesController < ApplicationController
 
   def get_report
     @date = params[:id].to_date
-    @history = HistoryEntry.where({created_at: @date..(@date + 1.days)}).order('created_at DESC')
+    @history = HistoryEntry.where({sign_in_time: @date..(@date + 1.days)}).order('sign_in_time DESC')
     respond_to do |format|
       format.html
       format.xlsx
