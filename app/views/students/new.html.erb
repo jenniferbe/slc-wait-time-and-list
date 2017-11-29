@@ -1,15 +1,27 @@
 
 <!-- new.html.erb-->
 
-<li><%= link_to "App Log Out", app_logout_path, method: "post" %></li>
-<li><%= link_to "Tutor Sign In", tutor_firewall_path, method: "get" %></li>
+<!-- style="background-color: #3B7EA1;" -->
+<nav class="navbar navbar-light bg-faded" >
+  <form class="form-inline">
+    <%= button_to "App Log Out", app_logout_path, method: "post", class: "btn btn-outline-danger"%>
+    <%= button_to "Tutor Sign In", tutor_firewall_path, method: "get", class: "btn btn-outline-success"%>
+  </form>
+</nav>
 
 
-<div id="title-backdrop"></div>
 
-<h1 class="title">Berkeley Student Learning Center</h1>
+<!-- <div id="title-backdrop"></div> -->
 
-<h1 class="subtitle">Writing Service Sign-in</h1>
+<span></span>
+
+
+<div id="title-container">
+    <h1 class="title1">Berkeley</h1>
+    <h1 class="title2">Student Learning Center</h1>
+</div>
+ <h1 class="subtitle">Writing Service Sign-in</h1>
+
 
 <div class="form-container container-fluid">
 

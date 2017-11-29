@@ -10,7 +10,7 @@ html, body {
 
 div#main {
   margin: 0;
-  padding: 0 20px 20px;
+  padding-left:0;
 }
 
 a {
@@ -38,24 +38,48 @@ h1 {
   border-bottom: 4px solid gold;
 }
 
-h1.title {
-  position: absolute;
+#title-container{
+  overflow: hidden;
+  width: 100%;
+}
+
+h1.title1 {
+  /*position: absolute;*/
   font-size: 2em;
   font-style: normal;
   font-family: inherit;
   font-weight: 200;
-  color: white;
-  margin-top: -1.6em;
+  font-size: 38px;
+  /*color: white;*/
+  color: #3B7EA1;
+  margin-top: 0.8em;
   border-bottom: none;
+  float: left;
+  width: 140px;
+}
+h1.title2 {
+  /*position: absolute;*/
+  font-size: 2em;
+  font-style: normal;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 38px;
+  /*color: white;*/
+  color:gold;
+  margin-top: 0.8em;
+  border-bottom: none;
+  float: left;
+  width: 450px;
 }
 
 h1.subtitle{
   font-style: normal;
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: 2px;
   margin-top: 0.9em;
   padding-bottom: 6px;
   border-bottom: 2px solid DarkSlateGrey;
+  font-size: 28px;
 }
 
 .form-container{
