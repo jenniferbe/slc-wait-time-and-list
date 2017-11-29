@@ -37,6 +37,7 @@ class StudentRequestsController < ApplicationController
   end
   
   def activate_session
+    byebug
     StudentRequest.find(params[:id]).update(:status => "active")
     redirect_to student_requests_path
   end

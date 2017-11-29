@@ -11,7 +11,7 @@
     <tr id="q_row">
       <td><%= "N/A" %></td>
       <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-      <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+      <td><div style="float: left; width: auto;"><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
       <% end %>
   </tr>
 </tr>
@@ -32,7 +32,7 @@
         <td></td>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
         <% end %>
       </tr>
 </tr>
@@ -53,7 +53,7 @@
         <td></td>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
         <% end %>
       </tr>
 </tr>
@@ -73,7 +73,7 @@
         <td></td>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
         <% end %>
       </tr>
 </tr>
