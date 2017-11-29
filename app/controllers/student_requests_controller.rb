@@ -28,41 +28,32 @@ class StudentRequestsController < ApplicationController
 
 
   def send_email_next_in_line
-    #send an email to next person who hasn't been emailed yet, when
+    #send an email to next person who hasn't been emailed yet
+   
+    @next_student_in_line = StudentRequest.where(:emailed => false)[0]
+    ExampleMailer.next_in_line_email(@next_student_in_line).deliver_now
+    StudentRequest.find(@studentid).update(:emailed => true)
 
-    #@student = StudentRequest.where(:emailed => false)[0]
-    #ExampleMailer.next_in_line_email(@student).deliver_now
+    # if @numStudentsWaiting >= @numActiveTutors
 
+    # @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
 
+    # @int = 1
 
+    # @studentList.each do |entry|
+    #   if @int > @numTutor
+    #     break
+    #   end
+    #   if !entry.emailed
+    #     @studentid = entry.student_id
+    #     @student = Student.find(@studentid)
+    #     ExampleMailer.next_in_line_email(@student).deliver_now
+    #     StudentRequest.find(@studentid).update(:emailed => true)
 
-    #Doesnt have data for the number of tutors working.
-    @numTutor = 2
-    #@numTutor = StudentRequest.where(status: "active").count
+    #   end
+    #   @int += 1
 
-    #the wait_time is less than 30 min == you will be the nth position in wait list s.t. n == number of tutors.
-
-
-    @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-
-    @int = 1
-
-    @studentList.each do |entry|
-      if @int > @numTutor
-        break
-      end
-      if !entry.emailed
-        @studentid = entry.student_id
-        @student = Student.find(@studentid)
-        ExampleMailer.next_in_line_email(@student).deliver_now
-        StudentRequest.find(@studentid).update(:emailed => true)
-
-      end
-      @int += 1
-
-    end
-
-
+    # end
 
   end
     
@@ -72,16 +63,12 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     @student = Student.find(params[:sid])
-    @numTutor = 2
+    @numActiveTutors =
 
-    if (@student.get_wait_position <= @numTutor)
-      ExampleMailer.confirmation_email(@student).deliver_now
-      StudentRequest.find(params[:siod]).update(:emailed => true)
-
-
-
+    if (@student.get_wait_position <= @numActiveTutors)
+      send_email_next_in_line
     else
-      ExampleMailer.confirmation_email2(@student).deliver_now
+      ExampleMailer.confirmation_email(@student).deliver_now
     end
 
 
