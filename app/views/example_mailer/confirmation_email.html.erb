@@ -6,6 +6,7 @@
 <body>
 <h1> confirmation email less than 30 min for <%= @student.first_name %></h1>
 <p>
+  <%= @student.get_wait_position %>
   <%=     StudentRequest.where(:meet_type => 'drop-in', :status => 'waiting').count %>
 </p>
 </body>

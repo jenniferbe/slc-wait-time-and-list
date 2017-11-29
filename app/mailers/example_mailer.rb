@@ -14,6 +14,10 @@ class ExampleMailer < ApplicationMailer
 			# @student.update_attribute(:emailed => true)
 		end
 
+		def check
+			mail(to: 'nare429@gmail.com', subject:"checking")
+		end
+
 		def next_in_line_email(student)
 			@student = student
 			mail(to: @student.email, subject: 'you are nex in line')

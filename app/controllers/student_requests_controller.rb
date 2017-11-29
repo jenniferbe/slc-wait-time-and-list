@@ -38,6 +38,7 @@ class StudentRequestsController < ApplicationController
 
     #Doesnt have data for the number of tutors working.
     @numTutor = 2
+    #@numTutor = StudentRequest.where(status: "active").count
 
     #the wait_time is less than 30 min == you will be the nth position in wait list s.t. n == number of tutors.
 
@@ -56,8 +57,10 @@ class StudentRequestsController < ApplicationController
         end
       end
 
-      @student = Student.find(@studentid)
-      ExampleMailer.next_in_line_email(@student).deliver_now
+      #@student = Student.find(@studentid)
+      #ExampleMailer.next_in_line_email(@student).deliver_now
+
+      ExampleMailer.check.deliver_now
 
     end
 
@@ -117,6 +120,7 @@ class StudentRequestsController < ApplicationController
   
   def activate_session
     StudentRequest.find(params[:id]).update(:status => "active")
+
     send_email_next_in_line
 
     redirect_to student_requests_path
