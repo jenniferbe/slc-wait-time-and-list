@@ -1,0 +1,213 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: White;
+  color: DarkSlateGrey;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10pt;
+  font-weight:200;
+}
+
+.button-title-fade{
+  -webkit-animation-delay: 0.20s;
+}
+
+.button-bar{
+  margin-top:15px;
+  width: 100%;
+}
+#btn-logout-slc{
+  margin-left: 8px;
+  width: 102px;
+  float: left;
+}
+
+#btn-login-tutor{
+  margin-right: 8px;
+  width: 102px;
+  float: right;
+}
+
+.btn-outline-danger{
+  color: #dc354566;
+  border-color: #dc354566;
+}
+
+.btn-outline-success{
+  color: #28a74573;
+  border-color: #28a74573;
+}
+
+.label{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+div#main {
+  margin: 0;
+  padding-left:0;
+}
+
+a {
+  background: transparent;
+  color: maroon;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/*h1 {
+  color: maroon;
+  font-size: 150%;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid DarkSlateGrey;
+}*/
+
+#title-backdrop{
+  width: 110%;
+  margin-left: -20px;
+  height: 4em;
+  background-color: #3B7EA1;
+  color: white;
+  border-bottom: 4px solid gold;
+}
+
+#title-container{
+  overflow: hidden;
+  width: 100%;
+}
+
+h1.title1 {
+  /*position: absolute;*/
+  font-size: 2em;
+  font-style: normal;
+  font-family: inherit;
+  font-weight: 200;
+  font-size: 38px;
+  /*color: white;*/
+  color: #3B7EA1;
+  margin-top: 0.8em;
+  border-bottom: none;
+  float: left;
+  width: 140px;
+}
+h1.title2 {
+  /*position: absolute;*/
+  font-size: 2em;
+  font-style: normal;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 38px;
+  /*color: white;*/
+  color:gold;
+  margin-top: 0.8em;
+  border-bottom: none;
+  float: left;
+  width: 450px;
+}
+
+h1.subtitle{
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-top: 0.9em;
+  padding-bottom: 6px;
+  /*border-bottom: 2px solid DarkSlateGrey;*/
+  font-size: 28px;
+  border: none;
+  margin-left: 82px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#form-container{
+  margin-left: 60px;
+}
+
+#row{
+  margin-left: -4px;
+}
+
+#schedule-options{
+  width: 30%;
+  float: left;
+}
+
+
+#notice #warning {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}
+
+form label {
+  display: block;
+  line-height: 25px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: black;
+}
+
+
+#radio-row{
+  margin-left: 12px;
+  margin-bottom: 0.9em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin-top: 16px;
+}
+
+#radio-button-row{
+  margin-left: 96px;
+  margin-top: 15px;
+}
+
+.radio-button-label{
+  margin-left: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.label{
+  margin-top: 0.9em;
+  color: black;
+}
+
+.radio-signup{
+  color: black;
+  margin-top: 0.2em;
+  margin-bottom: 0em;
+  font-weight: 300;
+}
+
+.form_signup{
+  margin-top: -0.2em;
+}
+
+#form-submit{
+  width: 424px;
+  margin-left: -4px;
+}
+
+@font-face {
+  font-family: 'FreigMicProLig';
+  src:url('/FreightMicroPro/FreigMicProLig.otf');
+}
+
+@font-face {
+  font-family: 'FreigSanProBlk';
+  src:url('/FreightSansPro/FreigSanProBlk.otf');
+}
+
+@font-face {
+  font-family: 'FreigTexProBlk';
+  src:url('/FreightTextPro/FreigTexProBlk.otf');
+}
+
+
+
+
+
+
+
