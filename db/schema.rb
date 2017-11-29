@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20171128235740) do
     t.integer  "tutor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "emailed"
     t.datetime "start_time"
   end
 

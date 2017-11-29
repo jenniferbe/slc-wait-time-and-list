@@ -1,10 +1,29 @@
-
-<li><%= link_to "Back to Student Sign In", new_student_path, :method => :get %></li>
 <% if flash[:error] %>
     <div class="notice"><%= flash[:error] %></div>
 <% end %>
-<%= form_tag(tutor_authenticate_path, method: "post") do %>
-    <label>Tutor Password</label>
-    <%= password_field_tag "pass"%>
-    <%= submit_tag "Submit" %>
-<%end%>
+
+<div id="login-page-container" class="container-fluid animated fadeIn">
+	
+	<%= image_tag "slc_logo.png", id:"slc-logo-pic-2" %> 
+
+	<div id="back-to-sign-in">
+		<i class="fa fa-arrow-left" aria-hidden="true"></i> 
+		<%= link_to "Back to Student Sign In", new_student_path, :method => :get %>
+	</div> 
+
+	<%= form_tag(tutor_authenticate_path, method: "post", id: "slc-form-container", class: "container animated fadeInUp") do %>
+				
+				<label id="slc-pass-title">Tutor Login</label>
+				<div class="pass-container form-field">
+				    
+				    <label id="slc-pass-label" class="fa fa-lock" aria-hidden="true"></label>
+				    <%= password_field_tag "pass", nil, placeholder: "Password", id:"slc-pass-input", class: "form-input form-text"%>
+		    	</div>
+			    <div id="submit-container" class="form-field">
+					<%= submit_tag "Submit", id: "slc-submit", class: "btn btn-primary" %>
+				</div>
+		
+	<%end%>
+	<%= image_tag "slc_2.JPG", id:"login-background-pic" %>  
+
+</div>
