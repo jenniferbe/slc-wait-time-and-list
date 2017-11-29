@@ -10,7 +10,7 @@ class CreateHistoryEntries < ActiveRecord::Migration
       t.string :tutor_notes
       t.time :wait_time
 
-      #*** what will be the values of status? -- "finished", "canceled", "didn't join queue" ---> just "no show"?
+      #*** what will be the values of status? -- "finished", "cancelled", "didn't join queue" ---> just "no show"?
       t.string :status
       t.timestamps  #sort by create time.
     end

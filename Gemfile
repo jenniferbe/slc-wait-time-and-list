@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 #gem for password protect
 gem "figaro"
 
+#gem for spreadsheet creation
+gem 'axlsx_rails'
+
 gem 'haml'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -29,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 gem 'jquery-rails'
+
+#for password authentication.
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
