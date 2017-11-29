@@ -12,14 +12,12 @@ class StudentRequestsController < ApplicationController
   end
 
   def wait_time
-    #byebug
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
       break if "#{entry.id}" == params[:id]
       @wait_pos += 1
     end
-
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
@@ -37,13 +35,18 @@ class StudentRequestsController < ApplicationController
   end
   
   def activate_session
-    byebug
-    StudentRequest.find(params[:id]).update(:status => "active")
+    StudentRequest.find(params[:id]).update(:status => "active", :start_time => Time.now)
+
+    # lost support for calculating the time a student waited to be helped
+    # tempstudent.update(:status => "active", :wait_time => time_diff(tempstudent.created_at, Time.now))
     redirect_to student_requests_path
   end
   
   def finish_session
-    StudentRequest.find(params[:id]).update(:status => "finished")
+    @finished_student = StudentRequest.find(params[:id])
+    @finished_student.update(:status => "finished")
+    Tutor.session_to_histories(@finished_student, Time.now, "nothing to say")
+    StudentRequest.destroy(params[:id])
     redirect_to student_requests_path
   end
 end

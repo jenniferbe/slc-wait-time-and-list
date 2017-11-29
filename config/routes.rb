@@ -8,14 +8,15 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
   resources :students, only: [:index, :new, :create]
   get 'history_entries' => 'history_entries#show', as: :history_entries
-
+  get 'history_entries/:id' => 'history_entries#get_report', as: :history_report
+  
   resources :student_requests, only: [:index, :destroy]
   resources :tutors, only: [:index]
   patch 'tutors/:id/activate_session' => 'tutors#activate_session', as: :tutor_activate_session
   patch 'tutors/:id/finish_session' => 'tutors#finish_session', as: :tutor_finish_session
-
 
   root 'students#new'
   get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student

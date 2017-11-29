@@ -12,12 +12,11 @@ class StudentsController < ApplicationController
   end
 
   def create
-    #byebug
     if Student.where(:sid => params[:student_sid]).empty?
-      @student = Student.create(:first_name => params[:student_first_name],
-                               :last_name => params[:student_last_name],
-                               :sid => params[:student_sid],
-                               :email => params[:student_email])
+      student_params = {:first_name => params[:student_first_name], :last_name => params[:student_last_name],
+        :sid => params[:student_sid], :email => params[:student_email], :domestic_student => params[:residency],
+        :transfer_student => params[:transfer], :concurrency_student => params[:concurrency], :concurrent_institution => params[:concurrent_institution]}
+      @student = Student.create(student_params)
     else
       @student = Student.find(params[:student_sid])
     end
@@ -28,6 +27,9 @@ class StudentsController < ApplicationController
       return
     end
     
+    if params[:course] == "Other" and params[:course_other]
+      params[:course] = params[:course_other]
+    end
     @student_request = @student.student_requests.build(:course => params[:course], :meet_type => params[:meet_type], :status => "waiting")
     @student.save
     case params[:meet_type]

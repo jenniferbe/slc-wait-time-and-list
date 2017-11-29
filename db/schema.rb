@@ -11,19 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126191749) do
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
     t.string   "course"
     t.integer  "tutor_sid"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "tutor_notes"
-    t.time     "wait_time"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "meet_type"
+    t.datetime "sign_in_time"
   end
 
   create_table "student_requests", force: :cascade do |t|
@@ -35,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171126191749) do
     t.integer  "tutor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_time"
   end
 
   create_table "students", force: :cascade do |t|
@@ -44,8 +43,10 @@ ActiveRecord::Schema.define(version: 20171126191749) do
     t.string   "email"
     t.boolean  "transfer_student"
     t.boolean  "concurrency_student"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.boolean  "domestic_student"
+    t.string   "concurrent_institution"
   end
 
   create_table "tutor_work_days", force: :cascade do |t|
