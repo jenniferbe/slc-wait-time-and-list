@@ -29,7 +29,9 @@ class StudentRequestsController < ApplicationController
     #send an email to next person who hasn't been emailed yet
    
     @next_student_in_line = StudentRequest.where(:emailed => false)[0] #FIX THIS ***
-    ExampleMailer.next_in_line_email(@next_student_in_line).deliver_now
+    @studentid = @next_student_in_line.student_id
+    @student = Student.find(@studentid)
+    ExampleMailer.next_in_line_email(@student).deliver_now
     StudentRequest.find(@studentid).update(:emailed => true)
 
     # if @numStudentsWaiting >= @numActiveTutors
@@ -67,7 +69,7 @@ class StudentRequestsController < ApplicationController
     #Tutor.where(status => "active").count
 
     if (@student.get_wait_position <= @numActiveTutors)
-      # send_email_next_in_line *** FIX THIS
+      send_email_next_in_line
     else
       ExampleMailer.confirmation_email(@student).deliver_now
     end
