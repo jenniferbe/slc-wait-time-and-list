@@ -12,6 +12,15 @@ class Student < ActiveRecord::Base
 	      @wait_pos += 1
 	    end
 	  @wait_time = @wait_pos * 30
+		end
 
-	end
+		def get_wait_position
+			@sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
+			@wait_pos = 0
+			@sorted_results.each do |entry|
+				break if "#{entry.student_id}" == self.id
+				@wait_pos += 1
+			end
+			@wait_pos
+		end
 end

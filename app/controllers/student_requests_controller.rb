@@ -26,10 +26,43 @@ class StudentRequestsController < ApplicationController
 	  @student = Student.find(params[:sid]) 
   end
 
-  def send_email_to_next_in_line
-    #send an email to next person who hasn't been emailed yet, when 
-    @student = StudentRequest.where(:emailed => false)[0]
-    ExampleMailer.next_in_line_email(@student).deliver_now
+
+  def send_email_next_in_line
+    #send an email to next person who hasn't been emailed yet, when
+
+    #@student = StudentRequest.where(:emailed => false)[0]
+    #ExampleMailer.next_in_line_email(@student).deliver_now
+
+
+
+
+    #Doesnt have data for the number of tutors working.
+    @numTutor = 2
+
+    #the wait_time is less than 30 min == you will be the nth position in wait list s.t. n == number of tutors.
+
+
+    @numStudents = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count
+
+    if @numStudents >= @numTutor
+
+      @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
+      @studentid = 0
+
+      @studentList.each do |entry|
+        if entry.get_wait_position == @numTutor
+          @studentid = entry.student_id
+          break
+        end
+      end
+
+      @student = Student.find(@studentid)
+      ExampleMailer.next_in_line_email(@student).deliver_now
+
+    end
+
+
+
 
   end
     
@@ -38,10 +71,17 @@ class StudentRequestsController < ApplicationController
   end
 
   def confirm
-    @student = Student.find(params[:sid]) 
+    @student = Student.find(params[:sid])
+    @numTutor = 2
 
-    ExampleMailer.sample_email(@student).deliver_now
+    if (@student.get_wait_position <= @numTutor)
+      ExampleMailer.confirmation_email(@student).deliver_now
+    else
+      ExampleMailer.confirmation_email2(@student).deliver_now
+    end
 
+
+    #
     # if (@student.get_wait_time <= 30)
     #   send_email_next_in_line(@student)
     # else
@@ -77,7 +117,8 @@ class StudentRequestsController < ApplicationController
   
   def activate_session
     StudentRequest.find(params[:id]).update(:status => "active")
-    # send_email_next_in_line***
+    send_email_next_in_line
+
     redirect_to student_requests_path
   end
   
