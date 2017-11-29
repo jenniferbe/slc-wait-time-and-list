@@ -10,7 +10,7 @@ class TutorsController < ApplicationController
 
   def activate_session
     student_request = StudentRequest.find(params[:id])
-    student_request.update(:status => "active", :tutor_id => current_tutor.id)
+    student_request.update(:status => "active", :tutor_id => current_tutor.id, :start_time => Time.zone.now)
     redirect_to tutors_path
   end
 
