@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171115050622) do
-=======
 ActiveRecord::Schema.define(version: 20171128235740) do
->>>>>>> origin/demo
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
@@ -38,11 +34,8 @@ ActiveRecord::Schema.define(version: 20171128235740) do
     t.integer  "tutor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
     t.boolean  "emailed"
-=======
     t.datetime "start_time"
->>>>>>> origin/demo
   end
 
   create_table "students", force: :cascade do |t|

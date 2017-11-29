@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div id="tutor-log-out">
     <i class="fa fa-arrow-left" aria-hidden="true"></i> 
     <%= link_to "Log Out Tutor", tutor_logout_path, method: "post" %>
@@ -25,43 +24,8 @@
       </tr>
       <% i += 1 %>
       <% end %>
-<<<<<<< HEAD
-      
     </tbody>
   </table>
-=======
-=======
-<li><%= link_to "Log Out", tutor_logout_path, method: "post" %></li>
-<h1>Active Sessions</h1>
-<table id="active_sessions" class="queue">
-  <tr>
-    <th>Start Time</th>
-    <th>Student Name</th>
-    <th>Tutor Name</th>
-    <th>Course</th>
-  </tr>
-  <tr>
-  <% @active_sessions.each do |entry| %>
-    <tr id="q_row">
-      <td><%= entry.start_time.strftime("%l:%M%P") %></td>
-      <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-      <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
-      <td><%=entry.course%></td>
-  <% end %>
->>>>>>> origin/demo
-  </tr>
-</tr>
-</table>
-<tr></tr>
-<h1>Drop-in</h1>
-<table id="drop-in" class="queue">
-<tr>
-  <th>Number</th>
-  <th>Waiting</th>
-  <th>Name</th>
-  <th>Course</th>
-</tr>
->>>>>>> 6115537efc8dba561011e07351b0b51b5445e110
 
   <h1 class="animated fadeIn">Drop-in</h1>
   <table id="queue" class="table queue animated fadeInUp">
@@ -82,24 +46,10 @@
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
         <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
       </tr>
-<<<<<<< HEAD
       <% i += 1 %>
       <% end %>
     </tbody>
   </table>
-=======
-</tr>
-</table>
-
-<h1>Weekly</h1>
-<table id="weekly" class="queue">
-<tr>
-  <th>Number</th>
-  <th>Waiting</th>
-  <th>Name</th>
-  <th>Course</th>
-</tr>
->>>>>>> 6115537efc8dba561011e07351b0b51b5445e110
 
   <h1 class="animated fadeIn">Weekly</h1>
   <table id="queue" class="table queue animated fadeInUp">
@@ -126,7 +76,6 @@
     </tbody>
   </table>
 
-<<<<<<< HEAD
   <h1 class="animated fadeIn">Scheduled</h1>
   <table id="queue" class="table queue animated fadeInUp">
     <thead class="thead-light">
@@ -143,20 +92,6 @@
       <% @scheduled_queue.each do |entry| %>
       <tr id="q_row" class="animated fadeInUp" style="-webkit-animation-delay: <%=i * 0.10%>s">
         <th scope="row"></th>
-=======
-<h1>Scheduled</h1>
-<table id="scheduled" class="queue">
-<tr>
-  <th>Number</th>
-  <th>Waiting</th>
-  <th>Name</th>
-  <th>Course</th>
-</tr>
-<tr>
-<% @scheduled_queue.each do |entry| %>
-      <tr id="q_row">
-        <td></td>
->>>>>>> 6115537efc8dba561011e07351b0b51b5445e110
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
         <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>

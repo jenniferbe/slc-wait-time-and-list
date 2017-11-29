@@ -33,12 +33,12 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 gem 'jquery-rails'
 
-<<<<<<< HEAD
+
 gem "animate-rails"
-=======
+
 #for password authentication.
 gem 'devise'
->>>>>>> origin/demo
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

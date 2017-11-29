@@ -36,11 +36,11 @@ class StudentsController < ApplicationController
       when 'scheduled', 'weekly'
         flash[:notice] = 'you are now in line!'
       when 'drop-in'
-<<<<<<< HEAD
+
         redirect_to wait_time_student_request_path(:id => @student.sid, :sid => @student.sid)
-=======
-        redirect_to wait_time_student_request_path(@student_request.id)
->>>>>>> 6115537efc8dba561011e07351b0b51b5445e110
+
+        # redirect_to wait_time_student_request_path(@student_request.id)
+
         return
       else
         flash[:notice] = 'please select a service type'

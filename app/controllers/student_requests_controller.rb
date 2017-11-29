@@ -21,7 +21,6 @@ class StudentRequestsController < ApplicationController
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
-<<<<<<< HEAD
 	  @student = Student.find(params[:sid]) 
   end
 
@@ -29,7 +28,7 @@ class StudentRequestsController < ApplicationController
   def send_email_next_in_line
     #send an email to next person who hasn't been emailed yet
    
-    @next_student_in_line = StudentRequest.where(:emailed => false)[0]
+    @next_student_in_line = StudentRequest.where(:emailed => false)[0] #FIX THIS ***
     ExampleMailer.next_in_line_email(@next_student_in_line).deliver_now
     StudentRequest.find(@studentid).update(:emailed => true)
 
@@ -58,9 +57,8 @@ class StudentRequestsController < ApplicationController
     
   def new
     # render new template	
-=======
 	  @student = Student.where(:sid => params[:id])
->>>>>>> 6115537efc8dba561011e07351b0b51b5445e110
+
   end
 
   def confirm
@@ -69,7 +67,7 @@ class StudentRequestsController < ApplicationController
     #Tutor.where(status => "active").count
 
     if (@student.get_wait_position <= @numActiveTutors)
-      send_email_next_in_line
+      # send_email_next_in_line *** FIX THIS
     else
       ExampleMailer.confirmation_email(@student).deliver_now
     end
@@ -94,17 +92,13 @@ class StudentRequestsController < ApplicationController
   end
   
   def activate_session
-<<<<<<< HEAD
-    StudentRequest.find(params[:id]).update(:status => "active")
+
+    StudentRequest.find(params[:id]).update(:status => "active", :start_time => Time.now)
 
     send_email_next_in_line
 
-=======
-    StudentRequest.find(params[:id]).update(:status => "active", :start_time => Time.now)
-
     # lost support for calculating the time a student waited to be helped
     # tempstudent.update(:status => "active", :wait_time => time_diff(tempstudent.created_at, Time.now))
->>>>>>> origin/demo
     redirect_to student_requests_path
   end
   

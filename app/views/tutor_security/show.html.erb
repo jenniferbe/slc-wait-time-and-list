@@ -1,10 +1,6 @@
-
-
-
 <% if flash[:error] %>
     <div class="notice"><%= flash[:error] %></div>
 <% end %>
-<<<<<<< HEAD
 
 <div id="login-page-container" class="container-fluid animated fadeIn">
 	
@@ -31,11 +27,3 @@
 	<%= image_tag "slc_2.JPG", id:"login-background-pic" %>  
 
 </div>
-
-=======
-<%= form_tag(tutor_authenticate_path, method: "post") do %>
-    <label>Tutor Password</label>
-    <%= password_field_tag "pass"%>
-    <%= submit_tag "Submit" %>
-<%end%>
->>>>>>> origin/demo

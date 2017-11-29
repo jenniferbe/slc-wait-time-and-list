@@ -1,7 +1,6 @@
 class StudentRequest < ActiveRecord::Base
+  belongs_to :tutor
   belongs_to :student
-<<<<<<< HEAD
-
 
   def get_wait_time
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
@@ -22,7 +21,5 @@ class StudentRequest < ActiveRecord::Base
     end
     @wait_pos
   end
-=======
-  belongs_to :tutor
->>>>>>> origin/demo
+
 end
