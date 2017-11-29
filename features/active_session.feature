@@ -21,7 +21,7 @@ Background: student requests in database
   
 Scenario: tutor starts session with student
   Given I am on the student line page
-  When I click "Activate" for "0"
+  When I click "Activate" for "0" with meet_type "drop-in"
   Then I should see "Maiki" in "active_sessions"
   
 Scenario: no students in queue
@@ -31,8 +31,8 @@ Scenario: no students in queue
   
 Scenario: tutor ends active session for student
   Given I am on the student line page
-  When I click "Activate" for "0"
-  And I click "Finish" for "0"
+  When I click "Activate" for "0" with meet_type "drop-in"
+  And I click "Finish" for "0" with meet_type "drop-in"
   Then I should not see "Maiki"
   
 Scenario: no active sessions

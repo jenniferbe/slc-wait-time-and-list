@@ -25,11 +25,13 @@ module NavigationHelpers
     when /^the app firewall page$/ then app_firewall_path
     when /^the wait time page for "(.*)" "(.*)"$/i then
       student = Student.where(:first_name => $1, :last_name => $2)[0]
-      wait_time_student_request_path(student.sid)
+      student_request = student.student_requests.where(meet_type: "drop-in")[0]
+      wait_time_student_request_path(student_request.id)
       
     when /^the confirmation page for "([^"]*)" "([^"]*)"$/ then
       student = Student.where(:first_name => $1, :last_name => $2)[0]
-      confirm_student_request_path(student.sid)
+      student_request = student.student_requests.where(meet_type: "drop-in")[0]
+      confirm_student_request_path(student_request.id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
