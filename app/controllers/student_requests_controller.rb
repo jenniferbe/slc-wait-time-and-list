@@ -92,23 +92,5 @@ class StudentRequestsController < ApplicationController
     @student_request = StudentRequest.find(params[:id])
     @student_request.update(:status => "cancelled")
   end
-  
-  def activate_session
 
-    StudentRequest.find(params[:id]).update(:status => "active", :start_time => Time.now)
-
-    send_email_next_in_line
-
-    # lost support for calculating the time a student waited to be helped
-    # tempstudent.update(:status => "active", :wait_time => time_diff(tempstudent.created_at, Time.now))
-    redirect_to student_requests_path
-  end
-  
-  def finish_session
-    @finished_student = StudentRequest.find(params[:id])
-    @finished_student.update(:status => "finished")
-    Tutor.session_to_histories(@finished_student, Time.now, "nothing to say")
-    StudentRequest.destroy(params[:id])
-    redirect_to student_requests_path
-  end
 end
