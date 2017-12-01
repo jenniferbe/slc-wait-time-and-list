@@ -3,7 +3,7 @@ require 'helpers/authentification_helper'
 RSpec.describe TutorsController, type: :controller do
   login_tutor
   before :each do
-    @drop_in_filter = {:meet_type => 'drop_in', :status => 'waiting'}
+    @drop_in_filter = {:meet_type => 'drop-in', :status => 'waiting'}
     @scheduled_filter = {:meet_type => 'scheduled', :status => 'waiting'}
     @weekly_filter = {:meet_type => 'weekly', :status => 'waiting'}
     @active_filter = {:status => 'active'}

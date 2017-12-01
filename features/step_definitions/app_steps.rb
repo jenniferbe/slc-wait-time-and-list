@@ -202,7 +202,6 @@ When /^I click "(.*)" for "(.*)" with meet_type "(.*)"$/ do |button_type, id, ty
 #  within("##{table}") do
     student = Student.find(id)
     student_request = student.student_requests.where(meet_type: type)[0]
-    byebug
       click_button(student_request.id)
 #  end
 end
