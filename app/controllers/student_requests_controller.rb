@@ -4,11 +4,7 @@ class StudentRequestsController < ApplicationController
 
 
   def index
-    flash[:notice] = nil
-	  @drop_in_queue = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-	  @scheduled_queue = StudentRequest.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
-	  @weekly_queue = StudentRequest.where(meet_type: "weekly").where(status: "waiting").order('created_at')
-	  @active_sessions = StudentRequest.where(status: "active").order('created_at')
+	  @drop_in_queue, @scheduled_queue, @weekly_queue, @active_sessions = StudentRequest.get_active_queues
   end
 
   def wait_time
@@ -25,11 +21,6 @@ class StudentRequestsController < ApplicationController
   end
 
     
-  def new
-    # render new template	
-	  @student = Student.where(:sid => params[:id])
-
-  end
 
   def confirm
     @student = Student.find(params[:sid])

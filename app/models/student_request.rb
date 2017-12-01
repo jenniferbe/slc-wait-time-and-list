@@ -2,6 +2,12 @@ class StudentRequest < ActiveRecord::Base
   belongs_to :tutor
   belongs_to :student
 
+  def self.get_active_queues
+    waiting = StudentRequest.where(status: "waiting").order('created_at')
+  	[waiting.where(meet_type: "drop-in"), waiting.where(meet_type: "scheduled"), waiting.where(meet_type: "weekly"),
+  	  StudentRequest.where(status: "active").order('created_at')]
+  end
+
   def get_wait_time
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
