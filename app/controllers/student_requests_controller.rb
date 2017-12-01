@@ -17,7 +17,10 @@ class StudentRequestsController < ApplicationController
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
-	  @student = Student.find(params[:sid]) 
+	  if params[:sid]
+      @student = Student.find(params[:sid])
+    end
+
   end
 
     
