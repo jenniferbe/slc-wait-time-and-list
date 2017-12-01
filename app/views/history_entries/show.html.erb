@@ -20,15 +20,11 @@
     <% end %>
 
 </div>
-<% if @date == "" %>
+<% if !@header.nil? %>
     <br/>
     <br/>
-    <h2>Please search for a date with the following format: MM-DD-YYYY</h2>
-<% elsif @found == false %>
-    <br/>
-    <br/>
-    <h2>No history entries were found for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
-<% elsif @found == true %>
+    <h2><%= @header %></h2>
+<% elsif @found %>
 <%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
 <div class="form-container container-fluid">
 <h2>Showing history for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
