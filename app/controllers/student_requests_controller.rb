@@ -40,6 +40,7 @@ class StudentRequestsController < ApplicationController
 
   def destroy
     @student_request = StudentRequest.find(params[:id])
+    # @student_request = StudentRequest.where(:student_id => params[:id])[0]
     @student_request.update(:status => "cancelled")
   end
 
