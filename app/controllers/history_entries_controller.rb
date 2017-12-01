@@ -2,6 +2,12 @@ class HistoryEntriesController < ApplicationController
   def show
     begin
       @date = params[:history_dates].to_date.in_time_zone
+    rescue
+      unless params[:history_dates].nil?
+        @header = "Please search for a date with the following format: MM-DD-YYYY"
+      end
+      return
+    end
       @histories = HistoryEntry.get_tables_for_date(@date)
       if @histories.nil?
         @header = "No history entries were found for #{@date.strftime('%A, %B %d, %Y')}"
@@ -9,11 +15,6 @@ class HistoryEntriesController < ApplicationController
         @found = true
       end
       @titles = ["Drop In", "Scheduled Appointments", "Weekly Appointments"]
-    rescue
-      unless params[:history_dates].nil?
-        @header = "Please search for a date with the following format: MM-DD-YYYY"
-      end
-    end
   end
 
 
