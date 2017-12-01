@@ -1,7 +1,7 @@
 class HistoryEntriesController < ApplicationController
   def show
     begin
-      @date = params[:history_dates].to_date.in_time_zone
+      @date = params[:history_dates].in_time_zone
     rescue
       unless params[:history_dates].nil?
         @header = "Please search for a date with the following format: MM-DD-YYYY"
