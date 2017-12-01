@@ -4,7 +4,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 
 Given /the list of students with email/ do |student_data_table|
   student_data_table.hashes.each do |data|
-    #byebug
     # delete the create time if it exists, since we want this to go in the queue.
     create_time = data[:created_at]
     data.delete('created_at')

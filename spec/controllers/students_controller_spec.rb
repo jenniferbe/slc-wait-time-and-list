@@ -27,6 +27,8 @@ RSpec.describe StudentsController, type: :controller do
       @student = FactoryGirl.build(:student, @student_data)
     end
     it 'checks if the student already exists in the database' do
+      @params[:course] = "Other"
+      @params[:course_other] = "English R1A"
       expect(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
       post :create, @params
     end
@@ -41,10 +43,16 @@ RSpec.describe StudentsController, type: :controller do
       post :create, @params
       expect(flash[:notice]).to be_present
     end
+
+    it 'does not allow repeats in the same line' do
+      allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
+      expect(Student).to receive(:create).with(@student_data).and_return(@student).twice
+      @params["meet_type"] = "scheduled"
+      post :create, @params
+      post :create, @params
+      expect(flash[:notice]).to be_present
+    end
   end
-
-
-
 end
 
 
