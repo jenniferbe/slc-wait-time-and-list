@@ -2,7 +2,6 @@ class TutorsController < ApplicationController
   before_action :authenticate_tutor!
 
   def index
-    byebug
     @drop_in_queue = Tutor.filter_student_requests({:meet_type => 'drop-in', :status => 'waiting'})
     @scheduled_queue = Tutor.filter_student_requests({:meet_type => 'scheduled', :status => 'waiting'})
     @weekly_queue = Tutor.filter_student_requests({:meet_type => 'weekly', :status => 'waiting'})
