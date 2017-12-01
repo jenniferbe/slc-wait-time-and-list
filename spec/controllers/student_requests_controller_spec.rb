@@ -66,7 +66,7 @@ RSpec.describe StudentRequestsController, type: :controller do
       expect(assigns(:active_sessions)).to eq(@fake_results)
     end
   end
-  
+
   # describe 'active sessions' do
   #   before(:each) do
   #     login_slc

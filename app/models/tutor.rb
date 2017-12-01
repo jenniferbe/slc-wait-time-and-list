@@ -9,9 +9,14 @@ class Tutor < ActiveRecord::Base
   has_many :student_requests
 
 
+
   #moves a student from the queue to the active session.
   def queue_to_session(student_request)
     
+  end
+
+  def self.filter_student_requests filter_values
+    return StudentRequest.where(filter_values).order('created_at')
   end
 
 

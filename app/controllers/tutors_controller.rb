@@ -2,10 +2,10 @@ class TutorsController < ApplicationController
   before_action :authenticate_tutor!
 
   def index
-    @drop_in_queue = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-    @scheduled_queue = StudentRequest.where(meet_type: "scheduled").where(status: "waiting").order('created_at')
-    @weekly_queue = StudentRequest.where(meet_type: "weekly").where(status: "waiting").order('created_at')
-    @active_sessions = StudentRequest.where(status: "active").order('created_at')
+    @drop_in_queue = Tutor.filter_student_requests({:meet_type => 'drop_in', :status => 'waiting'})
+    @scheduled_queue = Tutor.filter_student_requests({:meet_type => 'scheduled', :status => 'waiting'})
+    @weekly_queue = Tutor.filter_student_requests({:meet_type => 'weekly', :status => 'waiting'})
+    @active_sessions = Tutor.filter_student_requests({:status => 'active'})
   end
 
   def activate_session
@@ -32,6 +32,5 @@ class TutorsController < ApplicationController
       ExampleMailer.next_in_line_email(@student).deliver_now
       StudentRequest.where(:student_id => @studentid)[0].update(:emailed => true)
     end
-
   end
 end
