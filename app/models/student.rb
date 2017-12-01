@@ -33,6 +33,7 @@ class Student < ActiveRecord::Base
   end
 
   def get_wait_position
+
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|

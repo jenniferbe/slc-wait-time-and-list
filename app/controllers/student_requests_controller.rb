@@ -27,6 +27,7 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     @student = Student.find(params[:sid])
+
     @numActiveTutors = 2 #make sure to update this *** with num current active
     #Tutor.where(status => "active").count
 
