@@ -16,14 +16,14 @@ class Student < ActiveRecord::Base
   end
   
   def create_student_request(create_params)
-    self.student_requests.build( create_params)
+    student_request = self.student_requests.build( create_params)
     self.save
+    return student_request
   end
   
   #create_student request...getwaittime and get wait position can also be in student_request
 
   def get_wait_position
-
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
