@@ -1,0 +1,71 @@
+
+<div id="title-backdrop"></div>
+
+<h1 class="title">Berkeley Student Learning Center</h1>
+
+<h1 class="subtitle">Search Histories</h1>
+
+<div class="form-container container-fluid">
+
+    <%= form_tag(history_entries_path, method: "get") do %>
+        <div class="col-2">
+              <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
+              <%= date_field_tag(:history_dates) %>
+        </div>
+        <br/>
+
+        <div class="col-2">
+            <%= submit_tag"Submit", :id => "form-submit", :class =>"btn btn-primary" %>
+        </div>
+    <% end %>
+
+</div>
+<% if !@header.nil? %>
+    <br/>
+    <br/>
+    <h2><%= @header %></h2>
+<% elsif @found %>
+<%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
+<div class="form-container container-fluid">
+<h2>Showing history for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
+  <% (0..2).each do |i| %>
+    <h1><%=@titles[i]%></h1>
+    <table id="queue" class="queue">
+    <tr>
+      <!--<th>Number</th>-->
+      <th>Sign In Time</th>
+      <th>Name</th>
+      <th>Tutor Name</th>
+      <th>Course</th>
+      <!--<th>Waiting Time</th>-->
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Status</th>
+      <th>Tutor Notes</th>
+    </tr>
+    
+    <tr>
+      <% @histories[i].each do |entry| %>
+          <tr id="q_row">
+            <!--<td></td>-->
+            <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
+            <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
+            <% if entry.tutor == nil %>
+                <td>None</td>
+            <% else %>
+                <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
+            <% end %>
+            <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
+            <td><%= entry.start_time.strftime("%l:%M%P") %></td>
+            <td><%= entry.end_time.strftime("%l:%M%P") %></td>
+            <td><%= entry.status %></td>
+            <td><%= entry.tutor_notes%></td>
+
+          </tr>
+      <% end %>
+
+    </tr>
+    </table>
+  <% end %>
+</div>
+<% end %>

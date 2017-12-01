@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p> This is an email confirming you are in line for student SLC drop-in session. Your wait position is <%= StudentRequest.where(:meet_type => 'drop-in', :status => 'waiting').count %> and your estimated wait time is <-- blank--> but is subject to change. You will receive another email update 30 minutes before your appointment.
+</body>
+</html>

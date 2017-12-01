@@ -7,8 +7,6 @@ Feature: enter line for help
 Background:Jennifer Signs In
   Given I am on the app firewall page
   Then I fill in the password correctly for the app firewall page
-  Given I am on the tutor firewall page
-  Then I fill in the password correctly for the tutor firewall page
 
   Given I am on the sign up page
   And I fill in "student_last_name" with "Be"
@@ -21,14 +19,14 @@ Background:Jennifer Signs In
 
 Scenario: Jennifer wants to wait in line
   And she clicks on "YES"
-  Then she should be on the confirmation page for "Jennifer" "Be"
+  Then she should be on the student page
   And she should see "you are now in line!"
   Then "Jennifer" "Be" should be in line
   And she should not see "Hope to see you soon"
 
 Scenario: Jennifer doesn't want to wait in line
   And she clicks on "NO"
-  Then she should not be on the confirmation page for "Jennifer" "Be"
+  Then she should be on the student page
   And she should see "you are not in line"
   Then "Jennifer" "Be" should not be in line
   And she should not see "you are in line"

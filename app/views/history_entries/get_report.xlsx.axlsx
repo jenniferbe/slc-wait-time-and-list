@@ -1,0 +1,27 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Products") do |sheet|
+  sheet.add_row [ "Sign In Time", "Student Name", "Student ID", "Student E-mail", "App Type", "Course", "Concurrency Student?", "Transfer Student?", "Status", "Tutor Name", "Start Time", "End Time", "Tutor Notes" ]
+  historyentries = @history.order('meet_type')
+  historyentries.each do |entry|
+    tutor_name = ""
+    if entry.tutor != nil
+        tutorname = %Q(#{entry.tutor.first_name} #{entry.tutor.last_name})
+    end
+    student = entry.student
+
+    student_name = %Q(#{student.first_name} #{student.last_name})
+    student_id = student.sid
+
+    concurrency = "Yes"
+    unless student.concurrency_student
+        concurrency = "No"
+    end
+
+    transfer = "Yes"
+    unless student.transfer_student
+        transfer = "No"
+    end
+
+    sheet.add_row [ entry.sign_in_time.strftime("%l:%M%P"), student_name, student_id, student.email, entry.meet_type, entry.course, concurrency, transfer, entry.status, tutor_name, entry.start_time.strftime("%l:%M%P"), entry.end_time.strftime("%l:%M%P"), entry.tutor_notes]
+  end
+end

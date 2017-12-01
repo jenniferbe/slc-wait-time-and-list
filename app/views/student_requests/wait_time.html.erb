@@ -1,0 +1,6 @@
+<h1> Your estimated wait time is <%= @wait_time %> min </h1>
+<div id="details">
+    Do you want to wait in line?
+    <%= link_to "YES", confirm_student_request_path(@student_request), method: "get" %>
+    <%= link_to "NO", student_request_path(@student_request), method: "delete" %>
+</div>

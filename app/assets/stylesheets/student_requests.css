@@ -1,74 +1,4 @@
-
-html, body {
-  margin: 0;
-  padding: 0;
-  background: White;
-  color: DarkSlateGrey;
-  font-family: Tahoma, Verdana, sans-serif;
-  font-size: 10pt;
-}
-
-div#main {
-  margin: 0;
-  padding: 0 20px 20px;
-}
-
-a {
-  background: transparent;
-  color: maroon;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-h1 {
-  color: maroon;
-  font-size: 150%;
-  font-style: italic;
-  display: block;
-  width: 100%;
-  border-bottom: 1px solid DarkSlateGrey;
-}
-
-#title-backdrop{
-  width: 110%;
-  margin-left: -20px;
-  height: 4em;
-  background-color: #3B7EA1;
-  color: white;
-  border-bottom: 4px solid gold;
-}
-
-h1.title {
-  position: absolute;
-  font-size: 2em;
-  font-style: normal;
-  font-family: inherit;
-  font-weight: 200;
-  color: white;
-  margin-top: -1.6em;
-  border-bottom: none;
-}
-
-h1.subtitle{
-  font-style: normal;
-  font-weight: 100;
-  letter-spacing: 2px;
-  margin-top: 0.9em;
-  padding-bottom: 6px;
-  border-bottom: 2px solid DarkSlateGrey;
-}
-
-.form-container{
-  margin-top: 2em;
-  width: 50%;
-}
-
-#schedule-options{
-  width: 30%;
-  float: left;
-}
-
-table.queue {
+/*table.queue {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
@@ -88,63 +18,21 @@ table.queue th, table#movies td {
 
 table.queue th.hilite {
   background-color: yellow;
+}*/
+
+.btn-activate{
+  margin-left: 16px;
+}
+.btn-finish{
+  margin-left: 16px;
 }
 
-#notice #warning {
-  background: rosybrown;
-  margin: 1em 0;
-  padding: 4px;
+#tutor-log-out{
+  position: absolute;
+  margin-left: 12px;
+  margin-top: -25px;
 }
 
-form label {
-  display: block;
-  line-height: 25px;
-  font-weight: 100;
-  letter-spacing: 1px;
-  color: maroon;
+#table-page-container{
+  margin-top: 40px;
 }
-
-.radio.row{
-  margin-bottom: 0.9em;
-}
-
-.label{
-  margin-top: 0.9em;
-  color: maroon;
-}
-
-.radio-signup{
-  color: black;
-  margin-top: 0.2em;
-  margin-bottom: 0em;
-}
-
-.form_signup{
-  margin-top: -0.2em;
-}
-
-#form-submit{
-  width: 180px;
-}
-
-@font-face {
-  font-family: 'FreigMicProLig';
-  src:url('/FreightMicroPro/FreigMicProLig.otf');
-}
-
-@font-face {
-  font-family: 'FreigSanProBlk';
-  src:url('/FreightSansPro/FreigSanProBlk.otf');
-}
-
-@font-face {
-  font-family: 'FreigTexProBlk';
-  src:url('/FreightTextPro/FreigTexProBlk.otf');
-}
-
-
-
-
-
-
-

@@ -7,8 +7,7 @@ Feature: Specify Appointment Type
 Background: student requests in database
   Given I am on the app firewall page
   Then I fill in the password correctly for the app firewall page
-  Given I am on the tutor firewall page
-  Then I fill in the password correctly for the tutor firewall page
+  Given I am a new, authenticated user
 
   Given I am on the sign up page
   And I fill in "student_last_name" with "Kaunda"

@@ -7,7 +7,7 @@ class CreateStudentRequests < ActiveRecord::Migration
       t.integer :student_id #should be foreign key.
       t.string :course
       t.string :meet_type
-      # Status takes the values "waiting", "canceled" "active", or "finished"
+      # Status takes the values "waiting", "cancelled" "active", or "finished"
       t.string :status
       t.time :wait_time
       t.integer :tutor_id

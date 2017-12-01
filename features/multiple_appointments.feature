@@ -10,8 +10,8 @@ Background: student signed up for 3 appointments
 
   Given I am on the app firewall page
   Then I fill in the password correctly for the app firewall page
-  Given I am on the tutor firewall page
-  Then I fill in the password correctly for the tutor firewall page
+#  Given I am on the tutor firewall page
+#  Then I fill in the password correctly for the tutor firewall page
 
 #happy path
 Scenario: student able to sign up for multiple appointments
