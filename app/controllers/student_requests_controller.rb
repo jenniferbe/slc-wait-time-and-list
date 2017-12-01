@@ -24,38 +24,6 @@ class StudentRequestsController < ApplicationController
 	  @student = Student.find(params[:sid]) 
   end
 
-
-  def send_email_next_in_line
-    #send an email to next person who hasn't been emailed yet
-   
-    @next_student_in_line = StudentRequest.where(:emailed => false)[0] 
-    @studentid = @next_student_in_line.student_id
-    @student = Student.find(@studentid)
-    ExampleMailer.next_in_line_email(@student).deliver_now
-    StudentRequest.where(:student_id => @studentid)[0].update(:emailed => true)
-
-    # if @numStudentsWaiting >= @numActiveTutors
-
-    # @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-
-    # @int = 1
-
-    # @studentList.each do |entry|
-    #   if @int > @numTutor
-    #     break
-    #   end
-    #   if !entry.emailed
-    #     @studentid = entry.student_id
-    #     @student = Student.find(@studentid)
-    #     ExampleMailer.next_in_line_email(@student).deliver_now
-    #     StudentRequest.find(@studentid).update(:emailed => true)
-
-    #   end
-    #   @int += 1
-
-    # end
-
-  end
     
   def new
     # render new template	
@@ -69,7 +37,7 @@ class StudentRequestsController < ApplicationController
     #Tutor.where(status => "active").count
 
     if (@student.get_wait_position <= @numActiveTutors)
-      send_email_next_in_line
+      StudentRequest.send_email_next_in_line
     else
       ExampleMailer.confirmation_email(@student).deliver_now
     end

@@ -1,6 +1,6 @@
 <div id="tutor-log-out">
-    <i class="fa fa-arrow-left" aria-hidden="true"></i> 
-    <%= link_to "Log Out Tutor", tutor_logout_path, method: "post" %>
+  <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+  <%= link_to "Log Out Tutor", destroy_tutor_session_path, method: "delete" %>
 </div> 
 
 <div id="table-page-container" class="container-fluid">
@@ -20,7 +20,7 @@
       <tr id="q_row" class="animated fadeInUp" style="-webkit-animation-delay: <%=i * 0.10%>s">
         <th scope="row"></th>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-danger btn-finish") %></td>
+        <td><div style="float: left; width: auto;"><%= "N/A" %></div> <%= button_to("Finish", tutor_finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-danger btn-finish") %></td>
       </tr>
       <% i += 1 %>
       <% end %>
