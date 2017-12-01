@@ -24,5 +24,6 @@ class HistoryEntriesController < ApplicationController
       format.html
       format.xlsx
     end
+    #respond_to :html, :xlsx
   end
 end
