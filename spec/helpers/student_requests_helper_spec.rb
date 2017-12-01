@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the StudentRequestsHelper. For example:
-#
-# describe StudentRequestsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe StudentRequestsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "time diff" do
+    it "calculates the time difference between two times" do
+      time = Time.now
+      calculation = time_diff(time, time + 1.hour)
+      expect(calculation).to eq("01h:00m")
+    end
+  end
 end
