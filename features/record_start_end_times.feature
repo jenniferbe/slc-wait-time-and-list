@@ -6,8 +6,8 @@ Feature: record start and end times
   Background:
     Given I am on the app firewall page
     Then I fill in the password correctly for the app firewall page
-    Given I am on the tutor firewall page
-    Then I fill in the password correctly for the tutor firewall page
+#    Given I am on the tutor firewall page
+#    Then I fill in the password correctly for the tutor firewall page
 
   Scenario: record times
   Given I am logged in as a tutor
