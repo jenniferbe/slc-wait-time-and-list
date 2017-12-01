@@ -113,9 +113,8 @@ RSpec.describe StudentRequestsController, type: :controller do
     end
   end
 
-  describe 'send email on confirm'
-    
-
-  end
+  # describe 'send email on confirm'
+  #
+  # end
 
 end
