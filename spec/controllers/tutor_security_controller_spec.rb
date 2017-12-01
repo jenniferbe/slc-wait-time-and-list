@@ -62,8 +62,10 @@ RSpec.describe TutorSecurityController, type: :controller do
       login_tutor
     end
     it 'logs out' do
+      expect(controller.logged_in_tutor?).to be(true)
       post :logout
       expect(session["tutorauth"]).to be(false)
+      expect(controller.logged_in_tutor?).to be(false)
       response.should redirect_to new_student_path
     end
   end
