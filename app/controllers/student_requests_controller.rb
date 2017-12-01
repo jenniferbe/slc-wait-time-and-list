@@ -33,16 +33,6 @@ class StudentRequestsController < ApplicationController
       ExampleMailer.confirmation_email(@student).deliver_now
     end
 
-
-    #
-    # if (@student.get_wait_time <= 30)
-    #   send_email_next_in_line(@student)
-    # else
-    #   ExampleMailer.sample_email(@student).deliver_now
-    # end
-
-    # if StudentRequests.find(params[:emailed])
-
     flash[:notice] = 'you are now in line!'
     render "students/new"
   end
