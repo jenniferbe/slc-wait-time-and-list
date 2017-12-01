@@ -15,6 +15,10 @@ class Tutor < ActiveRecord::Base
     
   end
 
+  def self.filter_student_requests filter_values
+    return StudentRequest.where(filter_values).order('created_at')
+  end
+
 
   def self.session_to_histories(student_request, end_time, tutor_notes)
     HistoryEntry.create(:student_id => student_request.student_id, :course => student_request.course,
