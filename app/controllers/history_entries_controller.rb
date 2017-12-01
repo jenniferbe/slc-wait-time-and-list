@@ -6,17 +6,9 @@ class HistoryEntriesController < ApplicationController
       @date = ""
     end
     if !(@date == "" or @date == nil)
-      @history = HistoryEntry.where({sign_in_time: @date...(@date + 1.days)})
-      if @history.count > 0
-        @found = true
-        @drop_in_queue = @history.where({meet_type: "drop-in"})
-        @weekly_queue = @history.where({meet_type: "weekly"})
-        @scheduled_queue = @history.where({meet_type: "scheduled"})
-        @tables = [@drop_in_queue,@scheduled_queue,@weekly_queue]
-        @titles = ["Drop In", "Scheduled Appointments", "Weekly Appointments"]
-        session[:history] = @history
-      else
-        @found = false
+      @histories = HistoryEntry.get_tables_for_date(@date)
+      @found = not @histories.nil?
+      @titles = ["Drop In", "Scheduled Appointments", "Weekly Appointments"]
       end
     end
   end

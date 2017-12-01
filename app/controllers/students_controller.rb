@@ -7,8 +7,6 @@ class StudentsController < ApplicationController
   end
 
   def new
-    #render new template
-    flash[:notice] = nil
   end
 
   def create
@@ -40,5 +38,4 @@ class StudentsController < ApplicationController
     end
     render "students/new"
   end
-
 end
