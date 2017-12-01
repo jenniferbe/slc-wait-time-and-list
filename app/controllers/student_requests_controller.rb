@@ -32,7 +32,7 @@ class StudentRequestsController < ApplicationController
     @studentid = @next_student_in_line.student_id
     @student = Student.find(@studentid)
     ExampleMailer.next_in_line_email(@student).deliver_now
-    StudentRequest.find(@studentid).update(:emailed => true)
+    StudentRequest.where(:student_id => @studentid)[0].update(:emailed => true)
 
     # if @numStudentsWaiting >= @numActiveTutors
 
