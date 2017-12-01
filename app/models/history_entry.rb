@@ -7,9 +7,7 @@ class HistoryEntry < ActiveRecord::Base
     begin
       date = date.to_date.in_time_zone
     rescue
-      unless date.nil?
-        header = "Please search for a date with the following format: MM-DD-YYYY"
-      end
+      header = "Please search for a date with the following format: MM-DD-YYYY"
       return [nil, nil, header]
     end
     histories = HistoryEntry.get_tables_for_date(date)

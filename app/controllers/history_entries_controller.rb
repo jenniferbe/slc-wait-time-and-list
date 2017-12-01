@@ -1,6 +1,10 @@
 class HistoryEntriesController < ApplicationController
   def show
-    @found, @histories, @header = HistoryEntry.get_histories_info(params[:history_dates])
+    if params[:history_dates].nil?
+      @found, @histories, @header = nil, nil, nil
+    else
+      @found, @histories, @header = HistoryEntry.get_histories_info(params[:history_dates])
+    end
     @titles = ["Drop In", "Scheduled Appointments", "Weekly Appointments"]
   end
 
