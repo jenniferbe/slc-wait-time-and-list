@@ -7,9 +7,8 @@ class HistoryEntriesController < ApplicationController
     end
     if !(@date == "" or @date == nil)
       @histories = HistoryEntry.get_tables_for_date(@date)
-      @found = not @histories.nil?
+      @found = !@histories.nil?
       @titles = ["Drop In", "Scheduled Appointments", "Weekly Appointments"]
-      end
     end
   end
 
