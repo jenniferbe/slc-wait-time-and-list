@@ -44,6 +44,20 @@ div#main{
 	-webkit-animation-delay: 0.10s;
 }
 
+#tutor_login_form{
+	position: absolute;
+	width:360px;
+	height: 220px;
+	margin-top:180px;
+	border: 0.5px solid #1b1e212b;
+	padding:20px;
+	border-radius: 0.8rem;
+	left:0;
+	right:0;
+	background-color: #ffffffcf;
+	-webkit-animation-delay: 0.10s;
+}
+
 #slc-pass-title{
 	font-family: 'Roboto', sans-serif;
 	font-size: 28px;
