@@ -18,8 +18,9 @@ def in_line?(meet_type)
 end
 
 def create_student_request(create_params)4
-	self.student_requests.build( create_params)
+	request = self.student_requests.build( create_params)
 	self.save
+	return request
 end
 
 #create_student request...getwaittime and get wait position can also be in student_request

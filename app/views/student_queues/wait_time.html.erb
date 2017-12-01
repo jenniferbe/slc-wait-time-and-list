@@ -1,6 +1,6 @@
 <h1> Your estimated wait time is <%= @wait_time %> min </h1>
 <div id="details">
     Do you want to wait in line?
-    <%= link_to "YES", confirm_student_queue_path(:sid => @student.sid), method: "get" %>
+    <%= link_to "YES", confirm_student_queue_path(@student_request), method: "get" %>
     <%= link_to "NO", student_queue_path, method: "delete" %>
 </div>
