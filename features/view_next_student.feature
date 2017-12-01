@@ -7,8 +7,9 @@ Feature: view next student in line
 
     Given I am on the app firewall page
     Then I fill in the password correctly for the app firewall page
-    Given I am on the tutor firewall page
-    Then I fill in the password correctly for the tutor firewall page
+    #Given I am on the tutor firewall page
+    #Then I fill in the password correctly for the tutor firewall page
+    And I am a new, authenticated user
 
     Given the following student queues exist:
       | sid        | first_name | last_name | created_at              | meet_type   | status   |
