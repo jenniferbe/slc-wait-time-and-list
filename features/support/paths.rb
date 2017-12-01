@@ -16,7 +16,7 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-    when /^the student line page$/ then '/tutors'
+    when /^the student line page$/ then tutors_path
       
     when /^the sign up page$/ then new_student_path
     when /^the history\s?page$/ then history_entries_path

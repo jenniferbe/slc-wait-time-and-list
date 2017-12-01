@@ -17,7 +17,6 @@ Given /the following student queues exist/ do |student_data_table|
     student_data = { :first_name => data[:first_name], :last_name => data[:last_name], :sid => data[:sid] }
     queue_data = { :meet_type => data[:meet_type], :status => data[:status] }
     student = Student.create(student_data)
-
     if create_time
       queue_data[:created_at] = create_time
       student.student_requests.build(queue_data)
@@ -203,7 +202,8 @@ When /^I click "(.*)" for "(.*)" with meet_type "(.*)"$/ do |button_type, id, ty
 #  within("##{table}") do
     student = Student.find(id)
     student_request = student.student_requests.where(meet_type: type)[0]
-    click_button(student_request.id)
+    byebug
+      click_button(student_request.id)
 #  end
 end
 

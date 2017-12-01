@@ -14,7 +14,6 @@ Given /^I am not authenticated$/ do
 end
 
 Given /^I am a new, authenticated user$/ do
-    byebug
   first_name = "Salvador"
   last_name = "Villegas"
   sid = 12345678
