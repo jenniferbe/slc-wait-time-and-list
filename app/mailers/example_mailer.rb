@@ -4,23 +4,17 @@ class ExampleMailer < ApplicationMailer
 
 		def confirmation_email(student)
 			@student = student
-			mail(to: @student.email, subject: 'Confrimation email - You are in line')
+			mail(to: @student.email, subject: 'SLC Drop-in: Confrimation email')
 			# @student.update_attribute(:emailed => true)
 		end
 
-		def confirmation_email2(student)
-			@student = student
-			mail(to: @student.email, subject: '!!!')
-			# @student.update_attribute(:emailed => true)
-		end
-
-		def check
-			mail(to: 'nare429@gmail.com', subject:"checking")
-		end
+		# def check
+		# 	mail(to: 'nare429@gmail.com', subject:"checking")
+		# end
 
 		def next_in_line_email(student)
 			@student = student
-			mail(to: @student.email, subject: 'You are next in line')
+			mail(to: @student.email, subject: 'SLC Drop-in: You are next in line')
 		end
 
   	# def next_in_line_email(student)
