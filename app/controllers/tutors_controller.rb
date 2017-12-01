@@ -32,26 +32,5 @@ class TutorsController < ApplicationController
       ExampleMailer.next_in_line_email(@student).deliver_now
       StudentRequest.where(:student_id => @studentid)[0].update(:emailed => true)
     end
-    # if @numStudentsWaiting >= @numActiveTutors
-
-    # @studentList = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-
-    # @int = 1
-
-    # @studentList.each do |entry|
-    #   if @int > @numTutor
-    #     break
-    #   end
-    #   if !entry.emailed
-    #     @studentid = entry.student_id
-    #     @student = Student.find(@studentid)
-    #     ExampleMailer.next_in_line_email(@student).deliver_now
-    #     StudentRequest.find(@studentid).update(:emailed => true)
-
-    #   end
-    #   @int += 1
-
-    # end
-
   end
 end
