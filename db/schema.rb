@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20171128235740) do
 
   create_table "tutor_work_days", force: :cascade do |t|
     t.integer  "tutor_id"
-    t.integer  "start_time"
-    t.integer  "end_time"
+    t.datetime  "start_time"
+    t.datetime  "end_time"
     t.string   "num_students"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
