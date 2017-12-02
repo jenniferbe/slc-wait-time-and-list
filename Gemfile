@@ -19,6 +19,7 @@ gem "figaro"
 #gem for spreadsheet creation
 gem 'axlsx_rails'
 
+gem 'traceroute'
 gem 'haml'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -2,11 +2,6 @@ class StudentRequestsController < ApplicationController
   include SecurityRedirectHelper
   before_action :auth_check_app
 
-
-  def index
-	  @drop_in_queue, @scheduled_queue, @weekly_queue, @active_sessions = StudentRequest.get_active_queues
-  end
-
   def wait_time
     @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
     @wait_pos = 0
