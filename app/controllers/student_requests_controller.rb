@@ -28,7 +28,7 @@ class StudentRequestsController < ApplicationController
       ExampleMailer.confirmation_email(@student).deliver_now
     end
 
-    flash[:notice] = 'you are now in line!'
+    flash[:notice] = 'You are now in line!'
     redirect_to students_path
   end
 
