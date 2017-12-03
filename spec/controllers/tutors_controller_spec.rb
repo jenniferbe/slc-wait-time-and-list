@@ -9,36 +9,31 @@ RSpec.describe TutorsController, type: :controller do
     @active_filter = {:status => 'active'}
   end
   describe 'index' do
-    it 'calls Tutor#filter_student_queue with @drop_in_filter' do
-      expect(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
+    before :each do
+      allow(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
       allow(Tutor).to receive(:filter_student_requests).with(@scheduled_filter)
       allow(Tutor).to receive(:filter_student_requests).with(@weekly_filter)
       allow(Tutor).to receive(:filter_student_requests).with(@active_filter)
+    end
+    
+    it 'calls Tutor#filter_student_queue with @drop_in_filter' do
+      expect(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
 
       post :index
 
     end
     it 'calls Tutor#filter_student_queue with @schedule_filter' do
-      allow(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
       expect(Tutor).to receive(:filter_student_requests).with(@scheduled_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@weekly_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@active_filter)
 
       post :index
 
     end
     it 'calls Tutor#filter_student_queue with @weekly_filter' do
-      allow(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@scheduled_filter)
       expect(Tutor).to receive(:filter_student_requests).with(@weekly_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@active_filter)
 
       post :index
     end
     it 'calls Tutor#filter_student_queue with @weekly_filter' do
-      allow(Tutor).to receive(:filter_student_requests).with(@drop_in_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@scheduled_filter)
-      allow(Tutor).to receive(:filter_student_requests).with(@weekly_filter)
       expect(Tutor).to receive(:filter_student_requests).with(@active_filter)
 
       post :index
@@ -120,6 +115,23 @@ RSpec.describe TutorsController, type: :controller do
       allow(StudentRequest).to receive(:find).with(@params[:id]).and_return(@fake_student_request)
       post :activate_session, @params
       expect(response).to redirect_to tutors_path
+    end
+  end
+
+  describe 'check in' do
+    it 'sets the current tutor to active' do
+      expect(@controller.current_tutor.active).not_to eq(true)
+      post :check_in
+      expect(@controller.current_tutor.active).to eq(true)
+    end
+  end
+
+  describe 'check out' do
+    it 'sets the current tutor to inactive' do
+      post :check_in
+      expect(@controller.current_tutor.active).to eq(true)
+      post :check_out
+      expect(@controller.current_tutor.active).to eq(false)
     end
   end
 end
