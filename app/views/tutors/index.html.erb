@@ -6,9 +6,9 @@
         </div>
         <div id="btn">
         <% if @active_tutor == true %>
-            <%= button_to "Check Out", tutor_check_out_path, method: "patch", id:"btn-outline-primary", class: "btn btn-outline-primary"%>
+            <%= button_to "Drop-In Check Out", tutor_check_out_path, method: "patch", id:"btn-outline-primary", class: "btn btn-outline-primary"%>
         <% else %>
-            <%= button_to "Check In", tutor_check_in_path, method: "patch", id:"btn-outline-success", class: "btn btn-outline-success"%>
+            <%= button_to "Drop-In Check In", tutor_check_in_path, method: "patch", id:"btn-outline-success", class: "btn btn-outline-success"%>
         <% end %>
         </div>
       </div>
