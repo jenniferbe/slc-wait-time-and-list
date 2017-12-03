@@ -1,29 +1,61 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field" id="sid">
-    <%= f.label :sid %><br />
-    <%= f.text_field :sid, autofocus: true %>
-  </div>
-
-  <div class="field" id="password">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+<% if flash[:error] %>
+    <div class="notice"><%= flash[:error] %></div>
 <% end %>
 
-<%= render "tutors/shared/links" %>
+<div id="login-page-container" class="container-fluid animated fadeIn">
+
+  <%= image_tag "slc_logo.png", id:"slc-logo-pic-2" %>
+
+  <div id="back-to-sign-in">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <%= link_to "Back to Student Sign Up", new_student_path, :method => :get %>
+  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => "container animated fadeInUp", :id => "tutor-form-container" }) do |f| %>
+
+      <label id="slc-pass-title">Tutor Login</label>
+      <div id="tutor-pass-container" class="pass-container form-field">
+
+        <label id="tutor-pass-label" class="fa fa-user" aria-hidden="true"></label>
+        <%= f.text_field :sid, autofocus: true, id:"slc-pass-input", class: "form-input form-text" %>
+
+        <label id="tutor-pass-label" class="fa fa-lock" aria-hidden="true"></label>
+        <%= f.password_field :password, autocomplete: "off", id:"slc-pass-input", class: "form-input form-text" %>
+      </div>
+      <div id="tutor-submit-container" class="form-field">
+        <%= f.submit "Submit", id: "tutor-submit", class: "btn btn-primary" %>
+        <br/>
+        <%= render "tutors/shared/links" %>
+      </div>
+
+  <%end%>
+  <%= image_tag "slc_2.JPG", id:"login-background-pic" %>
+
+</div>
 
 
+<!--<h2>Log in</h2>-->
 
+<!--<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
+    <!--<div class="field" id="sid">-->
+      <%= f.label :sid %><br />
+      <!--<%= f.text_field :sid, autofocus: true %>-->
+    <!--</div>-->
+
+    <!--<div class="field" id="password">-->
+      <%= f.label :password %><br />
+      <!--<%= f.password_field :password, autocomplete: "off" %>-->
+    <!--</div>-->
+
+    <!--<% if devise_mapping.rememberable? -%>-->
+        <!--<div class="field">-->
+          <!--<%= f.check_box :remember_me %>-->
+          <!--<%= f.label :remember_me %>-->
+        <!--</div>-->
+    <!--<% end -%>-->
+
+    <!--<div class="actions">-->
+      <!--<%= f.submit "Log in" %>-->
+    <!--</div>-->
+<!--<% end %>-->
+
+<!--<%= render "tutors/shared/links" %>-->
