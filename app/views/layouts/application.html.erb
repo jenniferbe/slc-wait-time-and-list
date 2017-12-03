@@ -11,11 +11,11 @@
 <body>
     <div id="main">
       <% if flash[:notice] %>
-        <div class="message" id="notice">
+          <div class="message label label-info" id="notice">
           <%= flash[:notice] %>
         </div>
       <% elsif flash[:warning] %>
-        <div class="message" id="warning">
+          <div class="message label label-danger" id="warning">
           <%= flash[:warning] %>
         </div>
       <% end %>

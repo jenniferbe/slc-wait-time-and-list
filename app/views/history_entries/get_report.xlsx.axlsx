@@ -5,7 +5,7 @@ wb.add_worksheet(name: "Products") do |sheet|
   historyentries.each do |entry|
     tutor_name = ""
     if entry.tutor != nil
-        tutorname = %Q(#{entry.tutor.first_name} #{entry.tutor.last_name})
+        tutor_name = %Q(#{entry.tutor.first_name} #{entry.tutor.last_name})
     end
     student = entry.student
 

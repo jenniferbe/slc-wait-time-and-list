@@ -20,7 +20,7 @@ Background:Jennifer Signs In
 Scenario: Jennifer wants to wait in line
   And she clicks on "YES"
   Then she should be on the student page
-  And she should see "you are now in line!"
+  And she should see "You are now in line!"
   Then "Jennifer" "Be" should be in line
   And she should not see "Hope to see you soon"
 
