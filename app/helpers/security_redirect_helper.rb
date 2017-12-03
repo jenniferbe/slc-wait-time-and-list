@@ -21,11 +21,11 @@ module SecurityRedirectHelper
   #     end
   #   end
   # end
-
-  def logged_in_tutor?
-    if(session["tutorauth"] == true)
-      return true
-    end
-    return false
-  end
-end
+#
+#   def logged_in_tutor?
+#     if(session["tutorauth"] == true)
+#       return true
+#     end
+#     return false
+#   end
+ end

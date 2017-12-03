@@ -10,8 +10,8 @@ Feature: send email notification to student whose wait time is less than 30 mins
 
     Given I am on the app firewall page
     Then I fill in the password correctly for the app firewall page
-    Given I am on the tutor firewall page
-    Then I fill in the password correctly for the tutor firewall page
+#    Given I am on the tutor firewall page
+#    Then I fill in the password correctly for the tutor firewall page
 
 
     Given the list of students with email:
