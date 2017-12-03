@@ -20,7 +20,7 @@
       <tr id="q_row" class="animated fadeInUp" style="-webkit-animation-delay: <%=i * 0.10%>s">
         <td><%= entry.start_time.strftime("%l:%M%P") %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></div> <%= button_to("Finish", tutor_finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
+        <td><div style="float: left; width: auto; margin-top: 7px;"><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></div> <%= button_to("Finish", tutor_finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}") %></td>
       </tr>
       <% i += 1 %>
       <% end %>
@@ -44,7 +44,7 @@
         <th scope="row"></th>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
+        <td><div style="float: left; width: auto; margin-top: 7px;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
       </tr>
       <% i += 1 %>
       <% end %>
@@ -69,7 +69,7 @@
         <th scope="row"></th>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
+        <td><div style="float: left; width: auto; margin-top: 7px;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
       </tr>
       <% i += 1 %>
       <% end %>
@@ -94,7 +94,7 @@
         <th scope="row"></th>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
+        <td><div style="float: left; width: auto; margin-top: 7px;"><%= entry.course %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-success btn-activate") %></td>
       </tr>
       <% i += 1 %>
       <% end %>
