@@ -15,8 +15,6 @@ class StudentRequestsController < ApplicationController
       @wait_pos += 1
     end
 	  @wait_time = @wait_pos * 30
-	  
-	  #will need the student's id in when confirming, so we pass it around
 
 	  @student_request = StudentRequest.find(params[:id]);
   end
@@ -26,7 +24,6 @@ class StudentRequestsController < ApplicationController
     @student = StudentRequest.find(params[:id]).student
 
     @numActiveTutors = 2 #make sure to update this *** with num current active
-    #Tutor.where(status => "active").count
 
     if (@student.get_wait_position <= @numActiveTutors)
       StudentRequest.send_email_next_in_line
@@ -40,7 +37,6 @@ class StudentRequestsController < ApplicationController
 
   def destroy
     @student_request = StudentRequest.find(params[:id])
-    # @student_request = StudentRequest.where(:student_id => params[:id])[0]
     @student_request.update(:status => "cancelled")
     flash[:notice] = 'you are not in line!'
     redirect_to students_path
