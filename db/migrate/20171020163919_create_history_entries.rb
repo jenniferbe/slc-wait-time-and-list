@@ -5,8 +5,8 @@ class CreateHistoryEntries < ActiveRecord::Migration
       t.integer :student_id #should be foreign key from 
       t.string :course
       t.integer :tutor_sid
-      t.time :start_time #start_time => create time since students are added to the history after being seen.
-      t.time :end_time
+      t.datetime :start_time #start_time => create time since students are added to the history after being seen.
+      t.datetime :end_time
       t.string :tutor_notes
       t.time :wait_time
 
