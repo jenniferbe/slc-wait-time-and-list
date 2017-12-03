@@ -7,6 +7,7 @@ class TutorsController < ApplicationController
     @scheduled_queue = Tutor.filter_student_requests({:meet_type => 'scheduled', :status => 'waiting'})
     @weekly_queue = Tutor.filter_student_requests({:meet_type => 'weekly', :status => 'waiting'})
     @active_sessions = Tutor.filter_student_requests({:status => 'active'})
+    @time = Time.now.in_time_zone
   end
 
   def activate_session
@@ -25,12 +26,14 @@ class TutorsController < ApplicationController
   end
 
   def check_in
+    current_tutor.estimated_leave_time = DateTime.now.in_time_zone.change(hour: params[:date][:hour], min: params[:date][:minute], sec: 0)
     current_tutor.active = true
     current_tutor.save
     redirect_to tutors_path
   end
 
   def check_out
+    current_tutor.estimated_leave_time = nil
     current_tutor.active = false
     current_tutor.save
     redirect_to tutors_path
