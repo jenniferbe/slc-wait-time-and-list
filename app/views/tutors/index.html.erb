@@ -54,7 +54,7 @@
         <th scope="row"></th>
         <td><%= time_diff(entry.created_at, Time.now) %></td>
         <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-        <td><div style="float: left; width: auto; margin-top: 7px;"><%= "N/A" %></div> <%= button_to("Finish", tutor_finish_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-danger btn-finish") %></td>      </tr>
+        <td><div style="float: left; width: auto; margin-top: 7px;"><%= "N/A" %></div> <%= button_to("Activate", tutor_activate_session_path(entry.id), :method => :patch, :id => "#{entry.id}", class: "btn btn-outline-danger btn-finish") %></td>      </tr>
       <% i += 1 %>
       <% end %>
     </tbody>
