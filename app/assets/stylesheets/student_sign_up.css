@@ -9,6 +9,17 @@ html, body {
   font-weight:200;
 }
 
+.form-row{
+  background: White;
+}
+
+.form-column{
+  background: #f5f5f5;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 50px;
+}
+
 .button-title-fade{
   -webkit-animation-delay: 0.20s;
 }
@@ -25,7 +36,7 @@ html, body {
 
 #btn-login{
   margin-right: 8px;
-  width: 102px;
+  width: 150px;
   float: right;
 }
 #btn{
@@ -214,10 +225,3 @@ form label {
   font-family: 'FreigTexProBlk';
   src:url('/FreightTextPro/FreigTexProBlk.otf');
 }
-
-
-
-
-
-
-
