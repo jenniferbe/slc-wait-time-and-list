@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128235740) do
+ActiveRecord::Schema.define(version: 20171203004928) do
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171128235740) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin"
   end
 
   add_index "tutors", ["email"], name: "index_tutors_on_email", unique: true
