@@ -17,16 +17,21 @@ html, body {
   margin-top:15px;
   width: 100%;
 }
-#btn-logout-slc{
+#btn-logout{
   margin-left: 8px;
   width: 102px;
   float: left;
 }
 
-#btn-login-tutor{
+#btn-login{
   margin-right: 8px;
   width: 102px;
   float: right;
+}
+#btn{
+  margin-left: 18px;
+  width: 102px;
+  float: left;
 }
 
 .btn-outline-danger{
@@ -37,6 +42,11 @@ html, body {
 .btn-outline-success{
   color: #28a74573;
   border-color: #28a74573;
+}
+
+.btn-outline-primary{
+  color: #428bca;
+  border-color: #428bca;
 }
 
 .label{
