@@ -23,12 +23,12 @@
             <%= form_tag(students_path, method: "post") do %>
                 <div class="row" id="row">
                     <div class="col-4">
-                        <%= label_tag(:last_name, "Last Name *", class: "label") %>
-                        <%= text_field_tag "student_last_name", nil, placeholder: "Last Name", class: "form_signup form-control", required: true   %>
-                    </div>
-                    <div class="col-4">
                         <%= label_tag(:first_name, "First Name *", class: "label") %>
                         <%= text_field_tag "student_first_name", nil, placeholder: "First Name", class: "form_signup form-control", required: true  %>
+                    </div>
+                    <div class="col-4">
+                        <%= label_tag(:last_name, "Last Name *", class: "label") %>
+                        <%= text_field_tag "student_last_name", nil, placeholder: "Last Name", class: "form_signup form-control", required: true   %>
                     </div>
                 </div>
                 <div class="row" id="row">
