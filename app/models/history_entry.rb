@@ -8,7 +8,7 @@ class HistoryEntry < ActiveRecord::Base
       date = date.to_date.in_time_zone
     rescue
       header = "Please search for a date with the following format: MM-DD-YYYY"
-      return [nil, nil, header]
+      return [date, nil, nil, header]
     end
     histories = HistoryEntry.get_tables_for_date(date)
     if histories.nil?
@@ -16,7 +16,7 @@ class HistoryEntry < ActiveRecord::Base
     else
       found = true
     end
-    [found, histories, header]
+    [date, found, histories, header]
   end
 
   def self.get_tables_for_date(date)
