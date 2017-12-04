@@ -7,7 +7,9 @@ class StudentRequestsController < ApplicationController
     if @wait_time
       @wait_time = @wait_time.strftime("%l:%M%P")
     else
-      @wait_time = "No Tutors available"
+      @student_request = StudentRequest.find(params[:id])
+      # @student_request = StudentRequest.where(:student_id => params[:id])[0]
+      @student_request.update(:status => "cancelled")
     end
 	  #will need the student's id in when confirming, so we pass it around
 

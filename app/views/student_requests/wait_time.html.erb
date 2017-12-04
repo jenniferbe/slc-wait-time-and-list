@@ -1,6 +1,14 @@
-<h1> We estimate we can help you at <%= @wait_time %> min </h1>
-<div id="details">
-    Do you want to wait in line?
-    <%= link_to "YES", confirm_student_request_path(@student_request), method: "get" %>
-    <%= link_to "NO", student_request_path(@student_request), method: "delete" %>
-</div>
+
+<% if @wait_time%>
+      <h1> We estimate we can help you at <%= @wait_time %></h1>
+      <div id="details">
+        Do you want to wait in line?
+        <%= link_to "YES", confirm_student_request_path(@student_request), method: "get" %>
+        <%= link_to "NO", student_request_path(@student_request), method: "delete" %>
+      </div>
+<% else %>
+    <h1> Sorry for the inconvenience, there are or will not be any available Tutors </h1>
+    <div id="details">
+      <%= link_to "Back to the Sign-Up Form", students_path(), method: "get" %>
+    </div>
+<% end %>
