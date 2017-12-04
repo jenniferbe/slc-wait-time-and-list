@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'app_login' => 'app_security#show', as: :app_firewall
   post 'app_logout' => 'app_security#logout', as: :app_logout
 
+  get '*path' => redirect('/')
+
   # get 'tutor_login' => 'tutor_security#show', as: :tutor_firewall
   # post 'tutor_login' => 'tutor_security#authenticate', as: :tutor_authenticate
   # post 'tutor_logout' => 'tutor_security#logout', as: :tutor_logout
