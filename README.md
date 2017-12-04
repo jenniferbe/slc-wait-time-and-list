@@ -17,12 +17,12 @@ Admins have full control over the application allowing them to look through and 
 This link below shows the old form that the SLC used to use. THe information recorded is what we based part of our database on. [Student Learning Center](https://berkeley.mywconline.com/ "slc")
 
 ## Running the App
-First we have to install gpg
+First install gpg
 ```sh
 $ brew install gnupg
 ```
-Then enter the key that we can provide to you that decrypts application.yml.asc
-Inside you will find the password to the SLC overall application lock. Anything you change in the application.yml make sure to re-encrypt it with this link to Armando Fox's [gpg guide](https://saasbook.blogspot.com/2016/08/keeping-secrets.html). 
+Next, enter the key that is provided. This key decrypts the application.yml.asc
+Inside you will find the password to the SLC overall application lock. Anytime you change in the application.yml make sure to re-encrypt it with the following link to Armando Fox's [gpg guide](https://saasbook.blogspot.com/2016/08/keeping-secrets.html). 
 
 ```sh
 $ export KEY=your-secret-key-value
@@ -35,7 +35,7 @@ To get the app to run, set it up with
 $ bundle install --without production
 $ rake db:setup db:migrate
 ```
-And then you should be able to run it on your local browser
+And then you can run it on your local browser
 ```sh
 $ rails s
 ```
