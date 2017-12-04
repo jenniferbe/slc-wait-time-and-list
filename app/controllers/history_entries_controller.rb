@@ -11,8 +11,8 @@ class HistoryEntriesController < ApplicationController
 
 
   def get_report
-    @date = params[:id].to_date
-    @history = HistoryEntry.where({sign_in_time: @date..(@date + 1.days)}).order('sign_in_time DESC')
+    @date = params[:id].to_date.in_time_zone
+    @history = HistoryEntry.where({sign_in_time: @date..(@date + 1.days)}).order('sign_in_time ASC')
     # respond_to do |format|
     #   format.html
     #   format.xlsx
