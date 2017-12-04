@@ -2,8 +2,8 @@ class TutorsController < ApplicationController
   before_action :authenticate_tutor!
 
   def index
-    # byebug
-    if current_tutor.admin?
+    byebug
+    if current_tutor.try(:admin?)
       redirect_to history_entries_path and return
     end
     @active_tutor = current_tutor.active
