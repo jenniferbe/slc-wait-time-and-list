@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202232341) do
+ActiveRecord::Schema.define(version: 20171203085257) do
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id",   limit: 8
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20171202232341) do
 
   create_table "tutor_work_days", force: :cascade do |t|
     t.integer  "tutor_id",     limit: 8
-    t.integer  "start_time"
-    t.integer  "end_time"
-    t.string   "num_students"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "num_students"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20171202232341) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "active",                           default: false
+    t.boolean  "admin"
   end
 
   add_index "tutors", ["email"], name: "index_tutors_on_email", unique: true
