@@ -19,14 +19,12 @@
           <%= flash[:warning] %>
         </div>
       <% end %>
-      <% if current_tutor %>
+      <% if current_tutor and logged_in_app? %>
         <% if current_tutor.try(:admin?) %>
-              <%= link_to 'Admin Log Out', destroy_tutor_session_path, method: "delete", id:"btn-outline-danger", class: "btn btn-outline-danger" %>
-              <%= link_to 'App Log Out', app_logout_path, method: "post", id:"btn-outline-danger", class: "btn btn-outline-danger"%>
-              <%= link_to 'Histories', history_entries_path, id:"btn-outline-success", class: "btn btn-outline-primary" %>
+          <%= link_to 'Admin Log Out', destroy_tutor_session_path, method: "delete", id:"btn-outline-danger", class: "btn btn-outline-danger" %>
+          <%= link_to 'Histories', history_entries_path, id:"btn-outline-success", class: "btn btn-outline-primary" %>
           <%= link_to 'Active Sessions', tutors_path, id:"btn-outline-success", class: "btn btn-outline-primary" %>
           <%= link_to 'Tutor Registration', new_tutor_registration_path, id: 'sign-up', id:"btn-outline-primary", class: "btn btn-outline-primary" %>
-
         <% end %>
       <% end %>
 
