@@ -1,3 +1,8 @@
+
+#history-container{
+    margin-top: 40px;
+}
+
 #history-title{
 	margin-left: 16px;
 	margin-top: 30px;
@@ -7,4 +12,3 @@ table#history_tables{
 }
 #history-table-title{
 	margin-top: 20px;
-}
