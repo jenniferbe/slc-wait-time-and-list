@@ -1,73 +1,89 @@
 
-<div id="title-backdrop"></div>
+<!-- history_entries#show.html.erb-->
 
-<h1 class="title">Berkeley Student Learning Center</h1>
-
-<%= button_to "Tutor Log Out", destroy_tutor_session_path, method: "delete", id:"btn-outline-danger", class: "btn btn-outline-danger"%>
-
-<h1 class="subtitle">Search Histories</h1>
-
-<div class="form-container container-fluid">
+<div class="button-title-fade animated fadeIn">
+  <nav class="navbar navbar-light bg-faded" >
+    <div class="button-bar">
+      <div id="btn-logout">
+        <%= link_to 'session', tutors_path, method: 'get'  %>
+        <%= button_to "Sessions", tutors_path, method: "get", id:"btn-outline-success", class: "btn btn-outline-success"%>
+      </div>
+      <div id="btn-login">
+        <%= button_to "Tutor Registration", new_tutor_registration_path, method: "get", id:"btn-outline-success", class: "btn btn-outline-success"%>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="form-row">
+  <div class="form-column">
+    <div id="title-container">
+      <%= image_tag "slc_logo.png", id:"slc-logo-pic-student-signup" %>
+    </div>
+    <h1 class="subtitle animated fadeInLeft">Search Histories</h1>
+    <div class="container-fluid animated fadeInUp" id="form-container">
 
     <%= form_tag(history_entries_path, method: "get") do %>
         <div class="col-2">
-              <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
-              <%= date_field_tag(:history_dates) %>
+          <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
+          <%= date_field_tag(:history_dates) %>
         </div>
         <br/>
 
         <div class="col-2">
-            <%= submit_tag"Submit", :id => "form-submit", :class =>"btn btn-primary" %>
+          <%= submit_tag"Submit", :id => "form-submit", :class =>"btn btn-primary" %>
         </div>
     <% end %>
 
-</div>
-<% if !@header.nil? %>
-    <br/>
-    <br/>
-    <h2><%= @header %></h2>
-<% elsif @found %>
-<%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
-<div class="form-container container-fluid">
-<h2>Showing history for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
-  <% (0..2).each do |i| %>
-    <h1><%=@titles[i]%></h1>
-    <table id="queue" class="queue">
-    <tr>
-      <!--<th>Number</th>-->
-      <th>Sign In Time</th>
-      <th>Name</th>
-      <th>Tutor Name</th>
-      <th>Course</th>
-      <!--<th>Waiting Time</th>-->
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Status</th>
-      <th>Tutor Notes</th>
-    </tr>
-    
-    <tr>
-      <% @histories[i].each do |entry| %>
-          <tr id="q_row">
-            <!--<td></td>-->
-            <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
-            <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-            <% if entry.tutor == nil %>
-                <td>None</td>
-            <% else %>
-                <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
+      <% if !@header.nil? %>
+          <br/>
+          <br/>
+          <h2><%= @header %></h2>
+      <% elsif @found %>
+          <%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
+          <div class="form-container container-fluid">
+            <h2>Showing history for <%= @date.strftime("%A, %B %d, %Y") %>.</h2>
+            <% (0..2).each do |i| %>
+                <h1><%=@titles[i]%></h1>
+                <table id="queue" class="queue">
+                  <tr>
+                    <!--<th>Number</th>-->
+                    <th>Sign In Time</th>
+                    <th>Name</th>
+                    <th>Tutor Name</th>
+                    <th>Course</th>
+                    <!--<th>Waiting Time</th>-->
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Tutor Notes</th>
+                  </tr>
+
+                  <tr>
+                    <% @histories[i].each do |entry| %>
+                      <tr id="q_row">
+                        <!--<td></td>-->
+                        <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
+                        <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
+                        <% if entry.tutor == nil %>
+                            <td>None</td>
+                        <% else %>
+                            <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
+                        <% end %>
+                        <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
+                        <td><%= entry.start_time.strftime("%l:%M%P") %></td>
+                        <td><%= entry.end_time.strftime("%l:%M%P") %></td>
+                        <td><%= entry.status %></td>
+                        <td><%= entry.tutor_notes%></td>
+
+                      </tr>
+                  <% end %>
+
+                  </tr>
+                </table>
             <% end %>
-            <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
-            <td><%= entry.start_time.strftime("%l:%M%P") %></td>
-            <td><%= entry.end_time.strftime("%l:%M%P") %></td>
-            <td><%= entry.status %></td>
-            <td><%= entry.tutor_notes%></td>
-
-          </tr>
-      <% end %>
-
-    </tr>
-    </table>
-  <% end %>
+      <br/><br/>
+    </div>
+  </div>
 </div>
-<% end %>
+      <% end %>
+          </div>
