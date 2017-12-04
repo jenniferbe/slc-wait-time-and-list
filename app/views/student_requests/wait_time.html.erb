@@ -1,6 +1,13 @@
-<h1> Your estimated wait time is <%= @wait_time %> min </h1>
-<div id="details">
-    Do you want to wait in line?
-    <%= link_to "YES", confirm_student_request_path(@student_request), method: "get" %>
-    <%= link_to "NO", student_request_path(@student_request), method: "delete" %>
+
+
+<div id="wait-time-container" class="container-fluid wait-time-container animated fadeIn">
+	<h1 id="wait-time"> Your estimated wait time is <%= @wait_time %> min </h1>
+	<div id="wait-time-details">
+	    Do you want to wait in line?
+	    <br/>
+	    <div id="wait-time-buttons-container" class="container">
+		    <%= button_to "Yes", confirm_student_request_path(@student_request), method: "get", id:"wait-btn-outline-success", class: "btn btn-outline-success"%>
+		    <%= button_to "No", student_request_path(@student_request), method: "get", id:"wait-btn-outline-danger", class: "btn btn-outline-danger"%>
+		</div>
+	</div>
 </div>

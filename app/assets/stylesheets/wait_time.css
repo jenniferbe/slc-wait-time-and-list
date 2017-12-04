@@ -1,0 +1,33 @@
+#wait-time{
+	text-align: center;
+}
+#wait-time-container{
+    position: absolute;
+    width:360px;
+    height: 202px;
+    margin-top:180px;
+    border: 0.5px solid #1b1e212b;
+    padding:20px;
+    border-radius: 0.8rem;
+    left:0;
+    right:0;
+    background-color: #ffffffcf;
+    -webkit-animation-delay: 0.10s;
+}
+#wait-time-buttons-container{
+	margin-top:18px;
+	width:265px;
+	height:32px;
+}
+#wait-time-details{
+	text-align: center;
+}
+#wait-btn-outline-success{
+	width:100px;
+	float:left;
+}
+#wait-btn-outline-danger{
+	width:100px;
+	margin-left:24px;
+	float:left;
+}
