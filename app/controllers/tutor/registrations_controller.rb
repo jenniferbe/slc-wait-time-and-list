@@ -1,4 +1,7 @@
 class Tutor::RegistrationsController < Devise::RegistrationsController
+  prepend_before_filter :require_no_authentication, :only => :none
+
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -49,9 +52,9 @@ class Tutor::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    redirect_to tutors_path
-  end
+  # def after_sign_up_path_for(resource)
+  #   redirect_to tutors_path
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

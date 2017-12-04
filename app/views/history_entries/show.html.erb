@@ -1,81 +1,85 @@
 
-<div id="title-backdrop"></div>
+<!-- history_entries#show.html.erb-->
 
-<h1 class="title">Berkeley Student Learning Center</h1>
 
-<h1 class="subtitle">Search Histories</h1>
+<div id="history-container" class="form-row">
+  <div class="form-column">
+    <div id="title-container">
+      <%= image_tag "slc_logo.png", id:"slc-logo-pic-student-signup" %>
+    </div>
+    <h1 class="subtitle animated fadeInLeft">Search Histories</h1>
+    <div class="container-fluid animated fadeInUp" id="form-container">
 
-<div class="form-container container-fluid">
+      <%= form_tag(history_entries_path, method: "get") do %>
+          <div class="col-2">
+            <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
+            <%= date_field_tag(:history_dates) %>
+          </div>
+          <br/>
 
-    <%= form_tag(history_entries_path, method: "get") do %>
-        <div class="col-2">
-              <%= label_tag(:history_dates, "Search for (MM/DD/YYYY):") %>
-              <%= date_field_tag(:history_dates) %>
-        </div>
-        <br/>
-
-        <div class="col-2">
+          <div class="col-2">
             <%= submit_tag"Submit", :id => "form-submit", :class =>"btn btn-primary" %>
+          </div>
+      <% end %>
+
+    </div>
+    x
+    <% if !@header.nil? %>
+        <br/>
+        <br/>
+        <h2><%= @header %></h2>
+    <% elsif @found %>
+        <%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
+
+
+        <div class="container-fluid">
+
+          <h2 id="history-title">Showing history for <%= @date.strftime("%A, %B %d, %Y") %></h2>
+
+          <div id="table-page-container" class="container-fluid">
+
+            <% (0..2).each do |i| %>
+                <h1 id="history-table-title" class="animated fadeIn"><%=@titles[i]%></h1>
+
+                <table id="history_tables" class="table queue animated fadeInUp">
+
+                  <thead class="thead-light">
+                  <tr>
+                    <!--<th>Number</th>-->
+                    <th scope="col">Sign In Time</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tutor Name</th>
+                    <th scope="col">Course</th>
+                    <!--<th>Waiting Time</th>-->
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tutor Notes</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @histories[i].each do |entry| %>
+                      <tr id="q_row" class="animated fadeInUp" style="-webkit-animation-delay: <%=i * 0.10%>s">
+                        <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
+                        <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
+                        <% if entry.tutor == nil %>
+                            <td>None</td>
+                        <% else %>
+                            <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
+                        <% end %>
+                        <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
+                        <td><%= entry.start_time.nil? ? "" : entry.start_time.strftime("%l:%M%P") %></td>
+                        <td><%= entry.end_time.nil? ? "" : entry.end_time.strftime("%l:%M%P") %></td>
+                        <td><%= entry.status %></td>
+                        <td><%= entry.tutor_notes%></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+
+                </table>
+            <% end %>
+          </div>
         </div>
-    <% end %>
-
-</div>
-x
-<% if !@header.nil? %>
-    <br/>
-    <br/>
-    <h2><%= @header %></h2>
-<% elsif @found %>
-<%= link_to 'Download as .xlsx', history_report_path(id: @date, format: :xlsx) %>
-
-
-<div class="container-fluid">
-  
-  <h2 id="history-title">Showing history for <%= @date.strftime("%A, %B %d, %Y") %></h2>
-
-  <div id="table-page-container" class="container-fluid">
-
-    <% (0..2).each do |i| %>
-    <h1 id="history-table-title" class="animated fadeIn"><%=@titles[i]%></h1>
-    
-    <table id="history_tables" class="table queue animated fadeInUp">
-      
-      <thead class="thead-light">
-        <tr>
-          <!--<th>Number</th>-->
-          <th scope="col">Sign In Time</th>
-          <th scope="col">Name</th>
-          <th scope="col">Tutor Name</th>
-          <th scope="col">Course</th>
-          <!--<th>Waiting Time</th>-->
-          <th scope="col">Start Time</th>
-          <th scope="col">End Time</th>
-          <th scope="col">Status</th>
-          <th scope="col">Tutor Notes</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-          <% @histories[i].each do |entry| %>
-          <tr id="q_row" class="animated fadeInUp" style="-webkit-animation-delay: <%=i * 0.10%>s">
-              <td><%= entry.sign_in_time.strftime("%l:%M%P") %></td>
-              <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %></td>
-              <% if entry.tutor == nil %>
-                  <td>None</td>
-              <% else %>
-                  <td><%= %Q(#{entry.tutor.first_name} #{entry.tutor.last_name}) %></td>
-              <% end %>
-              <td><div style="float: left; width: auto;"><%= entry.course %></div></td>
-              <td><%= entry.start_time.nil? ? "" : entry.start_time.strftime("%l:%M%P") %></td>
-              <td><%= entry.end_time.nil? ? "" : entry.end_time.strftime("%l:%M%P") %></td>
-              <td><%= entry.status %></td>
-              <td><%= entry.tutor_notes%></td>
-          </tr>
-          <% end %>
-      </tbody>
-
-    </table>
     <% end %>
   </div>
-</div>
-<% end %>

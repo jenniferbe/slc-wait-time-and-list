@@ -39,8 +39,9 @@ class StudentRequest < ActiveRecord::Base
   end
 
   def self.pair_students_and_tutors(help_queue, i)
-    j = i % help_queue.length
+    j = i % help_queue.length #this line is affected by help_queue.delete_at(j)
     while not (help_queue.length == 0)
+      j = j%help_queue.length
       tutor_time = help_queue[j]
       if StudentRequest.tutor_has_time_to_help?(tutor_time[:elt].to_time, tutor_time[:start_time])
         help_queue[j][:start_time] = tutor_time[:start_time] + 30 * 60
@@ -48,7 +49,6 @@ class StudentRequest < ActiveRecord::Base
       else
         help_queue.delete_at(j)
       end
-      j = j%help_queue.length
     end
     return nil, j
   end

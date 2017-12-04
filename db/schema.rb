@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20171203203321) do
     t.string   "last_sign_in_ip"
     t.boolean  "active",                           default: false
     t.datetime "expected_leave_time"
+    t.boolean  "admin"
   end
 
   add_index "tutors", ["email"], name: "index_tutors_on_email", unique: true

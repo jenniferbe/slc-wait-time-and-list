@@ -1,4 +1,5 @@
 class HistoryEntriesController < ApplicationController
+  before_action :authenticate_tutor!
   def show
     @date = params[:history_dates]
     if params[:history_dates].nil?
