@@ -40,17 +40,18 @@ class StudentRequest < ActiveRecord::Base
 
   def self.pair_students_and_tutors(help_queue, i)
     helped = false
+    j = i % help_queue.length
     while not (help_queue.length == 0)
-      j = i % help_queue.length
       tutor_time = help_queue[j]
       if StudentRequest.tutor_has_time_to_help?(tutor_time[:elt].to_time, tutor_time[:start_time])
         help_queue[j][:start_time] = tutor_time[:start_time] + 30 * 60
-        return help_queue
+        return help_queue, j
       else
         help_queue.delete_at(j)
       end
+      j = j%help_queue.length
     end
-    return nil
+    return nil, j
   end
 
   def self.calculate_wait_time
@@ -58,13 +59,12 @@ class StudentRequest < ActiveRecord::Base
     help_queue = StudentRequest.generate_help_queue
     return nil if help_queue.length == 0
 
-    num_in_line = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count #+1 because that represents the new student
-    #but since we atm put the new student in line before confirming there is no +1
-
+    num_in_line = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count + 1
     #calculate waitimes for student X in line...these items could be saved and cached but it wont be accurate
     #to do so until we know the full schedule of tutors that day(=>tutorworkday) as the system doesn't know when new tutors will come in
     for i in 0...num_in_line
-      help_queue = StudentRequest.pair_students_and_tutors(help_queue, i)
+
+      help_queue, j = StudentRequest.pair_students_and_tutors(help_queue, i)
       return nil if help_queue.nil?
     end
     return help_queue[j]["start_time".to_sym] - 30*60

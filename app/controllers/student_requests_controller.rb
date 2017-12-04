@@ -18,7 +18,7 @@ class StudentRequestsController < ApplicationController
 
   def confirm
     student_request = StudentRequest.find(params[:id]).update(:status =>"waiting")
-    @student = student_request.student
+    @student = StudentRequest.find(params[:id]).student
 
     @numActiveTutors = 2 #make sure to update this *** with num current active
     #Tutor.where(status => "active").count
