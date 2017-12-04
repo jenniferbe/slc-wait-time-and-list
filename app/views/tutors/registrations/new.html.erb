@@ -7,9 +7,6 @@
       <div id="btn-logout">
         <%= button_to "Back", history_entries_path, method: "get", id:"btn-outline-danger", class: "btn btn-outline-danger"%>
       </div>
-      <div id="btn-login">
-        <%= button_to "Tutor Sign In", tutors_path, method: "get", id:"btn-outline-success", class: "btn btn-outline-success"%>
-      </div>
     </div>
   </nav>
 </div>
@@ -82,14 +79,6 @@
             </div>
           </div>
       <% end %>
-
-
-      <div class='row' id="row">
-        <div class="col-4">
-
-          <%= render "tutors/shared/links" %>
-        </div>
-      </div>
 
       <br/><br/>
     </div>
