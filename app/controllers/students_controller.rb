@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
     @student = Student.get_student(params[:student_sid], student_params)
 
     if @student.in_line?(params[:meet_type])
-      flash[:notice] = 'you are already in line'
+      flash[:notice] = 'You are already in line'
       render "students/new"
       return
     end
@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
     case params[:meet_type]
       when 'scheduled', 'weekly'
         @student_request = @student.create_student_request(course_params)
-        flash[:notice] = 'you are now in line!'
+        flash[:notice] = 'You are now in line!'
       when 'drop-in'
         course_params[:status]= "cancelled"
          @student_request = @student.create_student_request(course_params)

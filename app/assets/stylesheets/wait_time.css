@@ -1,9 +1,25 @@
 #wait-time{
 	text-align: center;
 }
+#no-wait-time{
+    
+}
 #wait-time-container{
     position: absolute;
     width:360px;
+    height: 202px;
+    margin-top:180px;
+    border: 0.5px solid #1b1e212b;
+    padding:20px;
+    border-radius: 0.8rem;
+    left:0;
+    right:0;
+    background-color: #ffffffcf;
+    -webkit-animation-delay: 0.10s;
+}
+#no-wait-time-container{
+    position: absolute;
+    width:460px;
     height: 202px;
     margin-top:180px;
     border: 0.5px solid #1b1e212b;
