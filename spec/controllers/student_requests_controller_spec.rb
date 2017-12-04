@@ -3,6 +3,24 @@ require 'byebug'
 require 'helpers/authentification_helper'
 
 RSpec.describe StudentRequestsController, type: :controller do
+  describe "wait time" do
+    before(:each) do
+      login_slc
+      Tutor.create(:active => true, :expected_leave_time => Time.now.in_time_zone + 1.day)
+    end
+    it "displays the calculated wait time" do
+      Student.create(:sid => 1)
+      student_requests = StudentRequest.create(:id => 1, :student_id => 1)
+      expect(StudentRequest).to receive(:calculate_wait_time).and_return(Time.now.in_time_zone + 30.minute)
+      get :wait_time, id: 1
+    end
+    it "returns nil if there are no tutors available" do
+      Student.create(:sid => 1)
+      student_requests = StudentRequest.create(:id => 1, :student_id => 1)
+      expect(StudentRequest).to receive(:calculate_wait_time).and_return(nil)
+      get :wait_time, id: 1
+    end
+  end
   # describe 'wait time' do
   #   before(:each) do
   #     login_slc
