@@ -11,10 +11,10 @@
 ## Description
 This application allows students to check in for UC Berkeley's Student Learning Center. 
 Students can sign in for their scheduled appointments or add their name into the queue for drop-in sessions. 
-Tutors are given an interface to work and record their tutoring sessions with these students. 
-Admins have full control over the application allowing them to look through and manage the past records and create and tutor accounts.  
+Tutors are given an interface to work and record their tutoring sessions with these students. The Application also allows tutors to check-in and check-out of their shifts, giving them an easy way to clock their hours.
+Admins have full control over the application allowing them to look through and manage the past records and create tutor accounts.  
 
-This link below shows the old form that the SLC used to use. THe information recorded is what we based part of our database on. [Student Learning Center](https://berkeley.mywconline.com/ "slc")
+This link below shows the old form that the SLC used to use. The information recorded is what we based part of our database on. [Student Learning Center](https://berkeley.mywconline.com/ "slc")
 
 ## Running the App
 First we have to install gpg
