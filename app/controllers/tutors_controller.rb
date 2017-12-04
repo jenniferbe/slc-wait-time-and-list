@@ -2,6 +2,10 @@ class TutorsController < ApplicationController
   before_action :authenticate_tutor!
 
   def index
+    # byebug
+    if current_tutor.admin?
+      redirect_to history_entries_path and return
+    end
     @active_tutor = current_tutor.active
     @drop_in_queue = Tutor.filter_student_requests({:meet_type => 'drop-in', :status => 'waiting'})
     @scheduled_queue = Tutor.filter_student_requests({:meet_type => 'scheduled', :status => 'waiting'})
