@@ -19,14 +19,14 @@ Background:Jennifer Signs In
   And I press "Submit"
 
 Scenario: Jennifer wants to wait in line
-  And she clicks on "YES"
+  And I press "Yes"
   Then she should be on the student page
   And she should see "You are now in line!"
   Then "Jennifer" "Be" should be in line
   And she should not see "Hope to see you soon"
 
 Scenario: Jennifer doesn't want to wait in line
-  And she clicks on "NO"
+  And I press "No"
   Then she should be on the student page
   And she should see "you are not in line"
   Then "Jennifer" "Be" should not be in line
