@@ -32,8 +32,8 @@ class StudentsController < ApplicationController
         @student_request = @student.create_student_request(course_params)
         flash[:notice] = 'you are now in line!'
       when 'drop-in'
-        course_params[:status] = "cancelled"
-        @student_request = @student.create_student_request(course_params)
+        course_params[:status], @student_request= "cancelled", @student.create_student_request(course_params)
+
         redirect_to wait_time_student_request_path(@student_request.id)
         return
       else
