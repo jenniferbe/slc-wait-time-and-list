@@ -161,3 +161,10 @@ div#main{
 #tutor-submit{
     width: 100%;
 }
+
+
+#tutor-signup-checkbox{
+    margin-left: 186px;
+    margin-top: -25px;
+    position: absolute;
+}
