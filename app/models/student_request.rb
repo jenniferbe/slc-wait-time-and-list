@@ -23,7 +23,7 @@ class StudentRequest < ActiveRecord::Base
   end
 
   def self.tutor_has_time_to_help?(time_to_leave,time_to_help)
-    if(time_to_leave-time_to_help)/60 > 30
+    if(time_to_leave-time_to_help)/60 > 20
       return true
     end
     return false
@@ -32,6 +32,7 @@ class StudentRequest < ActiveRecord::Base
 
 
   def self.calculate_wait_time
+    #create an array that stores when a tutor will leave and when is their next availabiltiy
     help_queue = Array.new()
     active_tutors = Tutor.where(active: true)
     active_tutors.each do |tutor|
@@ -44,9 +45,13 @@ class StudentRequest < ActiveRecord::Base
     if help_queue.length == 0
       return nil
     end
-    help_queue = help_queue.sort_by {|tutor| tutor["start_time".to_sym]}
-    num_in_line = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count+1 #+1 because that represents the new student
 
+    help_queue = help_queue.sort_by {|tutor| tutor["start_time".to_sym]}
+    num_in_line = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count #+1 because that represents the new student
+    #but since we atm put the new student in line before confirming there is no +1
+
+    #calculate waitimes for student X in line...these items could be saved and cached but it wont be accurate
+    #to do so until we know the full schedule of tutors that day(=>tutorworkday) as the system doesn't know when new tutors will come in
     for i in 0...num_in_line
       j = i%help_queue.length
       helped = false
