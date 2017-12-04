@@ -17,8 +17,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def confirm
+    student_request = StudentRequest.find(params[:id]).update(:status =>"waiting")
+    @student = student_request.student
 
-    @student = StudentRequest.find(params[:id]).student
     @numActiveTutors = 2 #make sure to update this *** with num current active
     #Tutor.where(status => "active").count
     if (@student.get_wait_position <= @numActiveTutors)
@@ -32,9 +33,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def destroy
-    @student_request = StudentRequest.find(params[:id])
+    # @student_request = StudentRequest.find(params[:id])
     # @student_request = StudentRequest.where(:student_id => params[:id])[0]
-    @student_request.update(:status => "cancelled")
+    # @student_request.update(:status => "cancelled")
     flash[:notice] = 'you are not in line!'
     redirect_to students_path
   end
