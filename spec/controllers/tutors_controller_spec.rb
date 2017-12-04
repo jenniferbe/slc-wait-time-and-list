@@ -121,14 +121,14 @@ RSpec.describe TutorsController, type: :controller do
   describe 'check in' do
     it 'sets the current tutor to active' do
       expect(@controller.current_tutor.active).not_to eq(true)
-      post :check_in
+      post :check_in, date: {:hour => "1", :minute => "00"}
       expect(@controller.current_tutor.active).to eq(true)
     end
   end
 
   describe 'check out' do
     it 'sets the current tutor to inactive' do
-      post :check_in
+      post :check_in, date: {:hour => "1", :minute => "00"}
       expect(@controller.current_tutor.active).to eq(true)
       post :check_out
       expect(@controller.current_tutor.active).to eq(false)
