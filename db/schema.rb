@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20171203085257) do
-
 
   create_table "history_entries", force: :cascade do |t|
     t.integer  "student_id",   limit: 8
