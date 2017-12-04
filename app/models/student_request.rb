@@ -19,7 +19,6 @@ class StudentRequest < ActiveRecord::Base
       ExampleMailer.next_in_line_email(@student).deliver_now
       StudentRequest.where(:student_id => @studentid)[0].update(:emailed => true)
     end
-
   end
 
   def self.tutor_has_time_to_help?(time_to_leave,time_to_help)
