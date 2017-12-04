@@ -33,4 +33,7 @@ class Student < ActiveRecord::Base
     @wait_pos
   end
 
+  def get_wait_position2
+
+  end
 end
