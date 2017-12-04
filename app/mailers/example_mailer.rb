@@ -4,7 +4,7 @@ class ExampleMailer < ApplicationMailer
 
 		def confirmation_email(student)
 			@student = student
-			mail(to: @student.email, subject: 'SLC Drop-in: Confrimation email')
+			mail(to: @student.email, subject: 'SLC Drop-in: Confirmation email')
 			# @student.update_attribute(:emailed => true)
 		end
 
