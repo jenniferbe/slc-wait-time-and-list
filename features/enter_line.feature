@@ -28,9 +28,9 @@ Scenario: Jennifer wants to wait in line
 Scenario: Jennifer doesn't want to wait in line
   And I press "No"
   Then she should be on the student page
-  And she should see "you are not in line"
+  And she should see "You are not in line!"
   Then "Jennifer" "Be" should not be in line
-  And she should not see "you are in line"
+  And she should not see "You are in line!"
   
 
 #have to rethink this senario because current implementation won't let 

@@ -7,7 +7,7 @@
 	    <br/>
 	    <div id="wait-time-buttons-container" class="container">
 		    <%= button_to "Yes", confirm_student_request_path(@student_request), method: "get", id:"wait-btn-outline-success", class: "btn btn-outline-success"%>
-		    <%= button_to "No", student_request_path(), method: "get", id:"wait-btn-outline-danger", class: "btn btn-outline-danger"%>
+		    <%= button_to "No", student_request_path(@student_request), method: "delete", id:"wait-btn-outline-danger", class: "btn btn-outline-danger"%>
 		</div>
 	</div>
 </div>
