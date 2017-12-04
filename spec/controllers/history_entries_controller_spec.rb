@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HistoryEntriesController, type: :controller do
+  login_tutor
   describe 'show' do
     describe 'when there is no search' do
       it 'does not display help text' do
