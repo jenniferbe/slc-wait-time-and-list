@@ -47,8 +47,10 @@ class StudentRequest < ActiveRecord::Base
         return help_queue, j
       else
         help_queue.delete_at(j)
+        if help_queue.length!=0
+          j = j%help_queue.length
+        end
       end
-      j = j%help_queue.length
     end
     return nil, j
   end
