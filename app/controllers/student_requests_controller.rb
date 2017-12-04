@@ -17,11 +17,9 @@ class StudentRequestsController < ApplicationController
   end
 
   def confirm
-
     @student = StudentRequest.find(params[:id]).student
+    @numActiveTutors = Tutor.where(:active => true).count
 
-    @numActiveTutors = 2 #make sure to update this *** with num current active
-    #Tutor.where(status => "active").count
     if (@student.get_wait_position <= @numActiveTutors)
       StudentRequest.send_email_next_in_line
     else
