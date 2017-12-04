@@ -26,7 +26,6 @@ class AppSecurityController < ApplicationController
 
   def logout
     session["appauth"] = false
-    session["tutorauth"] = false
     redirect_to app_firewall_path
   end
 end

@@ -4,7 +4,6 @@ RSpec.describe StudentsController, type: :controller do
   describe 'create' do
     before :each do
       login_slc
-      login_tutor
       @params = {:student_first_name => 'Athina',
                  :student_last_name => 'Kaunda',
                  :student_sid => '23636173',

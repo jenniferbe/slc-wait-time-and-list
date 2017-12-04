@@ -6,7 +6,6 @@ RSpec.describe StudentRequestsController, type: :controller do
   describe 'wait time' do
     before(:each) do
       login_slc
-      login_tutor
       @fake_student_request = double('StudentRequest', :id => 1, :student_id => 1)
       @fake_student_request2 = double('StudentRequest', :id => 2, :student_id => 2)
       allow(StudentRequest).to receive(:find).and_return(StudentRequest)

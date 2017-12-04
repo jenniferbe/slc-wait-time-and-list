@@ -35,6 +35,8 @@ class StudentRequestsController < ApplicationController
     # @student_request = StudentRequest.where(:student_id => params[:id])[0]
     @student_request.update(:status => "cancelled")
     flash[:notice] = 'you are not in line!'
+    Tutor.session_to_histories(@student_request, nil, "")
+    StudentRequest.destroy(params[:id])
     redirect_to students_path
   end
 
