@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :tutors, only: [:index]
   patch 'tutors/:id/activate_session' => 'tutors#activate_session', as: :tutor_activate_session
   patch 'tutors/:id/finish_session' => 'tutors#finish_session', as: :tutor_finish_session
-  patch 'tutors/check_in' => 'tutors#check_in', as: :tutor_check_in
+  post 'tutors/check_in' => 'tutors#check_in', as: :tutor_check_in
   patch 'tutors/check_out' => 'tutors#check_out', as: :tutor_check_out
 
   root 'students#new'
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   post 'app_login' => 'app_security#authenticate', as: :app_authenticate
   get 'app_login' => 'app_security#show', as: :app_firewall
   post 'app_logout' => 'app_security#logout', as: :app_logout
+
+  get '*path' => redirect('/')
 
   # get 'tutor_login' => 'tutor_security#show', as: :tutor_firewall
   # post 'tutor_login' => 'tutor_security#authenticate', as: :tutor_authenticate

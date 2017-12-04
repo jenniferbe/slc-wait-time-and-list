@@ -194,8 +194,9 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
 
 end
 
-Then /^I should see a wait time of "(.*)"$/ do |wait_time|
-  step %{I should see "#{wait_time}"}
+Then /^I should see a wait time for "(.*)" minutes$/ do |wait_time|
+  time = (Time.now.in_time_zone + wait_time.to_i.minute).to_time.strftime("%l:%M%P")
+  step %{I should see "#{time}"}
 end
 
 When /^I click "(.*)" for "(.*)" with meet_type "(.*)"$/ do |button_type, id, type|

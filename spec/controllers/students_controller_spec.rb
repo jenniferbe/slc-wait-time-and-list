@@ -37,12 +37,6 @@ RSpec.describe StudentsController, type: :controller do
       post :create, @params
     end
 
-    it 'responds if no meet_type is selected' do
-      @params["meet_type"] = nil
-      post :create, @params
-      expect(flash[:notice]).to be_present
-    end
-
     it 'does not allow repeats in the same line' do
       allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
       expect(Student).to receive(:create).with(@student_data).and_return(@student).twice

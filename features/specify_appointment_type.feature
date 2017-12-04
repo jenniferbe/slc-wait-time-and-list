@@ -20,20 +20,20 @@ Scenario: Specify drop-in
   And I click "meet_type_drop-in"
   When I press "Submit"
   Then I am on the wait time page for "Haggai" "Kaunda"
-  And I follow "YES"
+  And I press "Yes"
   Then I am on the student line page
   And I should see "Haggai Kaunda"
 
 Scenario: Specify weekly
   And I click "meet_type_weekly"
   When I press "Submit"
-  Then I should see "you are now in line!"
+  Then I should see "You are now in line!"
   When I am on the student line page
   Then I should see "Haggai Kaunda"
 
 Scenario: Specify appointment
   And I click "meet_type_scheduled"
   When I press "Submit"
-  Then I should see "you are now in line!"
+  Then I should see "You are now in line!"
   When I am on the student line page
   Then I should see "Haggai Kaunda"

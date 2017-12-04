@@ -8,25 +8,24 @@ Background: student requests in database
 
   Given I am on the app firewall page
   Then I fill in the password correctly for the app firewall page
-#  Given I am on the tutor firewall page
-#  Then I fill in the password correctly for the tutor firewall page
+  Given I am a new, authenticated user
 
 
   Given the following student queues exist:
   | first_name | last_name | sid        | meet_type   | status   | created_at              |
-  | Salvador   | Villegas  | 25804240   | drop-in     | finished | 2012-09-10 14:44:24 UTC |
-  | Maiki      | Rainton   | 00000000   | drop-in     | waiting  | 2011-09-10 14:44:24 UTC |
+  | Salvador   | Villegas  | 25804240   | drop-in     | finished | 2014-09-10 14:44:24 UTC |
+  | Maiki      | Rainton   | 00000000   | drop-in     | waiting  | 2014-09-10 01:00:24 UTC |
   | Nahrae     | Seok      | 25804241   | appointment | waiting  | 2013-09-10 14:44:24 UTC |
-  | Alex       | Yang      | 25804242   | drop-in     | waiting  | 2014-09-10 14:44:24 UTC |
+  | Alex       | Yang      | 25804242   | drop-in     | waiting  | 2014-09-10 01:44:24 UTC |
 
 Scenario: students signs up for “drop-in”
   Given I am on the sign up page
   When I fill in the "student_requests" form and click "Submit"
-  Then I should see a wait time of "60 min"
+  Then I should see a wait time for "60" minutes
 
 Scenario: student visits wait time page
   Given I am on the wait time page for "Alex" "Yang"
-  Then I should see a wait time of "30 min"
+  Then I should see a wait time for "60" minutes
   
 #student email confirmation should have ability to cancel I think
 

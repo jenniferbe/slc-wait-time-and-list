@@ -51,6 +51,14 @@ And /^(?:she|he?) clicks on "(.*)"$/ do |button|
   steps %Q{ When follow "#{button}"}
 end
 
+And /^there are "(.*)" available tutors$/ do |num|
+  num = num.to_i
+  for i in 0...2
+    tutor = Tutor.new(:active => true, :expected_leave_time => Time.now.in_time_zone + 2.days)
+    tutor.save
+  end
+end
+
 Given /^I specify "(.*)"$/ do |string|
   pending
 end

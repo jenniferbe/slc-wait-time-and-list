@@ -3,23 +3,24 @@ class StudentRequestsController < ApplicationController
   before_action :auth_check_app
 
   def wait_time
-    @sorted_results = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").order('created_at')
-    @wait_pos = 0
-    @sorted_results.each do |entry|
-      break if "#{entry.id}" == params[:id]
-      @wait_pos += 1
+    @wait_time = StudentRequest.calculate_wait_time
+    if @wait_time
+      @wait_time = @wait_time.strftime("%l:%M%P")
+    else
+      @student_request = StudentRequest.find(params[:id])
+      # @student_request = StudentRequest.where(:student_id => params[:id])[0]
+      @student_request.update(:status => "cancelled")
     end
-	  @wait_time = @wait_pos * 30
-	  
 	  #will need the student's id in when confirming, so we pass it around
 
-	  @student_request = StudentRequest.find(params[:id]);
+	  @student_request = StudentRequest.find(params[:id])
   end
 
   def confirm
+    student_request = StudentRequest.find(params[:id]).update(:status =>"waiting")
     @student = StudentRequest.find(params[:id]).student
-    @numActiveTutors = Tutor.where(:active => true).count
 
+    @numActiveTutors = Tutor.where(:active => true).count
     if (@student.get_wait_position <= @numActiveTutors)
       StudentRequest.send_email_next_in_line
     else
@@ -33,8 +34,8 @@ class StudentRequestsController < ApplicationController
   def destroy
     @student_request = StudentRequest.find(params[:id])
     # @student_request = StudentRequest.where(:student_id => params[:id])[0]
-    @student_request.update(:status => "cancelled")
-    flash[:notice] = 'you are not in line!'
+    # @student_request.update(:status => "cancelled")
+    flash[:notice] = 'You are not in line!'
     Tutor.session_to_histories(@student_request, nil, "")
     StudentRequest.destroy(params[:id])
     redirect_to students_path
