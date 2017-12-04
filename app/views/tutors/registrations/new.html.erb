@@ -1,5 +1,5 @@
 
-<!-- new.html.erb-->
+<!-- registrations/new.html.erb-->
 
 <div class="button-title-fade animated fadeIn">
   <nav class="navbar navbar-light bg-faded" >
@@ -61,18 +61,25 @@
             </div>
             <div class="col-4">
               <%= f.label(:password_confirmation, "Password confirmation *", class: "label") %>
+              <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
               <%= f.password_field :password_confirmation, class: 'form_signup form-control', required: true  %>
             </div>
           </div>
 
+          <div class='row' id="row">
+            <div class="col-4">
+              <%= f.label(:admin, 'Grant admin access rights', class: 'label') %>
+              <%= f.check_box :admin %>
+            </div>
+          </div>
 
 
-
-
-
-
-          <div class="actions">
-            <%= f.submit "Sign up" %>
+          <div class="row" id="row">
+            <div class="col-5">
+              <%= f.submit "Sign up", :id => "form-submit", :class =>"btn btn-primary" %>
+            </div>
           </div>
       <% end %>
 
