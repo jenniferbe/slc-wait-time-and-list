@@ -20,8 +20,7 @@ class StudentRequestsController < ApplicationController
     student_request = StudentRequest.find(params[:id]).update(:status =>"waiting")
     @student = StudentRequest.find(params[:id]).student
 
-    @numActiveTutors = 2 #make sure to update this *** with num current active
-    #Tutor.where(status => "active").count
+    @numActiveTutors = Tutor.where(:active => true).count
     if (@student.get_wait_position <= @numActiveTutors)
       StudentRequest.send_email_next_in_line
     else

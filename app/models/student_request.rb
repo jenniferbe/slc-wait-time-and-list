@@ -39,7 +39,6 @@ class StudentRequest < ActiveRecord::Base
   end
 
   def self.pair_students_and_tutors(help_queue, i)
-    helped = false
     j = i % help_queue.length
     while not (help_queue.length == 0)
       tutor_time = help_queue[j]
