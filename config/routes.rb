@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :tutors, controllers: {
       sessions: 'tutor/sessions',
-      registrations: 'tutor/registrations'
+      :registrations => 'tutor/registrations'
   }
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # The priority is based upon order of creation: first created -> highest priority.

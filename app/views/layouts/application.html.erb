@@ -19,6 +19,17 @@
           <%= flash[:warning] %>
         </div>
       <% end %>
+      <% if current_tutor %>
+        <% if current_tutor.try(:admin?) %>
+              <%= link_to 'admin log out', destroy_tutor_session_path, method: "delete", id:"btn-outline-danger", class: "btn btn-outline-danger" %>
+              <%= link_to 'App Log Out', app_logout_path, method: "post", id:"btn-outline-danger", class: "btn btn-outline-danger"%>
+              <%= link_to 'histories', history_entries_path, id:"btn-outline-success", class: "btn btn-outline-success" %>
+          <%= link_to 'active sessions', tutors_path, id:"btn-outline-success", class: "btn btn-outline-success" %>
+          <%= link_to 'tutor_registration', new_tutor_registration_path, id: 'sign-up', id:"btn-outline-success", class: "btn btn-outline-success" %>
+
+        <% end %>
+      <% end %>
+
       <%= yield %>
     </div>
 </body>
