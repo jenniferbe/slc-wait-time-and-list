@@ -39,19 +39,18 @@ class StudentRequest < ActiveRecord::Base
   end
 
   def self.pair_students_and_tutors(help_queue, i)
-    helped, j = false, i % help_queue.length
-    while not helped
+    helped = false
+    while not (help_queue.length == 0)
+      j = i % help_queue.length
       tutor_time = help_queue[j]
       if StudentRequest.tutor_has_time_to_help?(tutor_time[:elt].to_time, tutor_time[:start_time])
         help_queue[j][:start_time] = tutor_time[:start_time] + 30 * 60
-        helped = true
+        return help_queue
       else
         help_queue.delete_at(j)
-        return nil if help_queue.length == 0
       end
-      j = j % help_queue.length
     end
-    help_queue
+    return nil
   end
 
   def self.calculate_wait_time
