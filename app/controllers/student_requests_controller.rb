@@ -13,7 +13,7 @@ class StudentRequestsController < ApplicationController
     end
 	  #will need the student's id in when confirming, so we pass it around
 
-	  @student_request = StudentRequest.find(params[:id]);
+	  @student_request = StudentRequest.find(params[:id])
   end
 
   def confirm

@@ -17,13 +17,9 @@ class Tutor < ActiveRecord::Base
   def get_time_tutor_can_help
     start_time = self.student_requests.where(status:"active").first.start_time
     if(Time.now-start_time)/60>30 #if a tutor has been working longer than 30 min
-      return Time.now + 60*30
+      return Time.now.in_time_zone + 60*30
     end
     return start_time + 60*30
-  end
-  #moves a student from the queue to the active session.
-  def queue_to_session(student_request)
-    
   end
 
   def self.filter_student_requests filter_values

@@ -28,24 +28,22 @@ class StudentRequest < ActiveRecord::Base
     return false
   end
 
-
+  def self.generate_help_queue
+    help_queue, active_tutors = Array.new(), Tutor.where(active: true)
+    time = Time.now.in_time_zone
+    active_tutors.each do |tutor|
+      start_time = tutor.is_tutoring? ? tutor.get_time_tutor_can_help : time
+      help_queue.push({start_time: start_time, sid: tutor.sid, elt: tutor.expected_leave_time})
+    end
+    help_queue
+  end
 
   def self.calculate_wait_time
     #create an array that stores when a tutor will leave and when is their next availabiltiy
-    help_queue = Array.new()
-    active_tutors = Tutor.where(active: true)
-    active_tutors.each do |tutor|
-      start_time = Time.now
-      if tutor.is_tutoring?
-        start_time = tutor.get_time_tutor_can_help
-      end
-      help_queue.push({start_time: start_time, sid: tutor.sid, edt: tutor.expected_leave_time})
-    end
-    if help_queue.length == 0
-      return nil
-    end
+    help_queue = StudentRequest.generate_help_queue
+    return nil if help_queue.length == 0
 
-    help_queue = help_queue.sort_by {|tutor| tutor["start_time".to_sym]}
+    help_queue = help_queue.sort_by {|tutor| tutor[:start_time]}
     num_in_line = StudentRequest.where(meet_type: "drop-in").where(status: "waiting").count #+1 because that represents the new student
     #but since we atm put the new student in line before confirming there is no +1
 
@@ -56,7 +54,7 @@ class StudentRequest < ActiveRecord::Base
       helped = false
       while(helped == false)
         tutor_time = help_queue[j]
-        if StudentRequest.tutor_has_time_to_help?(tutor_time["edt".to_sym].to_time,tutor_time["start_time".to_sym])
+        if StudentRequest.tutor_has_time_to_help?(tutor_time["elt".to_sym].to_time,tutor_time["start_time".to_sym])
           help_queue[j]["start_time".to_sym] = tutor_time["start_time".to_sym] + 30 * 60
           helped = true
         else
