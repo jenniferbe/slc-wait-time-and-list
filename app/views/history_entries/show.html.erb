@@ -1,20 +1,8 @@
 
 <!-- history_entries#show.html.erb-->
 
-<div class="button-title-fade animated fadeIn">
-  <nav class="navbar navbar-light bg-faded" >
-    <div class="button-bar">
-      <div id="btn-logout">
-        <%= link_to 'session', tutors_path, method: 'get'  %>
-        <%= button_to "Sessions", tutors_path, method: "get", id:"btn-outline-success", class: "btn btn-outline-success"%>
-      </div>
-      <div id="btn-login">
-        <%= button_to "Tutor Registration", new_tutor_registration_path, method: "get", id:"btn-outline-success", class: "btn btn-outline-success"%>
-      </div>
-    </div>
-  </nav>
-</div>
-<div class="form-row">
+
+<div id="history-container" class="form-row">
   <div class="form-column">
     <div id="title-container">
       <%= image_tag "slc_logo.png", id:"slc-logo-pic-student-signup" %>
