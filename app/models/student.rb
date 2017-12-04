@@ -32,5 +32,4 @@ class Student < ActiveRecord::Base
     end
     @wait_pos
   end
-
 end

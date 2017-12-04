@@ -7,6 +7,7 @@ Feature: enter line for help
 Background:Jennifer Signs In
   Given I am on the app firewall page
   Then I fill in the password correctly for the app firewall page
+  Given I am a new, authenticated user
 
   Given I am on the sign up page
   And I fill in "student_last_name" with "Be"

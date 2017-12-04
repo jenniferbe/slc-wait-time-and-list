@@ -19,7 +19,7 @@ Given /^I am a new, authenticated user$/ do
   sid = 12345678
   email = 'testing@man.net'
   password = 'secretpass'
-  Tutor.new(:email => email, :password => password, :password_confirmation => password, :first_name => first_name, :last_name => last_name, :sid => sid).save!
+  Tutor.new(:email => email, :password => password, :password_confirmation => password, :first_name => first_name, :last_name => last_name, :sid => sid, :active => true, :expected_leave_time => Time.now.in_time_zone + 2.days).save!
 
   visit '/tutors/sign_in'
   fill_in "tutor[sid]", :with => sid
