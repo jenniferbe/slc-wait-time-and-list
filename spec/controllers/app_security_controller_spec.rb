@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'helpers/authentification_helper'
 RSpec.describe AppSecurityController, type: :controller do
 
   describe 'redirect if already logged in' do
@@ -33,11 +32,9 @@ RSpec.describe AppSecurityController, type: :controller do
   describe 'logging out' do
     before(:each) do
       login_slc
-      login_tutor
     end
     it 'logs out' do
       post :logout
-      expect(session["tutorauth"]).to be(false)
       expect(session["appauth"]).to be(false)
       response.should redirect_to app_firewall_path
     end

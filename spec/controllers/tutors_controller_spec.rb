@@ -38,7 +38,6 @@ RSpec.describe TutorsController, type: :controller do
 
       post :index
     end
-
   end
 
   describe 'finish_session' do
