@@ -1,9 +1,11 @@
 <div class="button-title-fade animated fadeIn">
     <nav class="navbar navbar-light bg-faded" >
       <div class="button-bar">
+        <% unless current_tutor.try(:admin?) %>
         <div id="btn-logout">
             <%= button_to "Tutor Log Out", destroy_tutor_session_path, method: "delete", id:"btn-outline-danger", class: "btn btn-outline-danger"%>
         </div>
+        <% end %>
         <div id="btn-login">
         <% if @tutor.active == true %>
             Estimate Leave Time: <%= @tutor.expected_leave_time.strftime("%I:%M %p") %>
