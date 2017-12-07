@@ -43,5 +43,5 @@ or with Cloud 9
 ```sh
 $ rails s -p $PORT -b $IP
 ```
-##Issue
+## Issue
 Don't why it is at the moment, but if this codebase gets revived, look into the email confirmation when a student accepts the wait time for drop in. For some reason the email sometimes takes 10 seconds or more to send. I'm sure there's a performance fix, but most importantly the email needs to be sent asynchronously. - Alex
